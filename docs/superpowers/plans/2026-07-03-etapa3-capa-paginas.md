@@ -33,21 +33,21 @@
 ## Tarefas
 
 ### Task 1: Dados e ajustes de componentes
-- [ ] materias.js: arte/chamada/mesAno nas 3 matérias
-- [ ] visitas.js: 6 entradas hardcoded
-- [ ] GravuraPlaceholder: legenda opcional; MolduraIluminada: export LosangoHedera
-- [ ] Nav2003 + CaixaSidebar
+- [x] materias.js: arte/chamada/mesAno nas 3 matérias
+- [x] visitas.js: 6 entradas hardcoded
+- [x] GravuraPlaceholder: legenda opcional; MolduraIluminada: export LosangoHedera
+- [x] Nav2003 + CaixaSidebar
 
 ### Task 2: Capa
-- [ ] Capa.jsx: frontispício + grid (1 destaque + 2 menores) + sidebar completa
-- [ ] capa.css: layout main+sidebar, cards, caixas, responsivo mínimo
+- [x] Capa.jsx: frontispício + grid (1 destaque + 2 menores) + sidebar completa
+- [x] capa.css: layout main+sidebar, cards, caixas, responsivo mínimo
 
 ### Task 3: Páginas secundárias
-- [ ] Arquivo.jsx (nav ano/mês), Sobre.jsx (retrato oval + persona), Visitas.jsx (entradas + form seco)
-- [ ] RetratoOval.jsx; paginas.css
+- [x] Arquivo.jsx (nav ano/mês), Sobre.jsx (retrato oval + persona), Visitas.jsx (entradas + form seco)
+- [x] RetratoOval.jsx; paginas.css
 
 ### Task 4: Rotas e verificação
-- [ ] App.jsx: / → Capa, /especime, /arquivo, /sobre, /visitas
-- [ ] `npm run build` limpo; preview: screenshots de capa e 3 páginas; navegação sidebar
-- [ ] Skills code-review e security-review (foco guestbook) sobre o diff; corrigir achados
-- [ ] Commit; resumo p/ aprovação — **PARAR antes da ETAPA 4**
+- [x] App.jsx: / → Capa, /especime, /arquivo, /sobre, /visitas
+- [x] `npm run build` limpo; preview: screenshots de capa e 3 páginas; navegação sidebar
+- [x] Skills code-review e security-review (foco guestbook) sobre o diff; corrigir achados
+- [x] Commit; resumo p/ aprovação — **PARAR antes da ETAPA 4**

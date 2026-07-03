@@ -1,0 +1,183 @@
+/* ============================================================
+   CÓDICE — estilos dos componentes de ornamento e relíquias 2003
+   ============================================================ */
+
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- Capitular iluminada (~4 linhas de altura) ---- */
+.capitular {
+  position: relative;
+  float: left;
+  width: 104px;
+  height: 104px;
+  margin: 5px 16px 2px 0;
+}
+
+.capitular-ornamento {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.capitular-letra {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--fonte-display);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--red-rubric);
+  padding-bottom: 6px;
+}
+
+/* ---- Manicule ---- */
+.manicule {
+  display: inline-block;
+  vertical-align: -0.2em;
+  color: var(--red-rubric);
+}
+
+/* ---- Fleuron ---- */
+.fleuron {
+  display: inline-block;
+  color: var(--brown);
+}
+
+/* ---- Separador (hr ornamentado) ---- */
+.separador {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  color: var(--brown);
+}
+
+.separador-linha {
+  flex: 1;
+  border-top: 1px solid currentColor;
+}
+
+.separador .fleuron {
+  color: currentColor;
+}
+
+/* ---- Moldura ornamental (filete duplo + cantos entrelaçados) ---- */
+.moldura-ornamental {
+  position: relative;
+  border: 1px solid var(--gold-muted);
+  padding: 5px;
+}
+
+.moldura-ornamental-conteudo {
+  border: 1px solid rgba(143, 61, 51, 0.55);
+  padding: 22px 26px;
+}
+
+.moldura-canto {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  z-index: 1;
+}
+
+.moldura-canto-no  { top: -5px;    left: -5px;   transform: rotate(0deg); }
+.moldura-canto-ne  { top: -5px;    right: -5px;  transform: rotate(90deg); }
+.moldura-canto-se  { bottom: -5px; right: -5px;  transform: rotate(180deg); }
+.moldura-canto-so  { bottom: -5px; left: -5px;   transform: rotate(270deg); }
+
+/* ---- Botão 88×31 ---- */
+.botao88 {
+  display: inline-block;
+}
+
+/* ---- Contador de visitas (odômetro) ---- */
+.contador {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.contador-visor {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px 4px;
+  background: var(--bg-backdrop);
+  border: 2px outset var(--brown);
+}
+
+.contador-digito {
+  width: 15px;
+  height: 22px;
+  background: #0c0a08;
+  color: var(--bg-paper);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 22px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.85);
+  box-shadow: inset 1px 1px 0 rgba(232, 223, 208, 0.12);
+}
+
+.contador-rotulo {
+  color: var(--gray-warm);
+}
+
+/* ---- Marginalia (nota de margem manuscrita) ---- */
+.marginalia {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--brown-light);
+  transform: rotate(-1.6deg);
+}
+
+/* ---- Citação com manicule (no lugar de blockquote moderno) ---- */
+.citacao {
+  margin: 18px 0 18px 12px;
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  color: var(--ink-faded);
+}
+
+.citacao .manicule {
+  margin-right: 10px;
+}
+
+/* ---- Colofão: texto afunilado em triângulo invertido ---- */
+.colofao {
+  margin-top: 30px;
+  text-align: center;
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-faded);
+}
+
+.colofao .fleuron {
+  margin: 10px auto 0;
+  display: block;
+  color: var(--red-rubric);
+}
+
+/* ---- Assinatura de post 2003 ---- */
+.assinatura-post {
+  font-family: var(--fonte-ui);
+  font-size: var(--texto-ui);
+  color: var(--gray-warm);
+}

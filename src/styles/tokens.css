@@ -1,0 +1,53 @@
+/* ============================================================
+   CÓDICE — tokens do design system
+   Paleta rígida: nada fora dela além de shades documentados.
+   ============================================================ */
+
+:root {
+  /* ---- Paleta (spec, imutável) ---- */
+  --bg-base: #1a1714;
+  --bg-paper: #e8dfd0;
+  --bg-card: #2a241e;
+  --brown: #6b5544;
+  --brown-light: #8a7360;
+  --gray-warm: #9a938a;
+  --red-rubric: #8f3d33;
+  --gold-muted: #a8895c;
+
+  /* ---- Shades derivados (mesmo matiz, nunca cor nova) ---- */
+  --bg-backdrop: #12100d;      /* atrás da moldura do site */
+  --ink: #2b241c;              /* tinta sobre pergaminho — nunca #000 */
+  --ink-faded: #4a3f33;        /* tinta desbotada */
+  --borda-site: #3a322b;       /* borda da moldura 900px */
+  --paper-edge: #d3c6ae;       /* beirada manuseada do pergaminho */
+  --rubric-dark: #6e2f27;      /* rubrica em hover */
+
+  /* ---- Tipografia ---- */
+  --fonte-display: 'Grenze Gotisch', 'Luminari', serif;
+  --fonte-fell: 'IM Fell English', Georgia, serif;
+  --fonte-fell-sc: 'IM Fell English SC', Georgia, serif;
+  --fonte-corpo: 'EB Garamond', Georgia, serif;
+  --fonte-ui: Verdana, Geneva, sans-serif;
+  --fonte-manuscrita: 'Tangerine', cursive;
+
+  --texto-corpo: 1.0625rem;    /* 17px */
+  --altura-corpo: 1.55;
+  --texto-ui: 0.6875rem;       /* 11px — o toque 2003 */
+  --texto-ui-min: 0.625rem;    /* 10px */
+
+  /* ---- Sombra: dura e seca, NUNCA blur ---- */
+  --sombra-seca: 8px 10px 0 rgba(10, 8, 5, 0.55);
+  --sombra-seca-min: 3px 4px 0 rgba(10, 8, 5, 0.5);
+
+  /* ---- Medidas ---- */
+  --largura-site: 900px;
+  --largura-leitura: 660px;
+
+  /* ---- Texturas (feTurbulence via data-URI, sem imagens) ---- */
+  /* grão fino para o fundo escuro */
+  --textura-grao: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)'/%3E%3C/svg%3E");
+  /* mancha de idade para o pergaminho (nuvens largas, bem tênues) */
+  --textura-mancha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.014' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23m)' opacity='0.16'/%3E%3C/svg%3E");
+  /* grão de papel, mais miúdo que o do fundo */
+  --textura-papel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2' seed='23' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23p)' opacity='0.1'/%3E%3C/svg%3E");
+}

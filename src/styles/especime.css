@@ -1,0 +1,253 @@
+/* ============================================================
+   CÓDICE — página Especime ("Prova do Impressor")
+   Denso como prova de fundição, não arejado como landing page.
+   ============================================================ */
+
+.especime {
+  padding-top: 34px;
+}
+
+/* ---- Cabeçalho / frontispício da prova ---- */
+.especime-cabecalho {
+  margin-bottom: 34px;
+}
+
+.especime-cabecalho .moldura-ornamental-conteudo {
+  text-align: center;
+  padding: 26px 26px 22px;
+}
+
+.especime-sobretitulo {
+  color: var(--gray-warm);
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}
+
+.especime-titulo {
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  font-size: 84px;
+  line-height: 1;
+  color: var(--bg-paper);
+  margin: 10px 0 6px;
+}
+
+.especime-subtitulo {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--gray-warm);
+  max-width: 30em;
+  margin: 0 auto;
+}
+
+.especime-vol {
+  font-family: var(--fonte-fell-sc);
+  color: var(--gold-muted);
+  margin-top: 10px;
+  letter-spacing: 0.12em;
+}
+
+/* ---- Seções ---- */
+.especime-secao {
+  margin-bottom: 34px;
+}
+
+.especime-rubrica {
+  font-size: 1.15rem;
+  border-bottom: 1px solid var(--bg-card);
+  padding-bottom: 4px;
+  margin-bottom: 14px;
+}
+
+/* ---- I. Paleta ---- */
+.amostras-cor {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 8px;
+}
+
+.amostra-cor {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.amostra-cor-bloco {
+  height: 52px;
+  border: 1px solid var(--borda-site);
+}
+
+.amostra-cor-nome {
+  color: var(--bg-paper);
+}
+
+.amostra-cor-hex {
+  color: var(--gray-warm);
+  font-size: var(--texto-ui-min);
+}
+
+/* ---- II. Tipos ---- */
+.amostras-tipo {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.amostra-tipo dt {
+  color: var(--gray-warm);
+  margin-bottom: 3px;
+}
+
+.amostra-tipo dd {
+  margin: 0;
+  color: var(--bg-paper);
+}
+
+.tipo-display {
+  font-family: var(--fonte-display);
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 1.05;
+}
+
+.tipo-fell {
+  font-family: var(--fonte-fell);
+  font-size: 1.3rem;
+}
+
+.tipo-fell-sc {
+  font-family: var(--fonte-fell-sc);
+  font-size: 1.3rem;
+  color: var(--red-rubric) !important;
+}
+
+.tipo-corpo {
+  font-family: var(--fonte-corpo);
+  max-width: 38em;
+}
+
+.tipo-ui {
+  color: var(--gray-warm) !important;
+}
+
+.tipo-manuscrita {
+  font-family: var(--fonte-manuscrita);
+  font-size: 1.7rem;
+  color: var(--brown-light) !important;
+}
+
+/* ---- III. Fólio de amostra ---- */
+.folio-amostra {
+  padding: 46px 96px 40px 64px;
+  margin-right: 26px; /* respiro para a sombra seca */
+}
+
+.folio-numero {
+  position: absolute;
+  top: 16px;
+  right: 22px;
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  z-index: 1;
+}
+
+.folio-rubrica {
+  margin-bottom: 14px;
+}
+
+.folio-texto {
+  text-align: justify;
+  hyphens: auto;
+  max-width: var(--largura-leitura);
+  margin-bottom: 12px;
+}
+
+.folio-marginalia {
+  position: absolute;
+  right: 14px;
+  top: 200px;
+  width: 72px;
+  z-index: 1;
+}
+
+/* ---- IV. Ornamentos ---- */
+.amostras-ornamento,
+.amostras-2003 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px 34px;
+  align-items: flex-start;
+}
+
+.amostra-ornamento,
+.amostra-2003 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.amostra-ornamento > .ui-2003,
+.amostra-2003 > .ui-2003 {
+  color: var(--gray-warm);
+}
+
+.amostra-ornamento-palco,
+.amostra-2003-palco {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 36px;
+}
+
+.amostra-ornamento-larga,
+.amostra-2003-larga {
+  flex: 1 1 100%;
+}
+
+.manicule-marrom {
+  color: var(--brown-light);
+}
+
+/* ---- Rodapé ---- */
+.especime-rodape {
+  margin-top: 44px;
+}
+
+.especime-rodape-texto {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--gray-warm);
+  max-width: 34em;
+  margin: 0 auto;
+}
+
+/* ---- Responsivo mínimo (polimento completo é ETAPA 5) ---- */
+@media (max-width: 920px) {
+  .amostras-cor {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .folio-amostra {
+    padding: 36px 28px;
+    margin-right: 0;
+  }
+
+  .folio-marginalia {
+    position: static;
+    width: auto;
+    max-width: 22em;
+    margin: 10px 0;
+  }
+
+  .especime-titulo {
+    font-size: 56px;
+  }
+}

@@ -1,0 +1,38 @@
+import { useEffect } from 'react'
+import Lenis from 'lenis'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+
+/**
+ * Smooth scroll global via Lenis, sincronizado com o ticker do GSAP.
+ * Não instancia nada quando o usuário prefere movimento reduzido.
+ * O cleanup completo aqui é obrigatório: sem ele, trocas de rota
+ * acumulam tickers e instâncias fantasma.
+ */
+export function useLenis() {
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return undefined
+    }
+
+    const lenis = new Lenis({
+      duration: 1.1,
+      smoothWheel: true,
+    })
+
+    lenis.on('scroll', ScrollTrigger.update)
+
+    const raf = (time) => {
+      lenis.raf(time * 1000)
+    }
+    gsap.ticker.add(raf)
+    gsap.ticker.lagSmoothing(0)
+
+    return () => {
+      gsap.ticker.remove(raf)
+      lenis.destroy()
+    }
+  }, [])
+}

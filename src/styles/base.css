@@ -1,0 +1,152 @@
+/* ============================================================
+   CÓDICE — base: reset leve, body, links, foco, utilitários
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-backdrop);
+  color: var(--gray-warm);
+  font-family: var(--fonte-corpo);
+  font-size: var(--texto-corpo);
+  line-height: var(--altura-corpo);
+  min-height: 100vh;
+}
+
+/* grão fixo atrás de tudo */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: var(--textura-grao);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---- Links: rubrica, com :visited de era 2003 ---- */
+a {
+  color: var(--red-rubric);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:visited {
+  color: var(--brown);
+}
+
+a:hover {
+  color: var(--rubric-dark);
+}
+
+:focus-visible {
+  outline: 1px dotted var(--gold-muted);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--brown);
+  color: var(--bg-paper);
+}
+
+/* ---- Moldura central do site (o objeto de 900px) ---- */
+.moldura-site {
+  max-width: var(--largura-site);
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  border-left: 1px solid var(--borda-site);
+  border-right: 1px solid var(--borda-site);
+  padding: 0 28px 48px;
+}
+
+/* ---- Pergaminho: folha clara que flutua sobre o escuro ---- */
+.pergaminho {
+  position: relative;
+  background-color: var(--bg-paper);
+  background-image: var(--textura-mancha), var(--textura-papel);
+  background-blend-mode: multiply, multiply;
+  color: var(--ink);
+  box-shadow: var(--sombra-seca);
+}
+
+/* mancha de idade nos cantos — vinheta amarronzada, não sombra de UI */
+.pergaminho::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 130% 110% at 50% 45%, rgba(107, 85, 68, 0) 72%, rgba(87, 66, 48, 0.22) 100%);
+}
+
+.pergaminho > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* intensidade da mancha/grão do pergaminho */
+.pergaminho {
+  background-size: 420px 420px, 100px 100px;
+}
+
+/* ---- hr denso de época (o ornamentado vem por componente) ---- */
+hr {
+  border: 0;
+  border-top: 1px solid var(--brown);
+  margin: 14px 0;
+}
+
+/* ---- Tipos utilitários ---- */
+.rubrica {
+  font-family: var(--fonte-fell-sc);
+  color: var(--red-rubric);
+  font-size: 1.05em;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}
+
+.ui-2003 {
+  font-family: var(--fonte-ui);
+  font-size: var(--texto-ui);
+  letter-spacing: 0;
+}
+
+.versais {
+  font-variant-caps: small-caps;
+  letter-spacing: 0.06em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -136,13 +136,15 @@
   color: var(--gray-warm);
 }
 
-/* ---- Marginalia (nota de margem manuscrita) ---- */
+/* ---- Marginalia (nota de margem manuscrita) ----
+   Cor subiu de --brown-light para --brown: tinta desbotada,
+   mas legível (decisão delegada após a ETAPA 1). */
 .marginalia {
   font-family: var(--fonte-fell);
   font-style: italic;
   font-size: 0.8rem;
   line-height: 1.35;
-  color: var(--brown-light);
+  color: var(--brown);
   transform: rotate(-1.6deg);
 }
 

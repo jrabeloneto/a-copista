@@ -1,0 +1,328 @@
+/* ============================================================
+   CÓDICE — página de matéria: os fólios do manuscrito
+   ============================================================ */
+
+.materia {
+  padding-bottom: 20px;
+}
+
+/* ---- nav 2003 no topo ---- */
+.materia-nav {
+  padding: 14px 2px 22px;
+  color: var(--gray-warm);
+}
+
+.materia-nav em {
+  font-style: normal;
+  color: var(--gold-muted);
+}
+
+.materia-nav-sep {
+  margin: 0 7px;
+}
+
+/* ---- a folha ----
+   A sombra seca é um pseudo-elemento com o MESMO recorte da folha,
+   deslocado — drop-shadow CSS sobre este envelope (cheio de filtros
+   SVG) travava a rasterização do Chromium. */
+.folha-envelope {
+  position: relative;
+  margin-bottom: 44px;
+}
+
+.folha-envelope::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translate(9px, 11px);
+  background: rgba(10, 8, 5, 0.5);
+  clip-path: var(--recorte-env, var(--recorte-folha-1));
+}
+
+.folha-envelope-v1 { --recorte-env: var(--recorte-folha-1); }
+.folha-envelope-v2 { --recorte-env: var(--recorte-folha-2); }
+.folha-envelope-v3 { --recorte-env: var(--recorte-folha-3); }
+
+.folha {
+  box-shadow: none; /* a sombra é do envelope */
+  padding: 52px 132px 50px 76px;
+}
+
+.folha-verso {
+  padding: 52px 76px 50px 132px;
+}
+
+/* recortes e manchas por variante — nenhuma folha é clone */
+.folha-v1 {
+  clip-path: var(--recorte-folha-1);
+}
+
+.folha-v2 {
+  clip-path: var(--recorte-folha-2);
+  background-image: var(--textura-mancha-2), var(--textura-papel);
+  background-position: 130px 60px, 0 0;
+}
+
+.folha-v3 {
+  clip-path: var(--recorte-folha-3);
+  background-image: var(--textura-mancha-3), var(--textura-papel);
+  background-position: 40px 200px, 0 0;
+}
+
+.folha-v2::after {
+  background: radial-gradient(
+    ellipse 125% 105% at 42% 58%,
+    rgba(107, 85, 68, 0) 70%,
+    rgba(87, 66, 48, 0.24) 100%
+  );
+}
+
+.folha-v3::after {
+  background: radial-gradient(
+    ellipse 135% 115% at 58% 36%,
+    rgba(107, 85, 68, 0) 71%,
+    rgba(87, 66, 48, 0.2) 100%
+  );
+}
+
+/* ---- numeração de fólio no canto superior EXTERNO ---- */
+.folha-folio {
+  position: absolute;
+  top: 18px;
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  z-index: 2;
+}
+
+.folha-recto .folha-folio {
+  right: 30px;
+}
+
+.folha-verso .folha-folio {
+  left: 30px;
+}
+
+/* ---- moldura iluminada: envolve SÓ o bloco de texto ---- */
+.moldura-iluminada {
+  position: absolute;
+  top: 36px;
+  bottom: 34px;
+  border: 1px solid var(--gold-muted);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.moldura-iluminada::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(143, 61, 51, 0.5);
+}
+
+.folha-recto .moldura-iluminada {
+  left: 54px;
+  right: 112px;
+}
+
+.folha-verso .moldura-iluminada {
+  left: 112px;
+  right: 54px;
+}
+
+.mi-canto {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+}
+
+.mi-canto-no { top: -7px;    left: -7px;   transform: rotate(0deg); }
+.mi-canto-ne { top: -7px;    right: -7px;  transform: rotate(90deg); }
+.mi-canto-se { bottom: -7px; right: -7px;  transform: rotate(180deg); }
+.mi-canto-so { bottom: -7px; left: -7px;   transform: rotate(270deg); }
+
+.mi-losango {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  width: 56px;
+  transform: translateX(-50%);
+}
+
+/* ---- conteúdo da folha ---- */
+.folha-conteudo {
+  position: relative;
+  z-index: 2;
+}
+
+/* cabeçalho da matéria (só na primeira folha) */
+.materia-cabecalho {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.materia-incipit {
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+}
+
+.materia-titulo {
+  font-family: var(--fonte-display);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 8px 0 6px;
+}
+
+.materia-subtitulo {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-faded);
+}
+
+/* rubrica interna: densa, sem margem de header moderno */
+.folha-rubrica {
+  font-size: 1.12rem;
+  margin: 20px 0 8px;
+}
+
+/* mancha de texto: justificada, densa */
+.bloco {
+  position: relative;
+}
+
+.folha-paragrafo {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+
+/* guarda: parágrafo de abertura curto não deixa a capitular
+   flutuada vazar para o bloco seguinte */
+.com-capitular {
+  min-height: 114px;
+}
+
+/* marginalia: fora da moldura, na margem externa */
+.bloco-marginalia {
+  position: absolute;
+  top: 4px;
+  width: 92px;
+  z-index: 2;
+}
+
+.folha-recto .bloco-marginalia {
+  right: -122px;
+}
+
+.folha-verso .bloco-marginalia {
+  left: -122px;
+  transform: rotate(1.1deg);
+}
+
+.marginalia-arte {
+  display: block;
+  color: var(--brown-light);
+  margin-bottom: 3px;
+}
+
+/* ---- gravura ---- */
+.gravura {
+  margin: 22px auto 18px;
+  width: 240px;
+  max-width: 100%;
+}
+
+.gravura-svg {
+  width: 100%;
+}
+
+.gravura-legenda {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.82rem;
+  text-align: center;
+  color: var(--ink-faded);
+  margin-top: 7px;
+  line-height: 1.4;
+}
+
+/* ---- colofão afunilado ---- */
+.colofao-linha {
+  display: block;
+}
+
+.colofao-linha:nth-child(2) {
+  max-width: 34em;
+  margin: 0 auto;
+}
+
+.colofao-linha:nth-child(3) {
+  max-width: 22em;
+  margin: 0 auto;
+}
+
+/* ---- rodapé 2003 ---- */
+.materia-rodape {
+  padding: 6px 4px 30px;
+}
+
+.materia-rodape .assinatura-post {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.materia-vizinhas {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+/* ---- responsivo mínimo (polimento completo é ETAPA 5) ---- */
+@media (max-width: 920px) {
+  .folha,
+  .folha-verso {
+    padding: 40px 30px 38px;
+  }
+
+  .folha-recto .moldura-iluminada,
+  .folha-verso .moldura-iluminada {
+    left: 14px;
+    right: 14px;
+    top: 30px;
+    bottom: 28px;
+  }
+
+  .bloco-marginalia {
+    position: static;
+    width: auto;
+    max-width: 24em;
+    margin: 8px 0 12px;
+  }
+
+  .folha-recto .bloco-marginalia,
+  .folha-verso .bloco-marginalia {
+    right: auto;
+    left: auto;
+  }
+
+  .marginalia-arte {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-bottom: 0;
+  }
+
+  .materia-titulo {
+    font-size: 30px;
+  }
+
+  .materia-vizinhas {
+    flex-direction: column;
+  }
+}

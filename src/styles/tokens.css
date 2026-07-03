@@ -48,6 +48,30 @@
   --textura-grao: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)'/%3E%3C/svg%3E");
   /* mancha de idade para o pergaminho (nuvens largas, bem tênues) */
   --textura-mancha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.014' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23m)' opacity='0.16'/%3E%3C/svg%3E");
+  /* manchas irmãs com seeds próprios — variação orgânica entre folhas */
+  --textura-mancha-2: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='4' seed='29' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23m)' opacity='0.16'/%3E%3C/svg%3E");
+  --textura-mancha-3: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.018' numOctaves='4' seed='47' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23m)' opacity='0.14'/%3E%3C/svg%3E");
   /* grão de papel, mais miúdo que o do fundo */
   --textura-papel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2' seed='23' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23p)' opacity='0.1'/%3E%3C/svg%3E");
+
+  /* ---- Recortes de folha: bordas de pergaminho manuseado ----
+     Desvios de ~0,4-0,8% sobre o retângulo; três assinaturas distintas. */
+  --recorte-folha-1: polygon(
+    0.4% 0.6%, 17% 0.15%, 38% 0.7%, 61% 0.2%, 83% 0.75%, 99.6% 0.35%,
+    99.85% 19%, 99.4% 43%, 99.8% 66%, 99.35% 87%, 99.7% 99.5%,
+    81% 99.85%, 58% 99.3%, 36% 99.8%, 15% 99.25%, 0.25% 99.7%,
+    0.7% 81%, 0.15% 57%, 0.65% 33%, 0.3% 13%
+  );
+  --recorte-folha-2: polygon(
+    0.25% 0.4%, 21% 0.75%, 44% 0.2%, 68% 0.7%, 86% 0.25%, 99.75% 0.6%,
+    99.35% 16%, 99.8% 39%, 99.3% 63%, 99.75% 84%, 99.4% 99.6%,
+    77% 99.3%, 52% 99.8%, 29% 99.35%, 11% 99.75%, 0.35% 99.4%,
+    0.8% 77%, 0.2% 52%, 0.75% 29%, 0.35% 10%
+  );
+  --recorte-folha-3: polygon(
+    0.6% 0.25%, 14% 0.7%, 35% 0.2%, 57% 0.75%, 79% 0.3%, 99.4% 0.7%,
+    99.75% 23%, 99.3% 47%, 99.8% 71%, 99.4% 90%, 99.65% 99.35%,
+    84% 99.7%, 62% 99.2%, 41% 99.75%, 18% 99.3%, 0.4% 99.6%,
+    0.2% 84%, 0.7% 60%, 0.25% 37%, 0.6% 16%
+  );
 }

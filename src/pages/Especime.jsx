@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import { materias } from '../data/materias.js'
 import MolduraOrnamental from '../components/ornamentos/MolduraOrnamental.jsx'
 import Capitular from '../components/ornamentos/Capitular.jsx'
 import Manicule from '../components/ornamentos/Manicule.jsx'
@@ -73,7 +75,7 @@ export default function Especime() {
           <div className="amostra-tipo">
             <dt className="ui-2003">Verdana 10–11px — a voz de 2003</dt>
             <dd className="ui-2003 tipo-ui">
-              postado por <a href="/">a copista</a> às 23h47 — <a href="/comentarios">3 comentários</a>
+              postado por <a href="/">a copista</a> às 23h47 — <a href="#comentarios">3 comentários</a>
             </dd>
           </div>
           <div className="amostra-tipo">
@@ -166,10 +168,22 @@ export default function Especime() {
             <span className="ui-2003">assinatura de post &amp; links</span>
             <p className="assinatura-post">
               postado por <a href="/">a copista</a> às 23h47 —{' '}
-              <a href="/comentarios">3 comentários</a> — <a href="/">link já visitado</a>
+              <a href="#comentarios">3 comentários</a> — <a href="/">link já visitado</a>
             </p>
           </div>
         </div>
+      </section>
+
+      <section className="especime-secao" aria-labelledby="sec-materias">
+        <h2 id="sec-materias" className="rubrica especime-rubrica">VI. Das matérias (prova de navegação)</h2>
+        <ul className="especime-materias">
+          {materias.map((materia) => (
+            <li key={materia.slug} className="especime-materia">
+              <Link to={`/materia/${materia.slug}`}>{materia.titulo}</Link>
+              <span className="ui-2003"> — rubrica {materia.categoria}, {materia.folhas.length} fólios</span>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <footer className="especime-rodape">

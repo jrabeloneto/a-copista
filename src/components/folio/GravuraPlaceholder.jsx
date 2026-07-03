@@ -104,19 +104,31 @@ function MotivoAlaude() {
 
 const MOTIVOS = { sol: MotivoSol, pavao: MotivoPavao, alaude: MotivoAlaude }
 
+/**
+ * Com legenda: <figure> completa. Sem legenda (cards da capa): só o
+ * svg decorativo — quem descreve é o contexto (título do card).
+ */
 export default function GravuraPlaceholder({ arte, legenda }) {
   const Motivo = MOTIVOS[arte] ?? MotivoSol
+  const svg = (
+    // a legenda/contexto visível é a descrição; o svg é decorativo
+    <svg viewBox="0 0 220 160" className="gravura-svg" aria-hidden="true" focusable="false">
+      <g filter="url(#tinta-irregular)" color="var(--ink)">
+        {/* moldura de gravura dupla */}
+        <rect x="3" y="3" width="214" height="154" fill="none" stroke="currentColor" strokeWidth="1.6" />
+        <rect x="8" y="8" width="204" height="144" fill="none" stroke="currentColor" strokeWidth="0.7" />
+        <Motivo />
+      </g>
+    </svg>
+  )
+
+  if (!legenda) {
+    return svg
+  }
+
   return (
     <figure className="gravura">
-      {/* a legenda visível da figcaption é a descrição; o svg é decorativo */}
-      <svg viewBox="0 0 220 160" className="gravura-svg" aria-hidden="true" focusable="false">
-        <g filter="url(#tinta-irregular)" color="var(--ink)">
-          {/* moldura de gravura dupla */}
-          <rect x="3" y="3" width="214" height="154" fill="none" stroke="currentColor" strokeWidth="1.6" />
-          <rect x="8" y="8" width="204" height="144" fill="none" stroke="currentColor" strokeWidth="0.7" />
-          <Motivo />
-        </g>
-      </svg>
+      {svg}
       <figcaption className="gravura-legenda">{legenda}</figcaption>
     </figure>
   )

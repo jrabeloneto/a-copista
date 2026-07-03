@@ -8,6 +8,7 @@ import Manicule from '../components/ornamentos/Manicule.jsx'
 import Fleuron from '../components/ornamentos/Fleuron.jsx'
 import Separador from '../components/ornamentos/Separador.jsx'
 import MarginaliaArte from '../components/ornamentos/MarginaliaArte.jsx'
+import Nav2003 from '../components/ui2003/Nav2003.jsx'
 import '../styles/materia.css'
 
 function BlocoSecao({ secao }) {
@@ -70,11 +71,13 @@ export default function Materia() {
 
   return (
     <>
-      <nav className="materia-nav ui-2003" aria-label="Navegação do fanzine">
-        « <Link to="/">capa</Link>
-        <span className="materia-nav-sep">·</span>
-        matéria da rubrica <em>{materia.categoria}</em>
-      </nav>
+      <Nav2003
+        pagina={
+          <>
+            matéria da rubrica <em>{materia.categoria}</em>
+          </>
+        }
+      />
 
       <article className="materia">
         {materia.folhas.map((folha, i) => (
@@ -113,7 +116,7 @@ export default function Materia() {
 
         <footer className="materia-rodape">
           <p className="assinatura-post">
-            postado por <Link to="/">a copista</Link> —{' '}
+            postado por <Link to="/sobre">a copista</Link> —{' '}
             <time>{materia.postadoEm}, às {materia.hora}</time> —{' '}
             {/* âncora inerte até o livro de comentários existir (ETAPA 3) */}
             <a href="#comentarios">{materia.comentarios} comentários</a>

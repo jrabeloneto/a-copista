@@ -76,7 +76,7 @@ function CantoAcanto({ posicao }) {
   )
 }
 
-function LosangoHedera() {
+export function LosangoHedera() {
   return (
     <svg viewBox="0 0 56 22" className="mi-losango" aria-hidden="true" focusable="false">
       <g filter="url(#tinta-irregular)">

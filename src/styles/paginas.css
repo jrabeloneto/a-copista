@@ -1,0 +1,265 @@
+/* ============================================================
+   CÓDICE — páginas secundárias: arquivo, sobre, visitas
+   ============================================================ */
+
+.nav2003 {
+  padding: 14px 2px 22px;
+  color: var(--gray-warm);
+}
+
+.nav2003-sep {
+  margin: 0 7px;
+}
+
+.nav2003 em {
+  font-style: normal;
+  color: var(--gold-muted);
+}
+
+.pagina {
+  max-width: 640px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+.pagina-titulo {
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.pagina-nota {
+  color: var(--gray-warm);
+  margin-bottom: 22px;
+}
+
+.pagina-rodape {
+  color: var(--gray-warm);
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* ---- /arquivo ---- */
+.arquivo-ano {
+  font-family: var(--fonte-fell-sc);
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--gold-muted);
+  letter-spacing: 0.1em;
+  margin: 18px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arquivo-ano .manicule {
+  color: var(--brown-light);
+}
+
+.arquivo-meses {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.arquivo-mes-rotulo {
+  color: var(--brown-light);
+}
+
+.arquivo-posts {
+  list-style: none;
+  padding: 4px 0 0 22px;
+  margin: 0;
+}
+
+.arquivo-posts a {
+  font-family: var(--fonte-fell);
+  font-size: 1.05rem;
+}
+
+.arquivo-post-meta {
+  color: var(--gray-warm);
+}
+
+.arquivo-ano-perdido {
+  margin-top: 26px;
+}
+
+.arquivo-perdido {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--gray-warm);
+  padding-left: 22px;
+}
+
+/* ---- folha solta (sobre) ---- */
+.folha-solta-envelope {
+  position: relative;
+}
+
+.folha-solta-envelope::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translate(8px, 10px);
+  background: rgba(10, 8, 5, 0.5);
+  clip-path: var(--recorte-folha-2);
+}
+
+.folha-solta {
+  position: relative;
+  box-shadow: none;
+  clip-path: var(--recorte-folha-2);
+  padding: 44px 52px 40px;
+}
+
+.sobre-retrato {
+  width: 150px;
+  float: right;
+  margin: 4px 0 10px 22px;
+}
+
+.retrato-oval {
+  width: 100%;
+}
+
+.sobre-retrato-legenda {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.78rem;
+  text-align: center;
+  color: var(--ink-faded);
+  margin-top: 5px;
+}
+
+.sobre-rubrica {
+  margin-bottom: 12px;
+}
+
+.sobre-texto {
+  text-align: justify;
+  hyphens: auto;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.sobre-assinatura {
+  font-family: var(--fonte-manuscrita);
+  font-size: 2.4rem;
+  color: var(--red-rubric);
+  text-align: right;
+  margin: 18px 8px 0 0;
+  transform: rotate(-2deg);
+  clear: both;
+}
+
+.sobre-fleuron {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  color: var(--brown);
+}
+
+/* ---- /visitas ---- */
+.visitas-form fieldset {
+  border: 1px solid var(--borda-site);
+  background: var(--bg-card);
+  padding: 12px 14px 14px;
+}
+
+.visitas-form legend {
+  color: var(--gold-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0 6px;
+}
+
+.visitas-form-linha {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+  color: var(--gray-warm);
+}
+
+.visitas-form input,
+.visitas-form textarea {
+  font-family: var(--fonte-ui);
+  font-size: var(--texto-ui);
+  color: var(--gray-warm);
+  background: var(--bg-backdrop);
+  border: 1px solid var(--borda-site);
+  padding: 5px 7px;
+}
+
+.visitas-form textarea {
+  resize: none;
+}
+
+.visitas-botao {
+  background: var(--bg-card);
+  color: var(--gray-warm);
+  border: 2px outset var(--brown);
+  padding: 4px 14px;
+  cursor: not-allowed;
+}
+
+.visitas-form-nota {
+  color: var(--gray-warm);
+  font-style: italic;
+  margin-top: 7px;
+}
+
+.visitas-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.visita {
+  border: 1px solid var(--borda-site);
+  background: var(--bg-card);
+  padding: 10px 12px;
+}
+
+.visita-cabecalho {
+  color: var(--bg-paper);
+  margin-bottom: 5px;
+}
+
+.visita-site {
+  color: var(--gold-muted);
+}
+
+.visita-data {
+  color: var(--gray-warm);
+}
+
+.visita-mensagem {
+  color: var(--gray-warm);
+  line-height: 1.6;
+}
+
+/* ---- responsivo mínimo ---- */
+@media (max-width: 920px) {
+  .folha-solta {
+    padding: 34px 24px;
+  }
+
+  .sobre-retrato {
+    float: none;
+    margin: 0 auto 14px;
+  }
+
+  .visitas-form-linha {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

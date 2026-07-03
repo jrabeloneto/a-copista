@@ -39,24 +39,24 @@
 ## Tarefas
 
 ### Task 1: Dados e tokens
-- [ ] materias.js com as 3 matérias completas (6-8 parágrafos cada, seções tipadas: paragrafo/rubrica/citacao/gravura, marginalia por bloco)
-- [ ] tokens.css: --textura-mancha-2/3, --recorte-folha-1/2/3
+- [x] materias.js com as 3 matérias completas (6-8 parágrafos cada, seções tipadas: paragrafo/rubrica/citacao/gravura, marginalia por bloco)
+- [x] tokens.css: --textura-mancha-2/3, --recorte-folha-1/2/3
 
 ### Task 2: Componentes do fólio
-- [ ] MolduraIluminada (filetes CSS + 4 cantos SVG 44px + losango central)
-- [ ] Folha (envelope drop-shadow, recto/verso, variante, fólio, conteúdo)
-- [ ] GravuraPlaceholder (sol/pavao/alaude + legenda)
-- [ ] MarginaliaArte (caracol, flor)
+- [x] MolduraIluminada (filetes CSS + 4 cantos SVG 44px + losango central)
+- [x] Folha (envelope drop-shadow, recto/verso, variante, fólio, conteúdo)
+- [x] GravuraPlaceholder (sol/pavao/alaude + legenda)
+- [x] MarginaliaArte (caracol, flor)
 
 ### Task 3: Página e rotas
-- [ ] Materia.jsx (useParams, not-found → capa, título do documento, nav 2003 no topo, assinatura de post, links anterior/seguinte)
-- [ ] materia.css (folha, margens espelhadas, blocos, gravura, responsivo mínimo)
-- [ ] App.jsx: rotas + ScrollParaTopo
-- [ ] Especime: seção VI com links das matérias
+- [x] Materia.jsx (useParams, not-found → capa, título do documento, nav 2003 no topo, assinatura de post, links anterior/seguinte)
+- [x] materia.css (folha, margens espelhadas, blocos, gravura, responsivo mínimo)
+- [x] App.jsx: rotas + ScrollParaTopo
+- [x] Especime: seção VI com links das matérias
 
 ### Task 4: Verificação e revisão
-- [ ] `npm run build` limpo
-- [ ] Preview: screenshot das 3 matérias, navegação entre elas, marginalia legível, variação entre folhas visível
-- [ ] Skill code-review sobre o diff da etapa (semântica, estrutura)
-- [ ] Corrigir achados, rebuild, commit
-- [ ] Resumo p/ aprovação — **PARAR antes da ETAPA 3**
+- [x] `npm run build` limpo
+- [x] Preview: screenshot das 3 matérias, navegação entre elas, marginalia legível, variação entre folhas visível
+- [x] Skill code-review sobre o diff da etapa (semântica, estrutura)
+- [x] Corrigir achados, rebuild, commit
+- [x] Resumo p/ aprovação — **PARAR antes da ETAPA 3**

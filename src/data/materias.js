@@ -20,6 +20,10 @@ export const materias = [
     subtitulo: 'atriz, santa profana de Ipanema, mártir dos asteriscos',
     incipit: 'Aqui começa a matéria da estrela que falou',
     categoria: 'cinema',
+    arte: 'sol',
+    chamada:
+      'Uma professora de jardim de infância ensinou um país inteiro a não ter medo — e a censura inteira não bastou para calá-la.',
+    mesAno: 'março de MMXXVI',
     folioBase: 12,
     postadoEm: 'sexta-feira, 14 de março',
     hora: '23h47',
@@ -111,6 +115,10 @@ export const materias = [
     subtitulo: 'crônica da catedral que Londres ergueu ao veludo — MCMLXIV–MCMLXXV',
     incipit: 'Aqui começa a matéria da loja escura',
     categoria: 'moda',
+    arte: 'pavao',
+    chamada:
+      'Sete andares, luz nenhuma, flamingos no terraço: a loja que Londres frequenta até hoje, embora tenha fechado em 1975.',
+    mesAno: 'abril de MMXXVI',
     folioBase: 21,
     postadoEm: 'terça-feira, 8 de abril',
     hora: '01h12',
@@ -196,6 +204,10 @@ export const materias = [
     subtitulo: 'de como a década de setenta ressuscitou a Idade Média com amplificadores',
     incipit: 'Aqui começa a matéria dos alaúdes ligados na tomada',
     categoria: 'música',
+    arte: 'alaude',
+    chamada:
+      'Crumhorns em arenas, latim nas paradas e o Rei Artur sobre patins: a década que amou a Idade Média sem nenhuma moderação.',
+    mesAno: 'maio de MMXXVI',
     folioBase: 34,
     postadoEm: 'domingo, 25 de maio',
     hora: '22h03',

@@ -6,21 +6,6 @@
   padding-bottom: 20px;
 }
 
-/* ---- nav 2003 no topo ---- */
-.materia-nav {
-  padding: 14px 2px 22px;
-  color: var(--gray-warm);
-}
-
-.materia-nav em {
-  font-style: normal;
-  color: var(--gold-muted);
-}
-
-.materia-nav-sep {
-  margin: 0 7px;
-}
-
 /* ---- a folha ----
    A sombra seca é um pseudo-elemento com o MESMO recorte da folha,
    deslocado — drop-shadow CSS sobre este envelope (cheio de filtros

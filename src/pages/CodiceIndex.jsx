@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { materias } from '../data/materias.js'
@@ -15,10 +15,21 @@ import ContadorVisitas from '../components/ui2003/ContadorVisitas.jsx'
 import CaixaSidebar from '../components/ui2003/CaixaSidebar.jsx'
 import '../styles/capa.css'
 
+/**
+ * A capa do fanzine — agora índice da editoria CÓDICE em /codice.
+ * Frontispício, grid de matérias e sidebar 2003 intactos; só os
+ * caminhos mudaram (o fanzine mora dentro do portal A COPISTA).
+ */
 function CardMateria({ materia, destaque = false }) {
   return (
     <article className={destaque ? 'card-materia card-destaque' : 'card-materia'}>
-      <Link to={`/materia/${materia.slug}`} className="card-gravura" tabIndex={-1} aria-hidden="true" viewTransition>
+      <Link
+        to={`/codice/materia/${materia.slug}`}
+        className="card-gravura"
+        tabIndex={-1}
+        aria-hidden="true"
+        viewTransition
+      >
         <span className="card-gravura-papel pergaminho">
           <GravuraPlaceholder arte={materia.arte} />
         </span>
@@ -28,7 +39,7 @@ function CardMateria({ materia, destaque = false }) {
           rubrica <em>{materia.categoria}</em> — {materia.mesAno}
         </p>
         <h2 className="card-titulo">
-          <Link to={`/materia/${materia.slug}`} viewTransition>
+          <Link to={`/codice/materia/${materia.slug}`} viewTransition>
             {materia.titulo}
           </Link>
         </h2>
@@ -42,10 +53,17 @@ function CardMateria({ materia, destaque = false }) {
   )
 }
 
-export default function Capa() {
+export default function CodiceIndex() {
   const [destaque, ...outras] = materias
   const ultimaVisita = visitas[visitas.length - 1]
   const raizRef = useRef(null)
+
+  useEffect(() => {
+    document.title = 'CÓDICE, o fanzine — A COPISTA'
+    return () => {
+      document.title = 'A COPISTA — revista de mão única'
+    }
+  }, [])
 
   useGsapPagina(
     () => {
@@ -68,7 +86,7 @@ export default function Capa() {
         <MolduraOrnamental as="div">
           <LosangoHedera />
           <p className="frontispicio-sobretitulo ui-2003">
-            fanzine de mão única — publica-se quando a copista pode
+            o fanzine da revista — publica-se quando a copista pode
           </p>
           <h1 className="frontispicio-titulo">CÓDICE</h1>
           <p className="frontispicio-subtitulo">
@@ -122,7 +140,7 @@ export default function Capa() {
               {materias.map((materia) => (
                 <li key={materia.slug}>
                   »{' '}
-                  <Link to={`/materia/${materia.slug}`} viewTransition>
+                  <Link to={`/codice/materia/${materia.slug}`} viewTransition>
                     {materia.categoria}
                   </Link>
                 </li>

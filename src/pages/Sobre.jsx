@@ -9,9 +9,9 @@ import '../styles/paginas.css'
 
 export default function Sobre() {
   useEffect(() => {
-    document.title = 'Sobre a autora — CÓDICE'
+    document.title = 'Sobre a dona — A COPISTA'
     return () => {
-      document.title = 'CÓDICE — Vol. I'
+      document.title = 'A COPISTA — revista de mão única'
     }
   }, [])
 

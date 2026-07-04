@@ -10,9 +10,9 @@ import '../styles/paginas.css'
 
 export default function Arquivo() {
   useEffect(() => {
-    document.title = 'Arquivo — CÓDICE'
+    document.title = 'Arquivo — A COPISTA'
     return () => {
-      document.title = 'CÓDICE — Vol. I'
+      document.title = 'A COPISTA — revista de mão única'
     }
   }, [])
 
@@ -36,7 +36,7 @@ export default function Arquivo() {
                 <span className="ui-2003 arquivo-mes-rotulo">» {materia.mesAno} (1)</span>
                 <ul className="arquivo-posts">
                   <li>
-                    <Link to={`/materia/${materia.slug}`}>{materia.titulo}</Link>{' '}
+                    <Link to={`/codice/materia/${materia.slug}`}>{materia.titulo}</Link>{' '}
                     <span className="ui-2003 arquivo-post-meta">
                       — rubrica {materia.categoria}, {materia.comentarios} comentários
                     </span>

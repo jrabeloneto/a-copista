@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom'
 
 /**
  * Breadcrumb de topo das páginas internas — Verdana 11px, como
- * toda navegação deste fanzine. « capa · nome-da-página
+ * toda navegação deste fanzine. « destino · nome-da-página
  */
-export default function Nav2003({ pagina, children }) {
+export default function Nav2003({ pagina, children, destino = '/', rotuloDestino = 'capa' }) {
   return (
     <nav className="nav2003 ui-2003" aria-label="Navegação do fanzine">
-      « <Link to="/">capa</Link>
+      « <Link to={destino}>{rotuloDestino}</Link>
       <span className="nav2003-sep">·</span>
       {pagina}
       {children}

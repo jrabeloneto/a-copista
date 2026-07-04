@@ -27,6 +27,10 @@
      passam de 4.5:1. A tinta original permanece em TODO pergaminho. */
   --rubric-clara: #c67d72;     /* links/rubricas sobre fundo escuro
                                   (4.76:1 até sobre --bg-card) */
+
+  /* shades da colagem (portal A COPISTA — mesma família de matiz) */
+  --fita: #c9bda5;             /* fita adesiva envelhecida */
+  --sepia-foto: #c9b898;       /* fundo de recorte/foto antiga */
   --rubric-clara-hover: #d18e83;
   --brown-visitado: #a08b76;   /* :visited sobre fundo escuro */
 

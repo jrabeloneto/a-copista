@@ -1,0 +1,209 @@
+/* ============================================================
+   A COPISTA — chrome do portal: masthead de letras de recorte,
+   régua de etiquetas, objetos colados, salas em obras.
+   Regra do híbrido: estrutura de revista, pele de colagem.
+   ============================================================ */
+
+/* ---- masthead (V2: letras soltas, sem filetes) ---- */
+.masthead {
+  text-align: center;
+  padding: 34px 0 4px;
+}
+
+.masthead-nome {
+  font-size: 52px;
+  line-height: 1;
+  margin: 0;
+}
+
+.masthead-letras {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.letra {
+  display: inline-block;
+  position: relative;
+  padding: 0.04em 0.16em 0.1em;
+  margin: 0 0.045em;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 3px 4px 0 rgba(10, 8, 5, 0.55);
+}
+
+.letra-espaco {
+  display: inline-block;
+  width: 0.5em;
+}
+
+.letra-fita {
+  position: absolute;
+  top: -0.16em;
+  left: 50%;
+  width: 0.85em;
+  height: 0.26em;
+  margin-left: -0.42em;
+  background: var(--fita);
+  opacity: 0.75;
+}
+
+/* rasgo de recorte — a sombra some no clip, como papel deitado */
+.lt-rasgo {
+  clip-path: polygon(
+    3% 4%, 30% 0%, 70% 3%, 98% 0%, 100% 30%, 96% 65%,
+    100% 96%, 68% 100%, 32% 97%, 2% 100%, 0% 62%, 3% 30%
+  );
+}
+
+.lt-paper { background: var(--bg-paper); }
+.lt-rubrica { background: var(--red-rubric); }
+.lt-card { background: var(--bg-card); }
+.lt-brown { background: var(--brown); }
+.lt-gold { background: var(--gold-muted); }
+
+.lt-cor-base { color: var(--bg-base); }
+.lt-cor-paper { color: var(--bg-paper); }
+.lt-cor-gold { color: var(--gold-muted); }
+.lt-cor-rubrica { color: var(--red-rubric); }
+.lt-cor-ink { color: var(--ink); }
+.lt-cor-clara { color: var(--rubric-clara); }
+
+.lt-gotica { font-family: var(--fonte-display); }
+.lt-fell { font-family: var(--fonte-fell); }
+.lt-verdana { font-family: var(--fonte-ui); }
+.lt-georgia { font-family: Georgia, serif; }
+
+.lt-borda-gold { border: 1px solid var(--gold-muted); }
+.lt-borda-rubrica { border: 1px solid var(--red-rubric); }
+
+.masthead-edicao {
+  color: var(--gold-muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+
+/* compacto: vira selo-link no topo das internas */
+.masthead-compacto {
+  padding: 16px 0 2px;
+  font-size: 20px;
+}
+
+.masthead-link {
+  text-decoration: none;
+}
+
+/* ---- régua de editorias (etiquetas de fita) ---- */
+.regua-etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  padding: 16px 0 20px;
+}
+
+.etq {
+  font-family: var(--fonte-ui);
+  font-size: var(--texto-ui-min);
+  color: var(--ink);
+  background: var(--fita);
+  padding: 3px 9px 4px;
+  box-shadow: 2px 2px 0 rgba(10, 8, 5, 0.5);
+  text-decoration: none;
+}
+
+.etq:visited {
+  color: var(--ink);
+}
+
+.etq:hover {
+  color: var(--rubric-dark);
+}
+
+.etq-viva,
+.etq-viva:visited {
+  background: var(--red-rubric);
+  color: var(--bg-paper);
+}
+
+.etq-viva:hover {
+  color: var(--bg-paper);
+}
+
+/* tortas de propósito, deterministicamente */
+.regua-etiquetas .etq:nth-child(odd) { transform: rotate(-1.3deg); }
+.regua-etiquetas .etq:nth-child(even) { transform: rotate(1.1deg); }
+.regua-etiquetas .etq:nth-child(3n) { transform: rotate(-0.5deg); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .etq {
+    transition: transform 0.16s steps(2, end);
+  }
+
+  .etq:hover {
+    transform: translateY(2px);
+  }
+}
+
+/* ---- objeto colado (wrapper genérico da pele de colagem) ---- */
+.objeto-colado {
+  position: relative;
+  box-shadow: 3px 4px 0 rgba(10, 8, 5, 0.5);
+}
+
+.objeto-colado::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 38px;
+  height: 14px;
+  margin-left: -19px;
+  background: var(--fita);
+  opacity: 0.72;
+  z-index: 2;
+}
+
+.torto-1 { transform: rotate(-2.2deg); }
+.torto-2 { transform: rotate(1.6deg); }
+.torto-3 { transform: rotate(-1deg); }
+.torto-4 { transform: rotate(1.1deg); }
+
+/* ---- sala em obras ---- */
+.em-obras {
+  text-align: center;
+  padding: 48px 0 60px;
+  max-width: 30em;
+  margin: 0 auto;
+}
+
+.em-obras .manicule {
+  width: 64px;
+  height: auto;
+  margin: 0 auto 14px;
+  display: block;
+  color: var(--rubric-clara);
+}
+
+.em-obras-titulo {
+  font-size: 1.3rem;
+  color: var(--rubric-clara);
+  margin-bottom: 10px;
+}
+
+.em-obras-texto {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  color: var(--gray-warm);
+  margin-bottom: 14px;
+}
+
+.em-obras-nota {
+  color: var(--gray-warm);
+}
+
+@media (max-width: 700px) {
+  .masthead-nome {
+    font-size: 34px;
+  }
+}

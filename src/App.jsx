@@ -1,15 +1,19 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useRef } from 'react'
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import GrainDefs from './components/GrainDefs.jsx'
+import Masthead from './components/portal/Masthead.jsx'
+import ReguaEtiquetas from './components/portal/ReguaEtiquetas.jsx'
 import { useLenis } from './lib/useLenis.js'
 import { reduzMotion } from './lib/motion.js'
-import Capa from './pages/Capa.jsx'
+import Home from './pages/Home.jsx'
+import CodiceIndex from './pages/CodiceIndex.jsx'
 import Materia from './pages/Materia.jsx'
+import EmObras from './pages/EmObras.jsx'
 
-// conteúdo primário (capa, matérias) carrega junto; as páginas
-// secundárias entram sob demanda
+// conteúdo primário (capa, códice, matérias) carrega junto;
+// as páginas secundárias entram sob demanda
 const Arquivo = lazy(() => import('./pages/Arquivo.jsx'))
 const Sobre = lazy(() => import('./pages/Sobre.jsx'))
 const Visitas = lazy(() => import('./pages/Visitas.jsx'))
@@ -56,8 +60,15 @@ function GraoGlobal() {
   return <div ref={ref} className="grao-global" aria-hidden="true" />
 }
 
+/** Links antigos do fanzine não quebram: /materia/x → /codice/materia/x */
+function RedirecionaMateria() {
+  const { slug } = useParams()
+  return <Navigate to={`/codice/materia/${slug}`} replace />
+}
+
 export default function App() {
   useLenis()
+  const { pathname } = useLocation()
 
   // fontes remotas mudam o layout depois do primeiro cálculo dos triggers
   useEffect(() => {
@@ -76,12 +87,20 @@ export default function App() {
       <ScrollParaTopo />
       <GraoGlobal />
       <div className="moldura-site">
+        <Masthead compacto={pathname !== '/'} />
+        <ReguaEtiquetas />
         <Suspense
           fallback={<p className="ui-2003 carregando-pagina">a copista está molhando a pena…</p>}
         >
           <Routes>
-            <Route path="/" element={<Capa />} />
-            <Route path="/materia/:slug" element={<Materia />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/codice" element={<CodiceIndex />} />
+            <Route path="/codice/materia/:slug" element={<Materia />} />
+            <Route path="/materia/:slug" element={<RedirecionaMateria />} />
+            <Route path="/album" element={<EmObras nome="Álbum de fotos" />} />
+            <Route path="/quarto" element={<EmObras nome="O quarto da dona" />} />
+            <Route path="/discoteca" element={<EmObras nome="Discoteca" />} />
+            <Route path="/amigas" element={<EmObras nome="Amigas & webring" />} />
             <Route path="/arquivo" element={<Arquivo />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/visitas" element={<Visitas />} />

@@ -179,7 +179,7 @@ export default function Especime() {
         <ul className="especime-materias">
           {materias.map((materia) => (
             <li key={materia.slug} className="especime-materia">
-              <Link to={`/materia/${materia.slug}`}>{materia.titulo}</Link>
+              <Link to={`/codice/materia/${materia.slug}`}>{materia.titulo}</Link>
               <span className="ui-2003"> — rubrica {materia.categoria}, {materia.folhas.length} fólios</span>
             </li>
           ))}

@@ -15,9 +15,9 @@ import '../styles/paginas.css'
  */
 export default function Visitas() {
   useEffect(() => {
-    document.title = 'Livro de visitas — CÓDICE'
+    document.title = 'Livro de visitas — A COPISTA'
     return () => {
-      document.title = 'CÓDICE — Vol. I'
+      document.title = 'A COPISTA — revista de mão única'
     }
   }, [])
 

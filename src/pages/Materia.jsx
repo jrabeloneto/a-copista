@@ -59,10 +59,10 @@ export default function Materia() {
 
   useEffect(() => {
     if (materia) {
-      document.title = `${materia.titulo} — CÓDICE`
+      document.title = `${materia.titulo} — CÓDICE — A COPISTA`
     }
     return () => {
-      document.title = 'CÓDICE — Vol. I'
+      document.title = 'A COPISTA — revista de mão única'
     }
   }, [materia])
 
@@ -130,6 +130,8 @@ export default function Materia() {
   return (
     <div ref={raizRef}>
       <Nav2003
+        destino="/codice"
+        rotuloDestino="códice"
         pagina={
           <>
             matéria da rubrica <em>{materia.categoria}</em>
@@ -184,14 +186,14 @@ export default function Materia() {
           <Separador />
           <nav className="materia-vizinhas ui-2003" aria-label="Outras matérias">
             {anterior ? (
-              <Link to={`/materia/${anterior.slug}`} viewTransition>
+              <Link to={`/codice/materia/${anterior.slug}`} viewTransition>
                 « {anterior.titulo}
               </Link>
             ) : (
               <span />
             )}
             {seguinte ? (
-              <Link to={`/materia/${seguinte.slug}`} viewTransition>
+              <Link to={`/codice/materia/${seguinte.slug}`} viewTransition>
                 {seguinte.titulo} »
               </Link>
             ) : (

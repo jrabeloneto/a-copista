@@ -1,0 +1,225 @@
+/* ============================================================
+   A COPISTA — a capa da revista (home)
+   ============================================================ */
+
+.home {
+  padding-bottom: 26px;
+}
+
+/* ---- manchete ---- */
+.home-manchete {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin: 6px 0 26px;
+}
+
+.manchete-gravura {
+  flex: 0 0 220px;
+  display: block;
+}
+
+.manchete-gravura-papel {
+  display: block;
+  padding: 10px 12px;
+  box-shadow: none; /* a sombra é do objeto-colado */
+}
+
+.manchete-tag {
+  color: var(--gold-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.manchete-titulo {
+  font-family: var(--fonte-fell);
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 1.1;
+  margin: 6px 0 8px;
+}
+
+.manchete-titulo a,
+.manchete-titulo a:visited {
+  color: var(--bg-paper);
+  text-decoration: none;
+}
+
+.manchete-titulo a:hover {
+  color: var(--rubric-clara);
+}
+
+.manchete-chamada {
+  font-family: var(--fonte-corpo);
+  color: var(--gray-warm);
+  max-width: 30em;
+  margin-bottom: 8px;
+}
+
+/* ---- corpo: objetos + coluna ---- */
+.home-corpo {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 22px;
+  align-items: start;
+}
+
+.home-objetos {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
+}
+
+/* polaroid do álbum */
+.obj-polaroid {
+  background: var(--bg-paper);
+  padding: 8px 8px 6px;
+}
+
+.obj-polaroid-foto {
+  height: 92px;
+  background: var(--sepia-foto);
+  border: 1px solid var(--brown-light);
+}
+
+.obj-polaroid-legenda {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 6px 0 2px;
+}
+
+/* bilhete do quarto */
+.obj-bilhete {
+  background: var(--bg-paper);
+  padding: 10px 12px;
+}
+
+.obj-bilhete-cab {
+  color: var(--red-rubric);
+  letter-spacing: 0.1em;
+  margin: 0 0 5px;
+}
+
+.obj-bilhete-texto {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* ficha da discoteca */
+.obj-disco {
+  background: var(--bg-card);
+  border: 1px solid var(--brown);
+  padding: 10px;
+}
+
+.obj-disco-cab {
+  color: var(--gold-muted);
+  letter-spacing: 0.12em;
+  margin: 0 0 6px;
+}
+
+.obj-disco-capa {
+  height: 66px;
+  background: var(--brown);
+  display: grid;
+  place-items: center;
+  margin-bottom: 6px;
+}
+
+.obj-disco-texto {
+  color: var(--gray-warm);
+}
+
+/* caderno do códice — ocupa duas colunas */
+.obj-caderno {
+  grid-column: span 2;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-muted);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.obj-caderno-titulo {
+  font-family: var(--fonte-display);
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+}
+
+.obj-caderno-titulo a,
+.obj-caderno-titulo a:visited {
+  color: var(--bg-paper);
+  text-decoration: none;
+}
+
+.obj-caderno-titulo a:hover {
+  color: var(--gold-muted);
+}
+
+.obj-caderno-texto {
+  font-size: 0.85rem;
+  color: var(--gray-warm);
+  line-height: 1.5;
+}
+
+/* selo de visitas */
+.obj-visitas {
+  background: var(--bg-base);
+  border: 1px solid var(--borda-site);
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.obj-visitas-cab {
+  color: var(--gold-muted);
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+
+/* coluna lateral (reusa .caixa-sidebar de capa.css) */
+.home-coluna {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.home-rodape {
+  text-align: center;
+  color: var(--gray-warm);
+}
+
+/* ---- responsivo ---- */
+@media (max-width: 920px) {
+  .home-manchete {
+    flex-direction: column;
+  }
+
+  .manchete-gravura {
+    flex: none;
+    max-width: 260px;
+  }
+
+  .home-corpo {
+    grid-template-columns: 1fr;
+  }
+
+  .home-objetos {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .obj-caderno {
+    grid-column: span 2;
+  }
+}

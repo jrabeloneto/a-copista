@@ -1,6 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import gsap from 'gsap'
 import { materias, materiaPorSlug, rotuloFolio } from '../data/materias.js'
+import { flutuantesDaMateria } from '../data/flutuantes.js'
+import { useGsapPagina } from '../lib/useGsapPagina.js'
+import CamadaFlutuante from '../components/motion/CamadaFlutuante.jsx'
 import Folha from '../components/folio/Folha.jsx'
 import GravuraPlaceholder from '../components/folio/GravuraPlaceholder.jsx'
 import Capitular from '../components/ornamentos/Capitular.jsx'
@@ -50,6 +54,8 @@ function BlocoSecao({ secao }) {
 export default function Materia() {
   const { slug } = useParams()
   const materia = materiaPorSlug(slug)
+  const raizRef = useRef(null)
+  const flutuantes = useMemo(() => flutuantesDaMateria(slug), [slug])
 
   useEffect(() => {
     if (materia) {
@@ -59,6 +65,58 @@ export default function Materia() {
       document.title = 'CÓDICE — Vol. I'
     }
   }, [materia])
+
+  useGsapPagina(
+    () => {
+      // slug inválido: Navigate está a caminho, nada a animar
+      if (!materia) return
+
+      // folhas entram em leque sutil ao abrir a matéria
+      gsap.from('.folha-envelope', {
+        y: 26,
+        opacity: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+        stagger: 0.12,
+      })
+
+      // capitulares acendem ao entrar no viewport (uma vez)
+      gsap.utils.toArray('.capitular').forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          scale: 0.94,
+          duration: 0.6,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+        })
+      })
+
+      // moldura da gravura se desenha; depois o motivo desenrola
+      // (estado inicial vem daqui — reduced-motion nunca esconde nada)
+      gsap.utils.toArray('.gravura-svg').forEach((svg) => {
+        const molduras = svg.querySelectorAll('.gravura-moldura')
+        const motivo = svg.querySelector('.gravura-motivo')
+        const tl = gsap.timeline({
+          scrollTrigger: { trigger: svg, start: 'top 82%', once: true },
+        })
+        molduras.forEach((rect, i) => {
+          const perimetro = rect.getTotalLength ? rect.getTotalLength() : 760
+          gsap.set(rect, { strokeDasharray: perimetro, strokeDashoffset: perimetro })
+          tl.to(rect, { strokeDashoffset: 0, duration: 0.9, ease: 'power1.inOut' }, i * 0.18)
+        })
+        if (motivo) {
+          tl.fromTo(
+            motivo,
+            { clipPath: 'inset(0% 0% 100% 0%)' },
+            { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.9, ease: 'power1.inOut' },
+            0.75,
+          )
+        }
+      })
+    },
+    [slug],
+    raizRef,
+  )
 
   if (!materia) {
     return <Navigate to="/" replace />
@@ -70,7 +128,7 @@ export default function Materia() {
   const ultimaFolha = materia.folhas.length - 1
 
   return (
-    <>
+    <div ref={raizRef}>
       <Nav2003
         pagina={
           <>
@@ -78,6 +136,8 @@ export default function Materia() {
           </>
         }
       />
+
+      <CamadaFlutuante itens={flutuantes} escondeMobile />
 
       <article className="materia">
         {materia.folhas.map((folha, i) => (
@@ -124,18 +184,22 @@ export default function Materia() {
           <Separador />
           <nav className="materia-vizinhas ui-2003" aria-label="Outras matérias">
             {anterior ? (
-              <Link to={`/materia/${anterior.slug}`}>« {anterior.titulo}</Link>
+              <Link to={`/materia/${anterior.slug}`} viewTransition>
+                « {anterior.titulo}
+              </Link>
             ) : (
               <span />
             )}
             {seguinte ? (
-              <Link to={`/materia/${seguinte.slug}`}>{seguinte.titulo} »</Link>
+              <Link to={`/materia/${seguinte.slug}`} viewTransition>
+                {seguinte.titulo} »
+              </Link>
             ) : (
               <span />
             )}
           </nav>
         </footer>
       </article>
-    </>
+    </div>
   )
 }

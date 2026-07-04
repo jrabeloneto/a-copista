@@ -1,0 +1,106 @@
+/* ============================================================
+   CÓDICE — motion (ETAPA 4): camada flutuante, virar-de-página,
+   steps de época. Regra da casa: transform + opacity apenas.
+   ============================================================ */
+
+/* ---- camada de iluminuras flutuantes ---- */
+.camada-flutuante {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.flutuante {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.flutuante svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* tinta sépia: só aparece ao cruzar pergaminho, como impressão no papel */
+.flutuante-sepia {
+  color: var(--brown);
+  mix-blend-mode: multiply;
+}
+
+/* tinta creme: só aparece sobre o fundo escuro, como pó de ouro */
+.flutuante-creme {
+  color: var(--bg-paper);
+  mix-blend-mode: screen;
+}
+
+/* a nervura em negativo do fleuron não faz sentido fora do papel */
+.flutuante .fleuron path[stroke] {
+  opacity: 0.35;
+}
+
+/* ---- virar-de-página (View Transitions API) ----
+   A folha atual desliza e inclina de leve; a próxima entra por
+   baixo. Browsers sem suporte: troca instantânea. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: 480ms cubic-bezier(0.4, 0, 0.2, 1) both virada-sai;
+  }
+
+  ::view-transition-new(root) {
+    animation: 480ms cubic-bezier(0.4, 0, 0.2, 1) both virada-entra;
+  }
+}
+
+@keyframes virada-sai {
+  to {
+    opacity: 0;
+    transform: translateY(-2.2%) rotate(-0.6deg);
+  }
+}
+
+@keyframes virada-entra {
+  from {
+    opacity: 0;
+    transform: translateY(3%);
+  }
+}
+
+/* ---- steps de GIF antigo: micro-animações em 2-3 quadros ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .botao88 {
+    transition: transform 0.18s steps(2, end);
+  }
+
+  .botao88:hover {
+    transform: translateY(2px);
+  }
+
+  .citacao .manicule {
+    transition: transform 0.22s steps(3, end);
+  }
+
+  .citacao:hover .manicule {
+    transform: translateX(6px);
+  }
+}
+
+/* ---- mobile: nunca sobrepor a leitura ---- */
+@media (max-width: 920px) {
+  /* matéria e sobre: a folha ocupa a tela — camada some */
+  .camada-esconde-mobile {
+    display: none;
+  }
+
+  /* demais páginas: só os 2 primeiros itens, menores */
+  .camada-flutuante .flutuante:nth-child(n + 3) {
+    display: none;
+  }
+
+  .camada-flutuante .flutuante {
+    max-width: 30vw;
+  }
+}

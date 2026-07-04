@@ -1,6 +1,11 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import gsap from 'gsap'
 import { materias } from '../data/materias.js'
 import { visitas } from '../data/visitas.js'
+import { FLUTUANTES_CAPA } from '../data/flutuantes.js'
+import { useGsapPagina } from '../lib/useGsapPagina.js'
+import CamadaFlutuante from '../components/motion/CamadaFlutuante.jsx'
 import MolduraOrnamental from '../components/ornamentos/MolduraOrnamental.jsx'
 import { LosangoHedera } from '../components/folio/MolduraIluminada.jsx'
 import GravuraPlaceholder from '../components/folio/GravuraPlaceholder.jsx'
@@ -13,7 +18,7 @@ import '../styles/capa.css'
 function CardMateria({ materia, destaque = false }) {
   return (
     <article className={destaque ? 'card-materia card-destaque' : 'card-materia'}>
-      <Link to={`/materia/${materia.slug}`} className="card-gravura" tabIndex={-1} aria-hidden="true">
+      <Link to={`/materia/${materia.slug}`} className="card-gravura" tabIndex={-1} aria-hidden="true" viewTransition>
         <span className="card-gravura-papel pergaminho">
           <GravuraPlaceholder arte={materia.arte} />
         </span>
@@ -23,7 +28,9 @@ function CardMateria({ materia, destaque = false }) {
           rubrica <em>{materia.categoria}</em> — {materia.mesAno}
         </p>
         <h2 className="card-titulo">
-          <Link to={`/materia/${materia.slug}`}>{materia.titulo}</Link>
+          <Link to={`/materia/${materia.slug}`} viewTransition>
+            {materia.titulo}
+          </Link>
         </h2>
         <p className="card-chamada">{materia.chamada}</p>
         <p className="assinatura-post">
@@ -38,9 +45,25 @@ function CardMateria({ materia, destaque = false }) {
 export default function Capa() {
   const [destaque, ...outras] = materias
   const ultimaVisita = visitas[visitas.length - 1]
+  const raizRef = useRef(null)
+
+  useGsapPagina(
+    () => {
+      gsap.from('.card-materia', {
+        y: 18,
+        opacity: 0,
+        duration: 0.55,
+        ease: 'power2.out',
+        stagger: 0.1,
+      })
+    },
+    [],
+    raizRef,
+  )
 
   return (
-    <div className="capa">
+    <div className="capa" ref={raizRef}>
+      <CamadaFlutuante itens={FLUTUANTES_CAPA} />
       <header className="frontispicio">
         <MolduraOrnamental as="div">
           <LosangoHedera />
@@ -98,7 +121,10 @@ export default function Capa() {
             <ul className="caixa-lista ui-2003">
               {materias.map((materia) => (
                 <li key={materia.slug}>
-                  » <Link to={`/materia/${materia.slug}`}>{materia.categoria}</Link>
+                  »{' '}
+                  <Link to={`/materia/${materia.slug}`} viewTransition>
+                    {materia.categoria}
+                  </Link>
                 </li>
               ))}
             </ul>

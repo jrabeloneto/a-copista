@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { visitas } from '../data/visitas.js'
 import Nav2003 from '../components/ui2003/Nav2003.jsx'
 import Separador from '../components/ornamentos/Separador.jsx'
+import CamadaFlutuante from '../components/motion/CamadaFlutuante.jsx'
+import { FLUTUANTES_SECUNDARIAS } from '../data/flutuantes.js'
 import '../styles/paginas.css'
 
 /**
@@ -22,6 +24,7 @@ export default function Visitas() {
   return (
     <>
       <Nav2003 pagina="livro de visitas" />
+      <CamadaFlutuante itens={FLUTUANTES_SECUNDARIAS} />
       <main className="pagina" id="comentarios">
         <h1 className="rubrica pagina-titulo">Livro de visitas</h1>
         <p className="ui-2003 pagina-nota">

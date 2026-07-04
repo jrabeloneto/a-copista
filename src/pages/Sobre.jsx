@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import Nav2003 from '../components/ui2003/Nav2003.jsx'
 import RetratoOval from '../components/folio/RetratoOval.jsx'
 import Fleuron from '../components/ornamentos/Fleuron.jsx'
+import CamadaFlutuante from '../components/motion/CamadaFlutuante.jsx'
+import { FLUTUANTES_SECUNDARIAS } from '../data/flutuantes.js'
 import '../styles/paginas.css'
 
 export default function Sobre() {
@@ -16,6 +18,7 @@ export default function Sobre() {
   return (
     <>
       <Nav2003 pagina="sobre a autora" />
+      <CamadaFlutuante itens={FLUTUANTES_SECUNDARIAS} escondeMobile />
       <main className="pagina">
         <div className="folha-solta-envelope">
           <article className="pergaminho folha-solta sobre-folha">

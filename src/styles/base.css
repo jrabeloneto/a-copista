@@ -25,15 +25,16 @@ body {
   min-height: 100vh;
 }
 
-/* grão fixo atrás de tudo */
-body::before {
-  content: '';
+/* grão fixo atrás de tudo — elemento real (GraoGlobal) para o
+   parallax sutil da ETAPA 4; inset com sangria p/ o movimento */
+.grao-global {
   position: fixed;
-  inset: 0;
+  inset: -6% 0;
   background-image: var(--textura-grao);
   opacity: 0.05;
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
 }
 
 #root {
@@ -74,6 +75,8 @@ a:hover {
 
 /* ---- Moldura central do site (o objeto de 900px) ---- */
 .moldura-site {
+  position: relative;
+  z-index: 1;
   max-width: var(--largura-site);
   margin: 0 auto;
   min-height: 100vh;

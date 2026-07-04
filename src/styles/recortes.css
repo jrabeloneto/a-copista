@@ -29,8 +29,16 @@
   right: calc((100vw - 900px) / 4 - var(--larg-recorte) / 2);
 }
 
-.recorte-slot-0 { top: 12vh; }
-.recorte-slot-1 { top: 52vh; }
+/* modo viagem (padrão): posição vertical e opacidade são do GSAP;
+   o CSS esconde para não haver flash antes do primeiro frame */
+.recorte-figura {
+  top: 0;
+  opacity: 0;
+}
+
+/* reduced-motion: fixas nos slots, estáticas e visíveis */
+.recorte-fixo-0 { top: 12vh; opacity: 1; }
+.recorte-fixo-1 { top: 52vh; opacity: 1; }
 
 .recorte-figura svg {
   display: block;

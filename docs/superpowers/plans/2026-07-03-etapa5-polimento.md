@@ -35,20 +35,20 @@
 ## Tarefas
 
 ### Task 1: Acessibilidade
-- [ ] tokens: --rubric-clara, --brown-visitado (+ comentário de contraste)
-- [ ] base.css: links default (escuro) vs .pergaminho (tinta); foco por contexto
-- [ ] Varredura de usos de rubrica sobre escuro (rubricas de página, especime)
+- [x] tokens: --rubric-clara, --brown-visitado (+ comentário de contraste)
+- [x] base.css: links default (escuro) vs .pergaminho (tinta); foco por contexto
+- [x] Varredura de usos de rubrica sobre escuro (rubricas de página, especime)
 
 ### Task 2: Favicon + lazy + meta
-- [ ] public/favicon.svg pixel-art + link no index.html + theme-color
-- [ ] App.jsx: React.lazy nas 4 rotas secundárias + Suspense
+- [x] public/favicon.svg pixel-art + link no index.html + theme-color
+- [x] App.jsx: React.lazy nas 4 rotas secundárias + Suspense
 
 ### Task 3: Mobile
-- [ ] text-align left ≤700px (folha-paragrafo, sobre-texto, folio-texto do especime)
-- [ ] passada visual 375px em todas as rotas; ajustes pontuais
+- [x] text-align left ≤700px (folha-paragrafo, sobre-texto, folio-texto do especime)
+- [x] passada visual 375px em todas as rotas; ajustes pontuais
 
 ### Task 4: Auditorias e fechamento
-- [ ] Grep anti-slop: border-radius / blur / cores fora da paleta
-- [ ] `npm run build` limpo
-- [ ] Skill code-review (projeto completo); corrigir achados
-- [ ] Commit final; registrar estado no claude-mem/memória; resumo — **FIM**
+- [x] Grep anti-slop: border-radius / blur / cores fora da paleta
+- [x] `npm run build` limpo
+- [x] Skill code-review (projeto completo); corrigir achados
+- [x] Commit final; registrar estado no claude-mem/memória; resumo — **FIM**

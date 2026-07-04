@@ -2,19 +2,8 @@
    CÓDICE — páginas secundárias: arquivo, sobre, visitas
    ============================================================ */
 
-.nav2003 {
-  padding: 14px 2px 22px;
-  color: var(--gray-warm);
-}
-
-.nav2003-sep {
-  margin: 0 7px;
-}
-
-.nav2003 em {
-  font-style: normal;
-  color: var(--gold-muted);
-}
+/* (estilos do Nav2003 moram em base.css: o breadcrumb é usado por
+   rotas eager e este arquivo virou chunk preguiçoso) */
 
 .pagina {
   max-width: 640px;
@@ -25,6 +14,7 @@
 .pagina-titulo {
   font-size: 1.3rem;
   margin-bottom: 4px;
+  color: var(--rubric-clara); /* rubrica sobre escuro: shade legível */
 }
 
 .pagina-nota {
@@ -65,7 +55,7 @@
 }
 
 .arquivo-mes-rotulo {
-  color: var(--brown-light);
+  color: var(--gray-warm); /* brown-light dava 3.97:1 — reprovado */
 }
 
 .arquivo-posts {
@@ -261,5 +251,12 @@
   .visitas-form-linha {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+}
+
+/* coluna estreita: sem rios de justificação */
+@media (max-width: 700px) {
+  .sobre-texto {
+    text-align: left;
   }
 }

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- favicon pixel-art: brasão do CÓDICE em grade 16×16 (era 2003) -->
+  <rect width="16" height="16" fill="#1a1714"/>
+  <!-- campo do escudo em pergaminho -->
+  <path fill="#e8dfd0" d="M4 3h8v6H4z M5 9h6v2H5z M6 11h4v1H6z M7 12h2v1H7z"/>
+  <!-- banda diagonal em rubrica -->
+  <path fill="#8f3d33" d="M10 3h2v1h-2z M9 4h2v1H9z M8 5h2v1H8z M7 6h2v1H7z M6 7h2v1H6z M5 8h2v1H5z M5 9h1v1H5z"/>
+  <!-- contorno dourado -->
+  <path fill="#a8895c" d="M3 2h10v1H3z M3 3h1v6H3z M12 3h1v6h-1z M4 9h1v2H4z M11 9h1v2h-1z M5 11h1v1H5z M10 11h1v1h-1z M6 12h1v1H6z M9 12h1v1H9z M7 13h2v1H7z"/>
+</svg>

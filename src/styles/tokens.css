@@ -20,7 +20,15 @@
   --ink-faded: #4a3f33;        /* tinta desbotada */
   --borda-site: #3a322b;       /* borda da moldura 900px */
   --paper-edge: #d3c6ae;       /* beirada manuseada do pergaminho */
-  --rubric-dark: #6e2f27;      /* rubrica em hover */
+  --rubric-dark: #6e2f27;      /* rubrica em hover (sobre pergaminho) */
+
+  /* shades de acessibilidade — mesmo matiz, clareados: o vermelho-
+     sangue original tem ~2.3:1 sobre --bg-base (reprovado); estes
+     passam de 4.5:1. A tinta original permanece em TODO pergaminho. */
+  --rubric-clara: #c67d72;     /* links/rubricas sobre fundo escuro
+                                  (4.76:1 até sobre --bg-card) */
+  --rubric-clara-hover: #d18e83;
+  --brown-visitado: #a08b76;   /* :visited sobre fundo escuro */
 
   /* ---- Tipografia ---- */
   --fonte-display: 'Grenze Gotisch', 'Luminari', serif;

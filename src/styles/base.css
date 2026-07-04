@@ -48,24 +48,43 @@ svg {
   max-width: 100%;
 }
 
-/* ---- Links: rubrica, com :visited de era 2003 ---- */
+/* ---- Links: rubrica, com :visited de era 2003 ----
+   Contexto padrão do site é ESCURO → shades claras (contraste);
+   sobre pergaminho a tinta original é restaurada logo abaixo. */
 a {
-  color: var(--red-rubric);
+  color: var(--rubric-clara);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 a:visited {
-  color: var(--brown);
+  color: var(--brown-visitado);
 }
 
 a:hover {
+  color: var(--rubric-clara-hover);
+}
+
+.pergaminho a {
+  color: var(--red-rubric);
+}
+
+.pergaminho a:visited {
+  color: var(--brown);
+}
+
+.pergaminho a:hover {
   color: var(--rubric-dark);
 }
 
 :focus-visible {
   outline: 1px dotted var(--gold-muted);
   outline-offset: 2px;
+}
+
+/* sobre o creme, o foco dourado some (2.5:1) — vira rubrica */
+.pergaminho :focus-visible {
+  outline-color: var(--red-rubric);
 }
 
 ::selection {
@@ -141,6 +160,28 @@ hr {
 .versais {
   font-variant-caps: small-caps;
   letter-spacing: 0.06em;
+}
+
+/* ---- breadcrumb 2003 (usado por rotas eager — fica no CSS base) ---- */
+.nav2003 {
+  padding: 14px 2px 22px;
+  color: var(--gray-warm);
+}
+
+.nav2003-sep {
+  margin: 0 7px;
+}
+
+.nav2003 em {
+  font-style: normal;
+  color: var(--gold-muted);
+}
+
+/* fallback do Suspense das rotas preguiçosas */
+.carregando-pagina {
+  padding: 48px 0;
+  text-align: center;
+  color: var(--gray-warm);
 }
 
 @media (prefers-reduced-motion: reduce) {

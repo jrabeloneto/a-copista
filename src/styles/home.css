@@ -77,9 +77,13 @@
 }
 
 .obj-polaroid-foto {
-  height: 92px;
-  background: var(--sepia-foto);
   border: 1px solid var(--brown-light);
+}
+
+.obj-polaroid-foto svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .obj-polaroid-legenda {

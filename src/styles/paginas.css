@@ -73,6 +73,11 @@
   color: var(--gray-warm);
 }
 
+.arquivo-post-menor a {
+  font-family: var(--fonte-fell);
+  font-size: 0.92rem;
+}
+
 .arquivo-ano-perdido {
   margin-top: 26px;
 }

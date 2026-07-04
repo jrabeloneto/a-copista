@@ -12,10 +12,13 @@ import { reduzMotion } from './lib/motion.js'
 import Home from './pages/Home.jsx'
 import CodiceIndex from './pages/CodiceIndex.jsx'
 import Materia from './pages/Materia.jsx'
-import EmObras from './pages/EmObras.jsx'
 
 // conteúdo primário (capa, códice, matérias) carrega junto;
-// as páginas secundárias entram sob demanda
+// as seções e páginas secundárias entram sob demanda
+const Album = lazy(() => import('./pages/Album.jsx'))
+const Quarto = lazy(() => import('./pages/Quarto.jsx'))
+const Discoteca = lazy(() => import('./pages/Discoteca.jsx'))
+const Amigas = lazy(() => import('./pages/Amigas.jsx'))
 const Arquivo = lazy(() => import('./pages/Arquivo.jsx'))
 const Sobre = lazy(() => import('./pages/Sobre.jsx'))
 const Visitas = lazy(() => import('./pages/Visitas.jsx'))
@@ -116,10 +119,10 @@ export default function App() {
             <Route path="/codice" element={<CodiceIndex />} />
             <Route path="/codice/materia/:slug" element={<Materia />} />
             <Route path="/materia/:slug" element={<RedirecionaMateria />} />
-            <Route path="/album" element={<EmObras nome="Álbum de fotos" />} />
-            <Route path="/quarto" element={<EmObras nome="O quarto da dona" />} />
-            <Route path="/discoteca" element={<EmObras nome="Discoteca" />} />
-            <Route path="/amigas" element={<EmObras nome="Amigas & webring" />} />
+            <Route path="/album" element={<Album />} />
+            <Route path="/quarto" element={<Quarto />} />
+            <Route path="/discoteca" element={<Discoteca />} />
+            <Route path="/amigas" element={<Amigas />} />
             <Route path="/arquivo" element={<Arquivo />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/visitas" element={<Visitas />} />

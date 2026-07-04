@@ -1,0 +1,67 @@
+/**
+ * A discoteca — fichas da coleção da dona (discos, filmes, objetos),
+ * com nota em hederas (1-5) e resenha de uma linha.
+ * capa: variante do placeholder (sleeve | cartaz | objeto).
+ */
+export const fichas = [
+  {
+    id: 'liege-lief',
+    titulo: 'Liege & Lief',
+    autor: 'Fairport Convention',
+    ano: '1969',
+    tipo: 'disco',
+    capa: 'sleeve',
+    nota: 5,
+    resenha: 'onde a estrada de terra vira eletricidade. o começo de tudo o que este códice ama.',
+  },
+  {
+    id: 'below-the-salt',
+    titulo: 'Below the Salt',
+    autor: 'Steeleye Span',
+    ano: '1972',
+    tipo: 'disco',
+    capa: 'sleeve',
+    nota: 4,
+    resenha: 'o Gaudete no meio do disco como relíquia num altar lateral — ninguém avisa, ninguém precisa.',
+  },
+  {
+    id: 'red-queen',
+    titulo: 'Red Queen to Gryphon Three',
+    autor: 'Gryphon',
+    ano: '1974',
+    tipo: 'disco',
+    capa: 'sleeve',
+    nota: 4,
+    resenha: 'uma partida de xadrez medieval inteira sem uma palavra cantada. crumhorns em estado de graça.',
+  },
+  {
+    id: 'zoso',
+    titulo: 'Led Zeppelin IV',
+    autor: 'Led Zeppelin',
+    ano: '1971',
+    tipo: 'disco',
+    capa: 'sleeve',
+    nota: 5,
+    resenha: 'pelo eremita da capa interna e pela batalha com a voz de Sandy Denny. o resto é lenda merecida.',
+  },
+  {
+    id: 'todas-as-mulheres',
+    titulo: 'Todas as Mulheres do Mundo',
+    autor: 'Domingos de Oliveira',
+    ano: '1966',
+    tipo: 'filme',
+    capa: 'cartaz',
+    nota: 5,
+    resenha: 'ela menos representa do que comparece — e a crítica, desarmada, teve de inventar elogios novos.',
+  },
+  {
+    id: 'batom-ameixa',
+    titulo: 'Batom cor ameixa',
+    autor: 'boutique Biba (atribuído)',
+    ano: 'c. 1973',
+    tipo: 'objeto',
+    capa: 'objeto',
+    nota: 5,
+    resenha: 'herança de mãe, cor de tia-avó, lata de biscoito de origem. a peça mais valiosa da coleção.',
+  },
+]

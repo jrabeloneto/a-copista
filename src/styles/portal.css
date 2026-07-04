@@ -169,39 +169,6 @@
 .torto-3 { transform: rotate(-1deg); }
 .torto-4 { transform: rotate(1.1deg); }
 
-/* ---- sala em obras ---- */
-.em-obras {
-  text-align: center;
-  padding: 48px 0 60px;
-  max-width: 30em;
-  margin: 0 auto;
-}
-
-.em-obras .manicule {
-  width: 64px;
-  height: auto;
-  margin: 0 auto 14px;
-  display: block;
-  color: var(--rubric-clara);
-}
-
-.em-obras-titulo {
-  font-size: 1.3rem;
-  color: var(--rubric-clara);
-  margin-bottom: 10px;
-}
-
-.em-obras-texto {
-  font-family: var(--fonte-fell);
-  font-style: italic;
-  color: var(--gray-warm);
-  margin-bottom: 14px;
-}
-
-.em-obras-nota {
-  color: var(--gray-warm);
-}
-
 @media (max-width: 700px) {
   .masthead-nome {
     font-size: 34px;

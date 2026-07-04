@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import { materias } from '../data/materias.js'
 import { visitas } from '../data/visitas.js'
+import { fotos } from '../data/album.js'
+import { entradas } from '../data/quarto.js'
+import { fichas } from '../data/discoteca.js'
 import GravuraPlaceholder from '../components/folio/GravuraPlaceholder.jsx'
+import FotoArte from '../components/album/FotoArte.jsx'
+import NotaHederas from '../components/ornamentos/NotaHederas.jsx'
 import ContadorVisitas from '../components/ui2003/ContadorVisitas.jsx'
 import CaixaSidebar from '../components/ui2003/CaixaSidebar.jsx'
 import Separador from '../components/ornamentos/Separador.jsx'
@@ -14,6 +19,9 @@ import '../styles/home.css'
  */
 export default function Home() {
   const destaque = materias[0]
+  const fotoRecente = fotos[fotos.length - 1]
+  const bilheteRecente = entradas.find((e) => e.tipo === 'bilhete')
+  const fichaDestaque = fichas[0]
 
   return (
     <main className="home">
@@ -46,17 +54,18 @@ export default function Home() {
       <div className="home-corpo">
         <section className="home-objetos" aria-label="Seções da revista">
           <article className="objeto-colado torto-1 obj-polaroid">
-            <div className="obj-polaroid-foto" aria-hidden="true" />
+            <div className="obj-polaroid-foto" aria-hidden="true">
+              <FotoArte nome={fotoRecente.arte} />
+            </div>
             <h3 className="obj-polaroid-legenda">
-              <Link to="/album">álbum de fotos »</Link>
+              <Link to="/album">álbum: {fotos.length} fotos »</Link>
             </h3>
           </article>
 
           <article className="objeto-colado torto-2 obj-bilhete">
             <h3 className="ui-2003 obj-bilhete-cab">O QUARTO — diário da dona</h3>
             <p className="obj-bilhete-texto">
-              bilhetes, achados de sebo, avaliações em hederas &amp; o que mais couber na
-              escrivaninha. <Link to="/quarto">entrar »</Link>
+              “{bilheteRecente.texto.slice(0, 92)}…” <Link to="/quarto">ler o diário »</Link>
             </p>
           </article>
 
@@ -71,7 +80,9 @@ export default function Home() {
               </svg>
             </div>
             <p className="ui-2003 obj-disco-texto">
-              fichas da coleção — <Link to="/discoteca">folhear »</Link>
+              {fichaDestaque.titulo} — <NotaHederas nota={fichaDestaque.nota} />
+              <br />
+              <Link to="/discoteca">folhear a coleção »</Link>
             </p>
           </article>
 

@@ -177,6 +177,29 @@
   color: var(--red-rubric);
 }
 
+/* ---- Nota em hederas (avaliações da casa; global — usada em
+        páginas eager e preguiçosas) ---- */
+.nota-hederas {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.hedera-cheia {
+  color: var(--rubric-clara);
+}
+
+.entrada-papel .hedera-cheia,
+.pergaminho .hedera-cheia {
+  color: var(--red-rubric);
+}
+
+.hedera-vazia {
+  color: var(--gray-warm);
+  opacity: 0.3;
+}
+
 /* ---- Assinatura de post 2003 ---- */
 .assinatura-post {
   font-family: var(--fonte-ui);

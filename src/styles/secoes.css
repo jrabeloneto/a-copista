@@ -1,0 +1,248 @@
+/* ============================================================
+   A COPISTA — seções do portal: álbum, quarto, discoteca, amigas.
+   Dial: quanto mais pessoal, mais colagem.
+   ============================================================ */
+
+.pagina-secao {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+/* ---- álbum ---- */
+.album-grade {
+  list-style: none;
+  padding: 6px 0 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 26px;
+}
+
+.foto-polaroid {
+  margin: 0;
+  background: var(--bg-paper);
+  padding: 9px 9px 7px;
+}
+
+.foto-polaroid svg,
+.foto-cantoneiras svg,
+.entrada-foto svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--brown-light);
+}
+
+.foto-legenda {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--ink-faded);
+  padding-top: 6px;
+}
+
+.foto-data {
+  color: var(--brown-light);
+  font-style: normal;
+}
+
+/* foto presa por cantoneiras pretas, legenda solta no escuro */
+.foto-cantoneiras {
+  margin: 0;
+  position: relative;
+  padding: 7px;
+}
+
+.canto {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: var(--bg-backdrop);
+  border: 1px solid var(--borda-site);
+}
+
+.canto-no { top: 0; left: 0; clip-path: polygon(0 0, 100% 0, 0 100%); }
+.canto-ne { top: 0; right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%); }
+.canto-so { bottom: 0; left: 0; clip-path: polygon(0 0, 0 100%, 100% 100%); }
+.canto-se { bottom: 0; right: 0; clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+
+.foto-cantoneiras .foto-legenda-solta {
+  color: var(--gray-warm);
+  padding: 8px 2px 0;
+}
+
+.foto-cantoneiras .foto-legenda-solta .foto-data {
+  color: var(--gold-muted);
+}
+
+/* ---- quarto (feed do diário) ---- */
+.quarto .pagina-nota a {
+  color: var(--rubric-clara);
+}
+
+.quarto-feed {
+  list-style: none;
+  padding: 8px 0 0;
+  margin: 0;
+  max-width: 560px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.entrada-data {
+  display: inline-block;
+  background: var(--fita);
+  color: var(--ink);
+  padding: 2px 9px 3px;
+  box-shadow: 2px 2px 0 rgba(10, 8, 5, 0.5);
+  margin: 0 0 -6px 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.entrada-corpo {
+  box-shadow: 3px 4px 0 rgba(10, 8, 5, 0.5);
+}
+
+.entrada-papel {
+  background: var(--bg-paper);
+  padding: 16px 18px 14px;
+}
+
+.entrada-rotulo {
+  color: var(--red-rubric);
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+
+.entrada-item {
+  font-family: var(--fonte-fell);
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+
+.entrada-texto {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink);
+  margin-top: 6px;
+}
+
+.entrada-bilhete {
+  margin-top: 0;
+  font-size: 0.95rem;
+}
+
+.entrada-foto {
+  background: var(--bg-paper);
+  padding: 9px 9px 6px;
+  max-width: 340px;
+}
+
+/* (estilos da nota em hederas moram em ornamentos.css: o componente
+   é usado pela Home, que é eager — este arquivo é chunk preguiçoso) */
+
+/* ---- discoteca ---- */
+.discoteca-grade {
+  list-style: none;
+  padding: 6px 0 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.ficha {
+  background: var(--bg-card);
+  border: 1px solid var(--borda-site);
+  padding: 12px;
+  display: flex;
+  gap: 12px;
+  height: 100%;
+}
+
+.ficha-capa {
+  flex: 0 0 104px;
+}
+
+.ficha-capa svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--borda-site);
+}
+
+.ficha-tipo {
+  color: var(--gold-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ficha-titulo {
+  font-family: var(--fonte-fell);
+  font-weight: 600;
+  font-size: 1.06rem;
+  line-height: 1.2;
+  color: var(--bg-paper);
+  margin: 3px 0 2px;
+}
+
+.ficha-autor {
+  color: var(--gray-warm);
+  margin-bottom: 5px;
+}
+
+.ficha-resenha {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--gray-warm);
+  margin-top: 6px;
+}
+
+/* ---- amigas ---- */
+.amigas-parede {
+  list-style: none;
+  padding: 6px 0 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 26px;
+}
+
+.amigas-selo {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.amigas-selo .botao88 {
+  flex: none;
+}
+
+.amigas-desc {
+  color: var(--gray-warm);
+  line-height: 1.6;
+  padding-top: 2px;
+}
+
+/* ---- responsivo ---- */
+@media (max-width: 700px) {
+  .album-grade,
+  .discoteca-grade,
+  .amigas-parede {
+    grid-template-columns: 1fr;
+  }
+
+  .ficha {
+    height: auto;
+  }
+}

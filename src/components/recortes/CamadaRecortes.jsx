@@ -36,25 +36,31 @@ export default function CamadaRecortes({ deck }) {
       els.forEach((el, i) => {
         const a = aparicoes[i]
 
-        gsap.set(el, { opacity: 0, y: 36, x: 0, rotation: a.rot + 7 })
+        // ponto de partida: ACIMA da viewport — a figura desce a
+        // banda inteira até o slot (o slot de baixo viaja mais,
+        // efeito cascata), como uma foto sendo baixada no mural
+        const yTopo = () => -window.innerHeight * (a.slot === 0 ? 0.34 : 0.74)
 
-        const colar = () =>
-          gsap.to(el, {
-            opacity: 1,
-            y: 0,
-            x: 0,
-            rotation: a.rot,
-            duration: 0.5,
-            ease: 'power2.out',
-            overwrite: 'auto',
-          })
+        gsap.set(el, { opacity: 0, x: 0, y: yTopo(), rotation: a.rot + 6 })
+
+        const colar = () => {
+          const tl = gsap.timeline({ overwrite: 'auto' })
+          tl.fromTo(
+            el,
+            { y: yTopo(), x: 0, rotation: a.rot + 6 },
+            { y: 0, rotation: a.rot, duration: 0.85, ease: 'power2.out' },
+            0,
+          ).fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'none' }, 0)
+        }
+        // saindo para a frente continua descendo; voltando, sobe
+        // de volta por onde veio
         const descolar = (direcao) =>
           gsap.to(el, {
             opacity: 0,
-            y: -40 * direcao,
-            x: a.lado === 'esq' ? -24 : 24,
-            rotation: a.rot - 8,
-            duration: 0.35,
+            y: 64 * direcao,
+            x: a.lado === 'esq' ? -20 : 20,
+            rotation: a.rot + 6 * direcao,
+            duration: 0.4,
             ease: 'power1.in',
             overwrite: 'auto',
           })

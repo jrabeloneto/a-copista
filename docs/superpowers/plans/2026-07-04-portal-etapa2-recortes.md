@@ -30,9 +30,9 @@
   --red-rubric nas silhuetas.
 
 ## Tarefas
-- [ ] `src/data/recortes.js` (decks: capa 6, salas 4) + `montarAparicoes`
-- [ ] `src/components/recortes/FiguraRecorte.jsx` (8 artes SVG)
-- [ ] `src/components/recortes/CamadaRecortes.jsx` (bandas fixed + triggers)
-- [ ] `src/styles/recortes.css` (papel rasgado, fita, slots, media hide)
-- [ ] App: montar com key={pathname} fora de /codice e /especime
-- [ ] Build; preview: aparição/troca no scroll, 2 por lado, hide estreito, leak test; review; commit — **PARAR p/ aprovação**
+- [x] `src/data/recortes.js` (decks: capa 6, salas 4) + `montarAparicoes`
+- [x] `src/components/recortes/FiguraRecorte.jsx` (8 artes SVG)
+- [x] `src/components/recortes/CamadaRecortes.jsx` (bandas fixed + triggers)
+- [x] `src/styles/recortes.css` (papel rasgado, fita, slots, media hide)
+- [x] App: montar com key={pathname} fora de /codice e /especime
+- [x] Build; preview: aparição/troca no scroll, 2 por lado, hide estreito, leak test; review; commit — **PARAR p/ aprovação**

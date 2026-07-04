@@ -5,6 +5,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import GrainDefs from './components/GrainDefs.jsx'
 import Masthead from './components/portal/Masthead.jsx'
 import ReguaEtiquetas from './components/portal/ReguaEtiquetas.jsx'
+import CamadaRecortes from './components/recortes/CamadaRecortes.jsx'
+import { DECK_CAPA, DECK_SALAS } from './data/recortes.js'
 import { useLenis } from './lib/useLenis.js'
 import { reduzMotion } from './lib/motion.js'
 import Home from './pages/Home.jsx'
@@ -70,22 +72,39 @@ export default function App() {
   useLenis()
   const { pathname } = useLocation()
 
-  // fontes remotas mudam o layout depois do primeiro cálculo dos triggers
+  // a altura da página mente no mount (fontes remotas, Suspense de
+  // rota preguiçosa, futuras imagens): qualquer mudança de altura do
+  // body recalcula os limites de TODOS os triggers (debounced)
   useEffect(() => {
-    let vivo = true
-    document.fonts?.ready.then(() => {
-      if (vivo && !reduzMotion()) ScrollTrigger.refresh()
+    if (reduzMotion()) return undefined
+    let alturaAnterior = document.body.scrollHeight
+    let temporizador = null
+    const observador = new ResizeObserver(() => {
+      const altura = document.body.scrollHeight
+      if (altura === alturaAnterior) return
+      alturaAnterior = altura
+      clearTimeout(temporizador)
+      temporizador = setTimeout(() => ScrollTrigger.refresh(), 160)
     })
+    observador.observe(document.body)
     return () => {
-      vivo = false
+      clearTimeout(temporizador)
+      observador.disconnect()
     }
   }, [])
+
+  // recortes de revista: efeito do PORTAL; dentro do fanzine o
+  // efeito é o das iluminuras flutuantes (identidades separadas)
+  const semRecortes = pathname.startsWith('/codice') || pathname === '/especime'
 
   return (
     <>
       <GrainDefs />
       <ScrollParaTopo />
       <GraoGlobal />
+      {!semRecortes && (
+        <CamadaRecortes key={pathname} deck={pathname === '/' ? DECK_CAPA : DECK_SALAS} />
+      )}
       <div className="moldura-site">
         <Masthead compacto={pathname !== '/'} />
         <ReguaEtiquetas />

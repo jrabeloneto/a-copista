@@ -1,0 +1,86 @@
+/* ============================================================
+   A COPISTA — recortes de revista nas bandas laterais.
+   Moram FORA da coluna de 900px; nunca sobre conteúdo.
+   ============================================================ */
+
+.camada-recortes {
+  --larg-recorte: clamp(112px, calc((100vw - 940px) / 2 - 24px), 158px);
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.recorte-figura {
+  position: absolute;
+  width: var(--larg-recorte);
+  background: var(--bg-paper);
+  padding: 6px 6px 4px;
+  box-shadow: 5px 6px 0 rgba(10, 8, 5, 0.5);
+  will-change: transform, opacity;
+}
+
+/* centrada na banda de cada lado */
+.recorte-esq {
+  left: calc((100vw - 900px) / 4 - var(--larg-recorte) / 2);
+}
+
+.recorte-dir {
+  right: calc((100vw - 900px) / 4 - var(--larg-recorte) / 2);
+}
+
+.recorte-slot-0 { top: 12vh; }
+.recorte-slot-1 { top: 52vh; }
+
+.recorte-figura svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* borda rasgada em duas assinaturas (a sombra some no clip — o
+   recorte rasgado deita "colado no vidro", variação proposital) */
+.recorte-rasgo-a {
+  clip-path: polygon(
+    2% 1%, 30% 0%, 65% 2%, 98% 0%, 100% 33%, 97% 67%,
+    100% 97%, 66% 100%, 31% 98%, 1% 100%, 0% 65%, 2% 32%
+  );
+}
+
+.recorte-rasgo-b {
+  box-shadow: 5px 6px 0 rgba(10, 8, 5, 0.5);
+}
+
+/* fita adesiva no topo */
+.recorte-fita {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 44px;
+  height: 15px;
+  margin-left: -22px;
+  background: var(--fita);
+  opacity: 0.75;
+  z-index: 1;
+}
+
+.recorte-fita-esq { transform: rotate(-5deg); }
+.recorte-fita-dir { transform: rotate(4deg); }
+
+.recorte-legenda {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--ink-faded);
+  padding: 4px 2px 2px;
+  margin: 0;
+}
+
+/* sem banda suficiente, sem recortes — nunca sobre a leitura */
+@media (max-width: 1189px) {
+  .camada-recortes {
+    display: none;
+  }
+}

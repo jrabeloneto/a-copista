@@ -4,8 +4,6 @@ import { materias } from '../data/materias.js'
 import Nav2003 from '../components/ui2003/Nav2003.jsx'
 import Manicule from '../components/ornamentos/Manicule.jsx'
 import Separador from '../components/ornamentos/Separador.jsx'
-import CamadaFlutuante from '../components/motion/CamadaFlutuante.jsx'
-import { FLUTUANTES_SECUNDARIAS } from '../data/flutuantes.js'
 import '../styles/paginas.css'
 
 export default function Arquivo() {
@@ -19,7 +17,6 @@ export default function Arquivo() {
   return (
     <>
       <Nav2003 pagina="arquivo" />
-      <CamadaFlutuante itens={FLUTUANTES_SECUNDARIAS} />
       <main className="pagina pagina-arquivo">
         <h1 className="rubrica pagina-titulo">Arquivo do fanzine</h1>
         <p className="ui-2003 pagina-nota">

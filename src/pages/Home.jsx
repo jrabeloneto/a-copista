@@ -10,7 +10,18 @@ import NotaHederas from '../components/ornamentos/NotaHederas.jsx'
 import ContadorVisitas from '../components/ui2003/ContadorVisitas.jsx'
 import CaixaSidebar from '../components/ui2003/CaixaSidebar.jsx'
 import Separador from '../components/ornamentos/Separador.jsx'
+import HeroCapa from '../components/portal/HeroCapa.jsx'
+import ReguaEtiquetas from '../components/portal/ReguaEtiquetas.jsx'
+import Letreiro from '../components/portal/Letreiro.jsx'
 import '../styles/home.css'
+
+const NOVIDADES = [
+  'vol. II do códice em cópia — a pena cansa, tenha paciência',
+  'o webring aceita casas novas: deixe o endereço no livro de visitas',
+  '8 fotografias no álbum, reveladas a duras penas',
+  'a discoteca ganhou fichas novas — nota da casa em hederas',
+  'Hildegarda segue dormindo sobre os rascunhos',
+]
 
 /**
  * A capa da revista: manchete vinda do CÓDICE + objetos colados
@@ -24,8 +35,12 @@ export default function Home() {
   const fichaDestaque = fichas[0]
 
   return (
-    <main className="home">
-      <section className="home-manchete" aria-labelledby="manchete-titulo">
+    <>
+      <HeroCapa />
+      <ReguaEtiquetas />
+      <main className="home">
+        <Letreiro itens={NOVIDADES} />
+        <section className="home-manchete" aria-labelledby="manchete-titulo">
         <Link
           to={`/codice/materia/${destaque.slug}`}
           className="manchete-gravura objeto-colado torto-3"
@@ -133,11 +148,12 @@ export default function Home() {
         </aside>
       </div>
 
-      <Separador />
-      <p className="ui-2003 home-rodape">
-        arquivo completo em <Link to="/arquivo">/arquivo</Link> — bastidores na{' '}
-        <Link to="/especime">prova do impressor</Link>
-      </p>
-    </main>
+        <Separador />
+        <p className="ui-2003 home-rodape">
+          arquivo completo em <Link to="/arquivo">/arquivo</Link> — bastidores na{' '}
+          <Link to="/especime">prova do impressor</Link>
+        </p>
+      </main>
+    </>
   )
 }

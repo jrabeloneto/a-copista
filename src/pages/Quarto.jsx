@@ -66,14 +66,22 @@ export default function Quarto() {
         </p>
 
         <ol className="quarto-feed">
-          {entradas.map((entrada, i) => (
-            <li key={i} className={`entrada torto-${(i % 4) + 1}`}>
-              <p className="ui-2003 entrada-data">
-                <time>{entrada.data}</time>
-              </p>
-              <Entrada entrada={entrada} />
-            </li>
-          ))}
+          {entradas.map((entrada, i) => {
+            const mesNovo = i === 0 || entradas[i - 1].mesAno !== entrada.mesAno
+            return (
+              <li key={i} className={`entrada torto-${(i % 4) + 1}`}>
+                {mesNovo && (
+                  <span className="mes-gigante" aria-hidden="true">
+                    {entrada.mesAno.slice(0, 3)}
+                  </span>
+                )}
+                <p className="ui-2003 entrada-data">
+                  <time>{entrada.data}</time>
+                </p>
+                <Entrada entrada={entrada} />
+              </li>
+            )
+          })}
         </ol>
 
         <Separador />

@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import GrainDefs from './components/GrainDefs.jsx'
 import Masthead from './components/portal/Masthead.jsx'
 import ReguaEtiquetas from './components/portal/ReguaEtiquetas.jsx'
+import Preloader from './components/portal/Preloader.jsx'
 import CamadaRecortes from './components/recortes/CamadaRecortes.jsx'
 import { DECK_CAPA, DECK_SALAS } from './data/recortes.js'
 import { useLenis } from './lib/useLenis.js'
@@ -108,9 +109,15 @@ export default function App() {
       {!semRecortes && (
         <CamadaRecortes key={pathname} deck={pathname === '/' ? DECK_CAPA : DECK_SALAS} />
       )}
+      <Preloader />
       <div className="moldura-site">
-        <Masthead compacto={pathname !== '/'} />
-        <ReguaEtiquetas />
+        {/* na home o cabeçalho é o HeroCapa (tela cheia que se dobra) */}
+        {pathname !== '/' && (
+          <>
+            <Masthead compacto />
+            <ReguaEtiquetas />
+          </>
+        )}
         <Suspense
           fallback={<p className="ui-2003 carregando-pagina">a copista está molhando a pena…</p>}
         >

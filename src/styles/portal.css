@@ -169,8 +169,122 @@
 .torto-3 { transform: rotate(-1deg); }
 .torto-4 { transform: rotate(1.1deg); }
 
+/* ---- hero: a capa em tela cheia que se dobra no masthead ---- */
+.hero-capa {
+  height: 148svh;
+  margin: 0 -28px; /* anula o padding lateral da moldura p/ o palco */
+}
+
+.hero-palco {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 28px;
+}
+
+.hero-palco .masthead {
+  will-change: transform;
+  transform-origin: top center;
+}
+
+.hero-dica {
+  color: var(--gray-warm);
+  letter-spacing: 0.18em;
+  margin-top: 42svh;
+}
+
+/* ---- letreiro (o marquee da casa) ---- */
+.letreiro {
+  overflow: hidden;
+  border-top: 1px solid var(--borda-site);
+  border-bottom: 1px solid var(--borda-site);
+  padding: 6px 0;
+  margin: 20px 0;
+}
+
+.letreiro-faixa {
+  display: inline-flex;
+  white-space: nowrap;
+  font-family: var(--fonte-ui);
+  font-size: var(--texto-ui-min);
+  letter-spacing: 0.14em;
+  color: var(--gold-muted);
+}
+
+.letreiro-trecho {
+  padding-right: 0.5em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .letreiro-faixa {
+    animation: letreiro-anda 38s linear infinite;
+    will-change: transform;
+  }
+
+  .letreiro:hover .letreiro-faixa {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes letreiro-anda {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---- preloader do brasão ---- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: var(--bg-base);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 16px;
+  animation: preloader-sai 0.3s steps(3, end) 1.15s both;
+}
+
+.pre-tempo {
+  opacity: 0;
+  animation: pre-monta 0.05s steps(1, end) both;
+}
+
+.pre-tempo-1 { animation-delay: 0.12s; }
+.pre-tempo-2 { animation-delay: 0.42s; }
+.pre-tempo-3 { animation-delay: 0.72s; }
+
+.preloader-frase {
+  color: var(--gray-warm);
+  letter-spacing: 0.12em;
+}
+
+@keyframes pre-monta {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes preloader-sai {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 @media (max-width: 700px) {
   .masthead-nome {
     font-size: 34px;
+  }
+
+  .hero-capa {
+    height: 126svh;
+  }
+
+  .hero-dica {
+    margin-top: 36svh;
   }
 }

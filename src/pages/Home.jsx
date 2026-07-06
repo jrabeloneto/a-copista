@@ -20,7 +20,7 @@ import '../styles/home.css'
 export default function Home() {
   const destaque = materias[0]
   const fotoRecente = fotos[fotos.length - 1]
-  const bilheteRecente = entradas.find((e) => e.tipo === 'bilhete')
+  const bilheteRecente = entradas.find((e) => e.tipo === 'bilhete') ?? entradas[0]
   const fichaDestaque = fichas[0]
 
   return (

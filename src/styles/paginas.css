@@ -11,22 +11,8 @@
   padding-bottom: 30px;
 }
 
-.pagina-titulo {
-  font-size: 1.3rem;
-  margin-bottom: 4px;
-  color: var(--rubric-clara); /* rubrica sobre escuro: shade legível */
-}
-
-.pagina-nota {
-  color: var(--gray-warm);
-  margin-bottom: 22px;
-}
-
-.pagina-rodape {
-  color: var(--gray-warm);
-  text-align: center;
-  margin-top: 8px;
-}
+/* (.pagina-titulo/.pagina-nota/.pagina-rodape moram em base.css:
+   são usados por TODAS as páginas preguiçosas, de chunks diferentes) */
 
 /* ---- /arquivo ---- */
 .arquivo-ano {

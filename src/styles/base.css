@@ -177,6 +177,25 @@ hr {
   color: var(--gold-muted);
 }
 
+/* ---- cabeçalho padrão das páginas internas (usado por chunks
+        preguiçosos diferentes — por isso mora no CSS global) ---- */
+.pagina-titulo {
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+  color: var(--rubric-clara); /* rubrica sobre escuro: shade legível */
+}
+
+.pagina-nota {
+  color: var(--gray-warm);
+  margin-bottom: 22px;
+}
+
+.pagina-rodape {
+  color: var(--gray-warm);
+  text-align: center;
+  margin-top: 8px;
+}
+
 /* fallback do Suspense das rotas preguiçosas */
 .carregando-pagina {
   padding: 48px 0;

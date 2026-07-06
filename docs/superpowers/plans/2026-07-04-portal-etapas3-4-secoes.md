@@ -36,9 +36,9 @@
 
 ## Tarefas
 
-- [ ] Dados: `album.js`, `quarto.js`, `discoteca.js` (mesAno em tudo)
-- [ ] Componentes: `NotaHederas.jsx`, `FotoArte.jsx` (8 cenas), `CapaFicha` (em Discoteca)
-- [ ] Páginas lazy: Album, Quarto, Discoteca, Amigas + css por seção
-- [ ] App: rotas reais; deletar EmObras.jsx
-- [ ] Arquivo unificado; Home com teasers reais
-- [ ] Build; preview de cada seção; console; leak rápido; code-review; commit — **PARAR p/ aprovação antes do polimento final**
+- [x] Dados: `album.js`, `quarto.js`, `discoteca.js` (mesAno em tudo)
+- [x] Componentes: `NotaHederas.jsx`, `FotoArte.jsx` (8 cenas), `CapaFicha` (em Discoteca)
+- [x] Páginas lazy: Album, Quarto, Discoteca, Amigas + css por seção
+- [x] App: rotas reais; deletar EmObras.jsx
+- [x] Arquivo unificado; Home com teasers reais
+- [x] Build; preview de cada seção; console; leak rápido; code-review; commit — **PARAR p/ aprovação antes do polimento final**

@@ -42,8 +42,8 @@ distancia = trilho.scrollWidth - secao.clientWidth
    digging; dica "role para folhear a caixa »" em Verdana.
 
 ## Tarefas
-- [ ] Discoteca.jsx: seção .prateleira + trilho; matchMedia+pin no useGsapPagina
-- [ ] secoes.css: modo prateleira (media dupla) mantendo grade como default
-- [ ] Verificar: pin segura no topo, trilho viaja (medições), release, mobile intacto, reduced sem pin, leak test, spacer × ResizeObserver sem loop
-- [ ] Revisão final da versão moderna (code-review high no diff M1+M2+M3) + correções
-- [ ] Commit — **PARAR: fim da versão moderna**
+- [x] Discoteca.jsx: seção .prateleira + trilho; matchMedia+pin no useGsapPagina
+- [x] secoes.css: modo prateleira (media dupla) mantendo grade como default
+- [x] Verificar: pin segura no topo, trilho viaja (medições), release, mobile intacto, reduced sem pin, leak test, spacer × ResizeObserver sem loop
+- [x] Revisão final da versão moderna (code-review high no diff M1+M2+M3) + correções
+- [x] Commit — **PARAR: fim da versão moderna**

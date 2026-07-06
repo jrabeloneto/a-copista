@@ -23,7 +23,7 @@
   compacto. Nome único por página ✓ (um masthead por documento).
 
 ## Tarefas
-- [ ] base.css: cursores data-URI (pena padrão; manicule em a/button/.etq/summary)
-- [ ] portal.css: view-transition-name masthead/regua
-- [ ] CodiceIndex: seção "Índice do volume" + reveal seguidor; estilos em capa.css
-- [ ] Build; verificação (cursor computado, reveal segue e some, VT names); leak; commit — **PARAR p/ aprovação**
+- [x] base.css: cursores data-URI (pena padrão; manicule em a/button/.etq/summary)
+- [x] portal.css: view-transition-name masthead/regua
+- [x] CodiceIndex: seção "Índice do volume" + reveal seguidor; estilos em capa.css
+- [x] Build; verificação (cursor computado, reveal segue e some, VT names); leak; commit — **PARAR p/ aprovação**

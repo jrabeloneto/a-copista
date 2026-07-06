@@ -64,11 +64,29 @@ function IndiceVolume() {
   const revealRef = useRef(null)
   const semReveal = reduzMotion()
 
+  // o tween do seguidor vive fora do contexto da página — mata no unmount
+  useEffect(() => {
+    const el = revealRef.current
+    return () => {
+      if (el) gsap.killTweensOf(el)
+    }
+  }, [])
+
+  const posicao = (evento) => ({ x: evento.clientX + 26, y: evento.clientY - 110 })
+
+  // ao entrar: posiciona INSTANTÂNEO no cursor antes de mostrar
+  // (senão o chip pisca vindo do canto ou do hover anterior)
+  const aoEntrar = (nomeArte) => (evento) => {
+    if (!semReveal && revealRef.current) {
+      gsap.set(revealRef.current, posicao(evento))
+    }
+    setArte(nomeArte)
+  }
+
   const aoMover = (evento) => {
     if (semReveal || !revealRef.current) return
     gsap.to(revealRef.current, {
-      x: evento.clientX + 26,
-      y: evento.clientY - 110,
+      ...posicao(evento),
       duration: 0.35,
       ease: 'power2.out',
       overwrite: 'auto',
@@ -87,9 +105,7 @@ function IndiceVolume() {
               to={`/codice/materia/${materia.slug}`}
               viewTransition
               className="indice-linha"
-              onMouseEnter={() => setArte(materia.arte)}
-              onFocus={() => setArte(materia.arte)}
-              onBlur={() => setArte(null)}
+              onMouseEnter={aoEntrar(materia.arte)}
             >
               <span className="indice-nome">{materia.titulo}</span>
               <span className="indice-fio" aria-hidden="true" />

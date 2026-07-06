@@ -256,6 +256,53 @@
   padding-top: 2px;
 }
 
+/* ---- modo prateleira (desktop + motion): crate digging ----
+   A MESMA media query liga o pin no JS (Discoteca.jsx). Fora dela,
+   vale a grade padrão acima — mobile e reduced-motion intactos. */
+.prateleira-dica {
+  display: none;
+}
+
+@media (min-width: 921px) and (prefers-reduced-motion: no-preference) {
+  .pagina-discoteca {
+    max-width: none; /* a prateleira usa a moldura inteira */
+  }
+
+  .prateleira {
+    overflow: hidden;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .prateleira-dica {
+    display: block;
+    color: var(--gold-muted);
+    letter-spacing: 0.14em;
+  }
+
+  .prateleira .discoteca-grade {
+    display: flex;
+    gap: 26px;
+    width: max-content;
+    will-change: transform;
+  }
+
+  /* fichas viram capas de frente, como numa caixa de vinil */
+  .prateleira .ficha {
+    flex-direction: column;
+    width: 340px;
+    height: auto;
+  }
+
+  .prateleira .ficha-capa {
+    flex: none;
+    width: 100%;
+  }
+}
+
 /* ---- responsivo ---- */
 @media (max-width: 920px) {
   /* sem margem para o mês gigante em tela estreita */

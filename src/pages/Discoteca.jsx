@@ -1,5 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
 import { fichas } from '../data/discoteca.js'
+import { useGsapPagina } from '../lib/useGsapPagina.js'
 import Nav2003 from '../components/ui2003/Nav2003.jsx'
 import NotaHederas from '../components/ornamentos/NotaHederas.jsx'
 import Separador from '../components/ornamentos/Separador.jsx'
@@ -48,6 +50,8 @@ function CapaFicha({ tipo }) {
 }
 
 export default function Discoteca() {
+  const raizRef = useRef(null)
+
   useEffect(() => {
     document.title = 'Discoteca — A COPISTA'
     return () => {
@@ -55,37 +59,73 @@ export default function Discoteca() {
     }
   }, [])
 
+  // modo prateleira (desktop + motion): a seção pina e o trilho de
+  // fichas viaja na horizontal preso ao scroll — crate digging.
+  // A MESMA media query liga os estilos (secoes.css) e este pin;
+  // fora dela (mobile/reduced), fica a grade estática de sempre.
+  useGsapPagina(
+    () => {
+      const mm = gsap.matchMedia()
+      mm.add('(min-width: 921px) and (prefers-reduced-motion: no-preference)', () => {
+        const secao = raizRef.current?.querySelector('.prateleira')
+        const trilho = raizRef.current?.querySelector('.discoteca-grade')
+        if (!secao || !trilho) return
+        const distancia = () => Math.max(0, trilho.scrollWidth - secao.clientWidth)
+        gsap.to(trilho, {
+          x: () => -distancia(),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: secao,
+            start: 'top top',
+            end: () => '+=' + distancia(),
+            pin: true,
+            scrub: 0.8,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+          },
+        })
+      })
+    },
+    [],
+    raizRef,
+  )
+
   return (
-    <>
+    <div ref={raizRef}>
       <Nav2003 pagina="discoteca" />
-      <main className="pagina-secao">
+      <main className="pagina-secao pagina-discoteca">
         <h1 className="rubrica pagina-titulo">Discoteca &amp; coleções</h1>
         <p className="ui-2003 pagina-nota">
           as fichas da coleção — discos, filmes &amp; relíquias, com a nota da casa em hederas
         </p>
 
-        <ul className="discoteca-grade">
-          {fichas.map((ficha) => (
-            <li key={ficha.id}>
-              <article className="ficha">
-                <CapaFicha tipo={ficha.capa} />
-                <div className="ficha-info">
-                  <p className="ui-2003 ficha-tipo">{ficha.tipo} — {ficha.ano}</p>
-                  <h2 className="ficha-titulo">{ficha.titulo}</h2>
-                  <p className="ui-2003 ficha-autor">{ficha.autor}</p>
-                  <NotaHederas nota={ficha.nota} />
-                  <p className="ficha-resenha">{ficha.resenha}</p>
-                </div>
-              </article>
-            </li>
-          ))}
-        </ul>
+        <section className="prateleira" aria-label="Fichas da coleção">
+          <p className="ui-2003 prateleira-dica" aria-hidden="true">
+            role para folhear a caixa »
+          </p>
+          <ul className="discoteca-grade">
+            {fichas.map((ficha) => (
+              <li key={ficha.id}>
+                <article className="ficha">
+                  <CapaFicha tipo={ficha.capa} />
+                  <div className="ficha-info">
+                    <p className="ui-2003 ficha-tipo">{ficha.tipo} — {ficha.ano}</p>
+                    <h2 className="ficha-titulo">{ficha.titulo}</h2>
+                    <p className="ui-2003 ficha-autor">{ficha.autor}</p>
+                    <NotaHederas nota={ficha.nota} />
+                    <p className="ficha-resenha">{ficha.resenha}</p>
+                  </div>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <Separador />
         <p className="ui-2003 pagina-rodape">
           a coleção cresce no ritmo dos sebos — sugestões no livro de visitas
         </p>
       </main>
-    </>
+    </div>
   )
 }

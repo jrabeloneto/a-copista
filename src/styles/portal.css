@@ -8,6 +8,11 @@
 .masthead {
   text-align: center;
   padding: 34px 0 4px;
+  /* o masthead VIAJA entre páginas: nas navegações com
+     viewTransition o browser morfa posição/escala dele em vez de
+     cruzá-lo com o resto (home→interna: as letras grandes encolhem
+     até o selo compacto) */
+  view-transition-name: masthead;
 }
 
 .masthead-nome {
@@ -100,6 +105,7 @@
   gap: 8px;
   justify-content: center;
   padding: 16px 0 20px;
+  view-transition-name: regua; /* viaja junto com o masthead */
 }
 
 .etq {

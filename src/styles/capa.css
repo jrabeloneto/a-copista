@@ -136,6 +136,88 @@
   margin-top: 4px;
 }
 
+/* ---- índice do volume (sumário de livro com hover-reveal) ---- */
+.indice-volume {
+  margin: 8px 0 26px;
+}
+
+.indice-cabecalho {
+  font-size: 1.15rem;
+  color: var(--rubric-clara);
+  border-bottom: 1px solid var(--bg-card);
+  padding-bottom: 4px;
+  margin-bottom: 14px;
+}
+
+.indice-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.indice-linha {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 2px;
+  text-decoration: none;
+}
+
+.indice-nome {
+  font-family: var(--fonte-fell);
+  font-weight: 600;
+  font-size: clamp(22px, 3.4vw, 32px);
+  line-height: 1.15;
+  color: var(--bg-paper);
+}
+
+.indice-linha:hover .indice-nome,
+.indice-linha:focus-visible .indice-nome {
+  color: var(--rubric-clara);
+}
+
+.indice-linha,
+.indice-linha:visited {
+  color: var(--bg-paper);
+}
+
+/* o fio pontilhado de sumário (leader) */
+.indice-fio {
+  flex: 1;
+  border-bottom: 2px dotted var(--brown);
+  transform: translateY(-6px);
+  min-width: 40px;
+}
+
+.indice-folio {
+  color: var(--gold-muted);
+  white-space: nowrap;
+}
+
+/* o chip de pergaminho que segue o cursor */
+.indice-reveal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 188px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 4;
+  will-change: transform, opacity;
+  transition: opacity 0.18s steps(2, end);
+}
+
+.indice-reveal-visivel {
+  opacity: 1;
+}
+
+.indice-reveal-papel {
+  display: block;
+  padding: 8px 10px;
+  box-shadow: var(--sombra-seca-min);
+  transform: rotate(-2.5deg);
+}
+
 .capa-principal > .separador {
   margin-top: 26px;
 }

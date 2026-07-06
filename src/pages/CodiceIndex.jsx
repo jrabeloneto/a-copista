@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
+import { reduzMotion } from '../lib/motion.js'
 import { materias } from '../data/materias.js'
 import { visitas } from '../data/visitas.js'
 import { FLUTUANTES_CAPA } from '../data/flutuantes.js'
@@ -50,6 +51,67 @@ function CardMateria({ materia, destaque = false }) {
         </p>
       </div>
     </article>
+  )
+}
+
+/**
+ * Índice do volume — sumário tipográfico de livro com hover-reveal:
+ * a gravura da matéria segue o cursor num chip de pergaminho
+ * (transform/opacity, com lag). Touch e reduced-motion: só a lista.
+ */
+function IndiceVolume() {
+  const [arte, setArte] = useState(null)
+  const revealRef = useRef(null)
+  const semReveal = reduzMotion()
+
+  const aoMover = (evento) => {
+    if (semReveal || !revealRef.current) return
+    gsap.to(revealRef.current, {
+      x: evento.clientX + 26,
+      y: evento.clientY - 110,
+      duration: 0.35,
+      ease: 'power2.out',
+      overwrite: 'auto',
+    })
+  }
+
+  return (
+    <section className="indice-volume" aria-labelledby="indice-titulo">
+      <h2 id="indice-titulo" className="rubrica indice-cabecalho">
+        Índice do volume
+      </h2>
+      <ol className="indice-lista" onMouseMove={aoMover} onMouseLeave={() => setArte(null)}>
+        {materias.map((materia) => (
+          <li key={materia.slug}>
+            <Link
+              to={`/codice/materia/${materia.slug}`}
+              viewTransition
+              className="indice-linha"
+              onMouseEnter={() => setArte(materia.arte)}
+              onFocus={() => setArte(materia.arte)}
+              onBlur={() => setArte(null)}
+            >
+              <span className="indice-nome">{materia.titulo}</span>
+              <span className="indice-fio" aria-hidden="true" />
+              <span className="indice-folio ui-2003">fol. {materia.folioBase}</span>
+            </Link>
+          </li>
+        ))}
+      </ol>
+      {!semReveal && (
+        <div
+          ref={revealRef}
+          className={arte ? 'indice-reveal indice-reveal-visivel' : 'indice-reveal'}
+          aria-hidden="true"
+        >
+          {arte && (
+            <span className="pergaminho indice-reveal-papel">
+              <GravuraPlaceholder arte={arte} />
+            </span>
+          )}
+        </div>
+      )}
+    </section>
   )
 }
 
@@ -107,6 +169,7 @@ export default function CodiceIndex() {
             ))}
           </div>
           <Separador />
+          <IndiceVolume />
           <p className="capa-rodape-nota ui-2003">
             fim das matérias deste volume — as próximas estão sendo copiadas à mão, tenha paciência
           </p>

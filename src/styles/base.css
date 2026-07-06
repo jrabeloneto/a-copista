@@ -108,7 +108,7 @@ a:hover {
 .moldura-site {
   position: relative;
   z-index: 1;
-  max-width: var(--largura-site);
+  max-width: var(--largura-contexto);
   margin: 0 auto;
   min-height: 100vh;
   background-color: var(--bg-base);

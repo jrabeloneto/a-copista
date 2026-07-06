@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom'
 import { materias } from '../data/materias.js'
+import PapelRasgado from '../components/v2/PapelRasgado.jsx'
+import Carimbo from '../components/v2/Carimbo.jsx'
+import ExLibris from '../components/v2/ExLibris.jsx'
+import TituloGigante from '../components/v2/TituloGigante.jsx'
 import MolduraOrnamental from '../components/ornamentos/MolduraOrnamental.jsx'
 import Capitular from '../components/ornamentos/Capitular.jsx'
 import Manicule from '../components/ornamentos/Manicule.jsx'
@@ -184,6 +188,47 @@ export default function Especime() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="especime-secao" aria-labelledby="sec-v2">
+        <h2 id="sec-v2" className="rubrica especime-rubrica">VII. Do sistema v2 — cartaz, livro &amp; mesa</h2>
+
+        <div className="amostra-tipo">
+          <p className="ui-2003">tipografia-como-layout — display cheio e vazado (contexto cartaz)</p>
+          <p className="amostra-v2-display">
+            <TituloGigante>Aa</TituloGigante>
+            <TituloGigante vazado>Aa</TituloGigante>
+          </p>
+        </div>
+
+        <div className="amostra-tipo">
+          <p className="ui-2003">papel rasgado — o anti-card (3 rasgos × 3 tons; o clip deita colado)</p>
+          <div className="amostra-v2-papeis">
+            <PapelRasgado variante="a" tom="papel" fita rotacao={-1.5}>
+              <p className="amostra-v2-texto">rasgo A sobre papel, com fita — no lugar de qualquer card.</p>
+            </PapelRasgado>
+            <PapelRasgado variante="b" tom="sepia" rotacao={1}>
+              <p className="amostra-v2-texto">rasgo B sobre sépia — fichas, tickets, avisos.</p>
+            </PapelRasgado>
+            <PapelRasgado variante="c" tom="fita" rotacao={-0.5}>
+              <p className="amostra-v2-texto">rasgo C sobre fita — etiquetas grandes e notas.</p>
+            </PapelRasgado>
+          </div>
+        </div>
+
+        <div className="amostra-tipo">
+          <p className="ui-2003">carimbos &amp; ex-libris — rubrica batida à mão, acervo da dona</p>
+          <div className="amostra-v2-carimbos">
+            <Carimbo>em cópia</Carimbo>
+            <Carimbo tamanho="g" rotacao={4}>vol. II</Carimbo>
+            <ExLibris>ex·libris — a copista</ExLibris>
+          </div>
+        </div>
+
+        <p className="ui-2003 amostra-v2-nota">
+          escalas novas: display {`{72–148px}`} · títulos {`{28–44px}`} · respiro --espaco-1..6
+          (8→90px) · largura por contexto (cartaz 1160 / livro 1080 / mesa livre)
+        </p>
       </section>
 
       <footer className="especime-rodape">

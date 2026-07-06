@@ -233,6 +233,51 @@
   color: var(--gray-warm);
 }
 
+/* ---- VII. Sistema v2 ---- */
+.amostra-v2-display {
+  display: flex;
+  gap: var(--espaco-4);
+  align-items: baseline;
+}
+
+.amostra-v2-display .titulo-gigante {
+  display: inline-block;
+}
+
+.amostra-v2-papeis {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--espaco-4);
+  margin-top: var(--espaco-2);
+}
+
+.amostra-v2-texto {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.amostra-v2-carimbos {
+  display: flex;
+  gap: var(--espaco-4);
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: var(--espaco-2);
+  padding: var(--espaco-2) 0;
+}
+
+.amostra-v2-nota {
+  color: var(--gray-warm);
+  margin-top: var(--espaco-3);
+}
+
+@media (max-width: 700px) {
+  .amostra-v2-papeis {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---- Rodapé ---- */
 .especime-rodape {
   margin-top: 44px;

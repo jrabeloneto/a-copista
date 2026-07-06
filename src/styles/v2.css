@@ -1,0 +1,119 @@
+/* ============================================================
+   A COPISTA — design system v2: formas, carimbos e escala.
+   Global (usado por páginas eager e preguiçosas).
+   Regra do v2: nenhum retângulo de borda 1px como contêiner —
+   as formas são rasgo, mancha tipográfica ou objeto.
+   ============================================================ */
+
+/* ---- papel rasgado (o anti-card) ---- */
+.papel-rasgado {
+  position: relative;
+}
+
+.pr-rasgo-a { clip-path: var(--recorte-papel-a); }
+.pr-rasgo-b { clip-path: var(--recorte-papel-b); }
+.pr-rasgo-c { clip-path: var(--recorte-papel-c); }
+
+.pr-tom-papel {
+  background-color: var(--bg-paper);
+  background-image: var(--textura-papel);
+  color: var(--ink);
+}
+
+.pr-tom-sepia {
+  background-color: var(--sepia-foto);
+  background-image: var(--textura-papel);
+  color: var(--ink);
+}
+
+.pr-tom-fita {
+  background-color: var(--fita);
+  background-image: var(--textura-papel);
+  color: var(--ink);
+}
+
+.papel-rasgado-miolo {
+  padding: var(--espaco-3) var(--espaco-4);
+}
+
+.pr-fita {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 44px;
+  height: 15px;
+  margin-left: -22px;
+  background: var(--fita);
+  opacity: 0.8;
+  transform: rotate(-4deg);
+  z-index: 1;
+}
+
+/* links sobre qualquer papel do v2 usam a tinta original */
+.papel-rasgado a { color: var(--red-rubric); }
+.papel-rasgado a:visited { color: var(--brown); }
+.papel-rasgado a:hover { color: var(--rubric-dark); }
+
+/* ---- carimbo ---- */
+.carimbo {
+  display: inline-block;
+  border: 3px solid var(--rubric-clara);
+  color: var(--rubric-clara);
+  font-family: var(--fonte-fell-sc);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.88;
+  padding: 0.28em 0.75em;
+  line-height: 1.1;
+}
+
+.carimbo-m { font-size: 1.05rem; }
+.carimbo-g { font-size: 1.6rem; border-width: 4px; }
+
+.pergaminho .carimbo,
+.papel-rasgado .carimbo {
+  border-color: var(--red-rubric);
+  color: var(--red-rubric);
+}
+
+/* ---- ex-libris (etiqueta de biblioteca) ---- */
+.exlibris {
+  display: inline-block;
+  border: 1px solid var(--gold-muted);
+  outline: 1px solid var(--gold-muted);
+  outline-offset: 2px;
+  color: var(--gold-muted);
+  font-family: var(--fonte-fell-sc);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  padding: 0.3em 0.8em;
+}
+
+.pergaminho .exlibris,
+.papel-rasgado .exlibris {
+  border-color: var(--brown);
+  outline-color: var(--brown);
+  color: var(--brown);
+}
+
+/* ---- título gigante (tipografia-como-layout) ---- */
+.titulo-gigante {
+  display: block;
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  font-size: var(--escala-display-1);
+  line-height: 0.85;
+  letter-spacing: -0.01em;
+  color: var(--bg-paper);
+}
+
+.tg-vazado {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--brown);
+}
+
+@supports not (-webkit-text-stroke: 2px black) {
+  .tg-vazado {
+    color: var(--brown);
+  }
+}

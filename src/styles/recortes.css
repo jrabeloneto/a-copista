@@ -4,7 +4,9 @@
    ============================================================ */
 
 .camada-recortes {
-  --larg-recorte: clamp(112px, calc((100vw - 940px) / 2 - 24px), 158px);
+  /* as bandas leem a largura do CONTEXTO (v2): páginas mais largas
+     estreitam as bandas automaticamente */
+  --larg-recorte: clamp(112px, calc((100vw - var(--largura-contexto) - 40px) / 2 - 24px), 158px);
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -22,11 +24,11 @@
 
 /* centrada na banda de cada lado */
 .recorte-esq {
-  left: calc((100vw - 900px) / 4 - var(--larg-recorte) / 2);
+  left: calc((100vw - var(--largura-contexto)) / 4 - var(--larg-recorte) / 2);
 }
 
 .recorte-dir {
-  right: calc((100vw - 900px) / 4 - var(--larg-recorte) / 2);
+  right: calc((100vw - var(--largura-contexto)) / 4 - var(--larg-recorte) / 2);
 }
 
 /* modo viagem (padrão): posição vertical e opacidade são do GSAP;

@@ -142,39 +142,64 @@ export default function Materia() {
       <CamadaFlutuante itens={flutuantes} escondeMobile />
 
       <article className="materia">
-        {materia.folhas.map((folha, i) => (
-          <Folha
-            key={i}
-            rotulo={rotuloFolio(materia.folioBase, i)}
-            lado={i % 2 === 0 ? 'recto' : 'verso'}
-            variante={folha.variante}
-          >
-            {i === 0 && (
-              <header className="materia-cabecalho">
-                <p className="rubrica materia-incipit">{materia.incipit}</p>
-                <h1 className="materia-titulo">{materia.titulo}</h1>
-                <p className="materia-subtitulo">{materia.subtitulo}</p>
-              </header>
-            )}
+        {/* v2: as folhas se apresentam como LIVRO ABERTO no desktop —
+            primeiro recto solto, depois duplas verso|recto (spreads);
+            no mobile os spreads empilham e tudo volta ao de antes */}
+        {(() => {
+          const spreads = []
+          materia.folhas.forEach((_, i) => {
+            if (i === 0 || i % 2 === 1) spreads.push([i])
+            else spreads[spreads.length - 1].push(i)
+          })
 
-            {folha.secoes.map((secao, j) => (
-              <BlocoSecao key={j} secao={secao} />
-            ))}
+          const renderFolha = (i) => (
+            <Folha
+              key={i}
+              rotulo={rotuloFolio(materia.folioBase, i)}
+              lado={i % 2 === 0 ? 'recto' : 'verso'}
+              variante={materia.folhas[i].variante}
+            >
+              {i === 0 && (
+                <header className="materia-cabecalho">
+                  <p className="rubrica materia-incipit">{materia.incipit}</p>
+                  <h1 className="materia-titulo">{materia.titulo}</h1>
+                  <p className="materia-subtitulo">{materia.subtitulo}</p>
+                </header>
+              )}
 
-            {i === ultimaFolha && (
-              <div className="colofao">
-                <p>
-                  {materia.colofao.map((linha, k) => (
-                    <span key={k} className="colofao-linha">
-                      {linha}
-                    </span>
-                  ))}
-                </p>
-                <Fleuron width={22} />
+              {materia.folhas[i].secoes.map((secao, j) => (
+                <BlocoSecao key={j} secao={secao} />
+              ))}
+
+              {i === ultimaFolha && (
+                <div className="colofao">
+                  <p>
+                    {materia.colofao.map((linha, k) => (
+                      <span key={k} className="colofao-linha">
+                        {linha}
+                      </span>
+                    ))}
+                  </p>
+                  <Fleuron width={22} />
+                </div>
+              )}
+            </Folha>
+          )
+
+          return spreads.map((par, s) => {
+            const solo =
+              par.length === 1
+                ? par[0] % 2 === 0
+                  ? ' livro-solo-recto'
+                  : ' livro-solo-verso'
+                : ''
+            return (
+              <div key={s} className={`livro livro-materia${solo}`}>
+                {par.map(renderFolha)}
               </div>
-            )}
-          </Folha>
-        ))}
+            )
+          })
+        })()}
 
         <footer className="materia-rodape">
           <p className="assinatura-post">

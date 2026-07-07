@@ -136,6 +136,126 @@
   margin-top: 4px;
 }
 
+/* ============================================================
+   v2 — a capa do códice como livro aberto
+   ============================================================ */
+.livro-codice {
+  margin: var(--espaco-3) 0 var(--espaco-4);
+}
+
+.livro-codice .livro-pg {
+  padding: var(--espaco-5) var(--espaco-5) var(--espaco-4);
+  box-shadow: none; /* a lombada vem das classes verso/recto do v2 */
+  position: relative;
+}
+
+/* frontispício (página esquerda) */
+.codice-frontis {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.frontis-sobre {
+  color: var(--ink-faded);
+  letter-spacing: 0.08em;
+}
+
+.frontis-fios {
+  border-top: 3px double var(--gold-muted);
+  border-bottom: 3px double var(--gold-muted);
+  padding: var(--espaco-4) var(--espaco-2);
+  margin: var(--espaco-4) 0 var(--espaco-3);
+}
+
+.frontis-titulo {
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  font-size: var(--escala-display-2);
+  line-height: 1;
+  color: var(--ink);
+  margin: 0 0 var(--espaco-2);
+}
+
+.frontis-sub {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink-faded);
+  max-width: 26em;
+}
+
+.frontis-vol {
+  font-family: var(--fonte-fell-sc);
+  color: var(--red-rubric);
+  letter-spacing: 0.14em;
+}
+
+.frontis-exlibris {
+  margin-top: auto;
+  padding-top: var(--espaco-4);
+}
+
+/* índice (página direita) */
+.codice-indice {
+  display: flex;
+  flex-direction: column;
+}
+
+.codice-rubricas {
+  color: var(--ink-faded);
+  margin-top: var(--espaco-3);
+}
+
+.codice-carimbo {
+  margin: var(--espaco-3) 0;
+}
+
+.codice-assinatura {
+  margin-top: auto;
+  color: var(--ink-faded);
+  text-align: left;
+}
+
+.indice-chamada {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--ink-faded);
+  margin: -4px 0 var(--espaco-2);
+}
+
+/* cores do índice sobre pergaminho (antes era sobre escuro) */
+.livro-codice .indice-cabecalho {
+  color: var(--red-rubric);
+  border-bottom-color: rgba(107, 85, 68, 0.4);
+}
+
+.livro-codice .indice-nome {
+  color: var(--ink);
+}
+
+.livro-codice .indice-linha:hover .indice-nome,
+.livro-codice .indice-linha:focus-visible .indice-nome {
+  color: var(--red-rubric);
+}
+
+.livro-codice .indice-folio {
+  color: var(--brown);
+}
+
+.livro-codice .indice-nome {
+  font-size: clamp(20px, 2.4vw, 26px);
+}
+
+@media (max-width: 920px) {
+  .livro-codice .livro-pg {
+    padding: var(--espaco-4) var(--espaco-3);
+  }
+}
+
 /* ---- índice do volume (sumário de livro com hover-reveal) ---- */
 .indice-volume {
   margin: 8px 0 26px;

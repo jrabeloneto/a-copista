@@ -16,14 +16,18 @@ export default function Sobre() {
   return (
     <>
       <Nav2003 pagina="sobre a autora" />
-      <main className="pagina">
-        <div className="folha-solta-envelope">
-          <article className="pergaminho folha-solta sobre-folha">
+      <main className="pagina-sobre">
+        <div className="livro livro-sobre">
+          <div className="livro-pg livro-pg-verso pergaminho sobre-verso">
             <div className="sobre-retrato">
               <RetratoOval />
               <p className="sobre-retrato-legenda">a copista, gravura da oficina, s.d.</p>
             </div>
-
+            <p className="sobre-exlibris">
+              <span className="exlibris">ex·libris — a copista</span>
+            </p>
+          </div>
+          <article className="livro-pg livro-pg-recto pergaminho sobre-recto">
             <h1 className="rubrica sobre-rubrica">Da copista deste códice</h1>
 
             <p className="sobre-texto">

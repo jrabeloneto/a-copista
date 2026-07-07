@@ -228,6 +228,98 @@
   line-height: 1.6;
 }
 
+/* ============================================================
+   v2 — leitura como livro: páginas de registro sobre pergaminho
+   (arquivo = catálogo; visitas = livro de assinaturas de verdade)
+   ============================================================ */
+.pagina-livro .pagina-titulo {
+  color: var(--red-rubric);
+}
+
+.pagina-livro .pagina-nota,
+.pagina-livro .pagina-rodape {
+  color: var(--ink-faded);
+}
+
+/* arquivo sobre papel */
+.pagina-livro .arquivo-ano { color: var(--brown); }
+.pagina-livro .arquivo-mes-rotulo { color: var(--ink-faded); }
+.pagina-livro .arquivo-post-meta { color: var(--ink-faded); }
+.pagina-livro .arquivo-perdido { color: var(--ink-faded); }
+
+/* visitas: de cards escuros para REGISTRO no livro */
+.pagina-livro .visita {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px dotted var(--brown);
+  padding: var(--espaco-2) 2px var(--espaco-3);
+}
+
+.pagina-livro .visita-cabecalho { color: var(--ink); }
+.pagina-livro .visita-site { color: var(--brown); }
+.pagina-livro .visita-data { color: var(--ink-faded); }
+
+.pagina-livro .visita-mensagem {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* o formulário seco vira nota de margem no papel */
+.pagina-livro .visitas-form fieldset {
+  background: transparent;
+  border: 1px dashed var(--brown);
+}
+
+.pagina-livro .visitas-form legend { color: var(--brown); }
+
+.pagina-livro .visitas-form input,
+.pagina-livro .visitas-form textarea {
+  background: var(--paper-edge);
+  border-color: var(--brown-light);
+  color: var(--ink);
+}
+
+.pagina-livro .visitas-botao {
+  background: var(--paper-edge);
+  color: var(--ink-faded);
+  border-color: var(--brown-light);
+}
+
+.pagina-livro .visitas-form-nota,
+.pagina-livro .visitas-form-linha {
+  color: var(--ink-faded);
+}
+
+/* sobre: o spread do retrato */
+.livro-sobre {
+  margin: var(--espaco-3) 0 var(--espaco-4);
+}
+
+.livro-sobre .livro-pg {
+  padding: var(--espaco-5);
+}
+
+.livro-sobre .sobre-verso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.livro-sobre .sobre-retrato {
+  float: none;
+  width: 210px;
+  margin: var(--espaco-3) auto var(--espaco-2);
+}
+
+.sobre-exlibris {
+  margin-top: auto;
+  padding-top: var(--espaco-4);
+  text-align: center;
+}
+
 /* ---- responsivo mínimo ---- */
 @media (max-width: 920px) {
   .folha-solta {

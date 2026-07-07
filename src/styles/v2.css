@@ -14,6 +14,76 @@
   background-image: var(--textura-xerox);
 }
 
+.contexto-livro {
+  --largura-contexto: 1080px;
+}
+
+/* bandas de recortes precisam de espaço real ao lado do livro */
+@media (max-width: 1359px) {
+  .contexto-livro .camada-recortes {
+    display: none;
+  }
+}
+
+/* ---- o livro aberto (contexto leitura) ----
+   Duas páginas de pergaminho com lombada central. O sombreado da
+   dobra é modelagem de OBJETO físico (como a vinheta de idade),
+   não sombra de UI — exceção documentada no design doc v2. */
+.livro {
+  display: flex;
+  box-shadow: var(--sombra-seca);
+}
+
+.livro-pg {
+  flex: 1 1 50%;
+  min-width: 0;
+}
+
+.livro .livro-pg-verso {
+  box-shadow: inset -26px 0 24px -18px rgba(60, 46, 34, 0.45);
+}
+
+.livro .livro-pg-recto {
+  box-shadow: inset 26px 0 24px -18px rgba(60, 46, 34, 0.45);
+}
+
+/* spread de página única (primeiro recto / último verso soltos) */
+.livro-solo-recto {
+  justify-content: flex-end;
+}
+
+.livro-solo-recto > *,
+.livro-solo-verso > * {
+  flex: 0 0 50%;
+}
+
+/* página de registro avulsa (arquivo, visitas) */
+.pagina-livro {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: var(--espaco-5) var(--espaco-6) var(--espaco-5);
+}
+
+@media (max-width: 920px) {
+  .livro {
+    flex-direction: column;
+  }
+
+  .livro .livro-pg-verso,
+  .livro .livro-pg-recto {
+    box-shadow: none;
+  }
+
+  .livro-solo-recto > *,
+  .livro-solo-verso > * {
+    flex: none;
+  }
+
+  .pagina-livro {
+    padding: var(--espaco-4) var(--espaco-3);
+  }
+}
+
 /* ---- papel rasgado (o anti-card) ---- */
 .papel-rasgado {
   position: relative;

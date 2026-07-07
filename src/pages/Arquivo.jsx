@@ -33,7 +33,7 @@ export default function Arquivo() {
   return (
     <>
       <Nav2003 pagina="arquivo" />
-      <main className="pagina pagina-arquivo">
+      <main className="pergaminho pagina-livro pagina-arquivo">
         <h1 className="rubrica pagina-titulo">Arquivo da revista</h1>
         <p className="ui-2003 pagina-nota">
           tudo o que já foi publicado, mês a mês — matérias, bilhetes &amp; fotografias

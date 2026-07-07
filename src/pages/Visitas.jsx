@@ -22,7 +22,7 @@ export default function Visitas() {
   return (
     <>
       <Nav2003 pagina="livro de visitas" />
-      <main className="pagina" id="comentarios">
+      <main className="pergaminho pagina-livro pagina-visitas" id="comentarios">
         <h1 className="rubrica pagina-titulo">Livro de visitas</h1>
         <p className="ui-2003 pagina-nota">
           {visitas.length} assinaturas desde MMXXVI — obrigada pela visita, volte sempre

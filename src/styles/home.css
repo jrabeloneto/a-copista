@@ -1,202 +1,11 @@
 /* ============================================================
-   A COPISTA — a capa da revista (home)
+   A COPISTA — home v2: o CARTAZ XEROCADO.
+   Contexto largo, tipografia gigante ao fundo, pedaços de papel
+   rasgado colados com respiro de --espaco. Sem retângulos.
    ============================================================ */
 
 .home {
-  padding-bottom: 26px;
-}
-
-/* ---- manchete ---- */
-.home-manchete {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  margin: 6px 0 26px;
-}
-
-.manchete-gravura {
-  flex: 0 0 220px;
-  display: block;
-}
-
-.manchete-gravura-papel {
-  display: block;
-  padding: 10px 12px;
-  box-shadow: none; /* a sombra é do objeto-colado */
-}
-
-.manchete-tag {
-  color: var(--gold-muted);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.manchete-titulo {
-  font-family: var(--fonte-fell);
-  font-weight: 600;
-  font-size: 34px;
-  line-height: 1.1;
-  margin: 6px 0 8px;
-}
-
-.manchete-titulo a,
-.manchete-titulo a:visited {
-  color: var(--bg-paper);
-  text-decoration: none;
-}
-
-.manchete-titulo a:hover {
-  color: var(--rubric-clara);
-}
-
-.manchete-chamada {
-  font-family: var(--fonte-corpo);
-  color: var(--gray-warm);
-  max-width: 30em;
-  margin-bottom: 8px;
-}
-
-/* ---- corpo: objetos + coluna ---- */
-.home-corpo {
-  display: grid;
-  grid-template-columns: 1fr 200px;
-  gap: 22px;
-  align-items: start;
-}
-
-.home-objetos {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 18px;
-}
-
-/* polaroid do álbum */
-.obj-polaroid {
-  background: var(--bg-paper);
-  padding: 8px 8px 6px;
-}
-
-.obj-polaroid-foto {
-  border: 1px solid var(--brown-light);
-}
-
-.obj-polaroid-foto svg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.obj-polaroid-legenda {
-  font-family: var(--fonte-fell);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 0.85rem;
-  text-align: center;
-  margin: 6px 0 2px;
-}
-
-/* bilhete do quarto */
-.obj-bilhete {
-  background: var(--bg-paper);
-  padding: 10px 12px;
-}
-
-.obj-bilhete-cab {
-  color: var(--red-rubric);
-  letter-spacing: 0.1em;
-  margin: 0 0 5px;
-}
-
-.obj-bilhete-texto {
-  font-family: Georgia, serif;
-  font-style: italic;
-  font-size: 0.82rem;
-  line-height: 1.5;
-  color: var(--ink);
-}
-
-/* ficha da discoteca */
-.obj-disco {
-  background: var(--bg-card);
-  border: 1px solid var(--brown);
-  padding: 10px;
-}
-
-.obj-disco-cab {
-  color: var(--gold-muted);
-  letter-spacing: 0.12em;
-  margin: 0 0 6px;
-}
-
-.obj-disco-capa {
-  height: 66px;
-  background: var(--brown);
-  display: grid;
-  place-items: center;
-  margin-bottom: 6px;
-}
-
-.obj-disco-texto {
-  color: var(--gray-warm);
-}
-
-/* caderno do códice — ocupa duas colunas */
-.obj-caderno {
-  grid-column: span 2;
-  background: var(--bg-card);
-  border: 1px solid var(--gold-muted);
-  padding: 12px 14px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.obj-caderno-titulo {
-  font-family: var(--fonte-display);
-  font-weight: 600;
-  font-size: 26px;
-  margin: 0;
-}
-
-.obj-caderno-titulo a,
-.obj-caderno-titulo a:visited {
-  color: var(--bg-paper);
-  text-decoration: none;
-}
-
-.obj-caderno-titulo a:hover {
-  color: var(--gold-muted);
-}
-
-.obj-caderno-texto {
-  font-size: 0.85rem;
-  color: var(--gray-warm);
-  line-height: 1.5;
-}
-
-/* selo de visitas */
-.obj-visitas {
-  background: var(--bg-base);
-  border: 1px solid var(--borda-site);
-  padding: 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.obj-visitas-cab {
-  color: var(--gold-muted);
-  letter-spacing: 0.12em;
-  margin: 0;
-}
-
-/* coluna lateral (reusa .caixa-sidebar de capa.css) */
-.home-coluna {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  padding-bottom: var(--espaco-4);
 }
 
 .home-rodape {
@@ -204,26 +13,221 @@
   color: var(--gray-warm);
 }
 
+/* ---- o cartaz ---- */
+.cartaz {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--espaco-5) var(--espaco-4);
+  padding: var(--espaco-5) 0 var(--espaco-4);
+}
+
+/* tipografia-como-layout: o ano gigante vazado atrás dos pedaços */
+.cartaz-fundo {
+  position: absolute;
+  top: 34%;
+  right: -12px;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.8;
+}
+
+.cartaz > .papel-rasgado,
+.cartaz-polaroid,
+.cartaz-etiquetas,
+.cartaz-visitas {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- colocação dos pedaços ---- */
+.cartaz-manchete { grid-column: 1 / 8; grid-row: 1; }
+.cartaz-bilhete { grid-column: 8 / 13; grid-row: 1; }
+.cartaz-codice { grid-column: 1 / 6; grid-row: 2; }
+.cartaz-polaroid { grid-column: 6 / 9; grid-row: 2; }
+.cartaz-disco { grid-column: 9 / 13; grid-row: 2; }
+.cartaz-etiquetas { grid-column: 1 / 6; grid-row: 3; }
+.cartaz-visitas { grid-column: 6 / 13; grid-row: 3; }
+
+/* ---- manchete ---- */
+.manchete-tag {
+  color: var(--red-rubric);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--espaco-2);
+}
+
+.manchete-miolo {
+  display: flex;
+  gap: var(--espaco-4);
+  align-items: flex-start;
+}
+
+.manchete-titulo {
+  font-family: var(--fonte-fell);
+  font-weight: 600;
+  font-size: var(--escala-titulo);
+  line-height: 1.08;
+  margin: 0 0 var(--espaco-2);
+}
+
+.manchete-titulo a,
+.manchete-titulo a:visited {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.manchete-titulo a:hover {
+  color: var(--red-rubric);
+}
+
+.manchete-chamada {
+  font-family: var(--fonte-corpo);
+  color: var(--ink-faded);
+  margin-bottom: var(--espaco-2);
+}
+
+.manchete-gravura {
+  flex: 0 0 160px;
+}
+
+/* ---- pedaços ---- */
+.pedaco-cab {
+  color: var(--red-rubric);
+  letter-spacing: 0.12em;
+  margin: 0 0 var(--espaco-1);
+}
+
+.pedaco-texto {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.pedaco-destaque {
+  font-family: var(--fonte-fell);
+  font-size: 1.05rem;
+  margin-bottom: 3px;
+}
+
+.disco-linha {
+  display: flex;
+  gap: var(--espaco-2);
+  align-items: center;
+  margin-bottom: var(--espaco-1);
+}
+
+/* ---- o pedaço do códice ---- */
+.cartaz-codice-titulo {
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  font-size: 34px;
+  margin: 0 0 var(--espaco-1);
+}
+
+.cartaz-codice-titulo a,
+.cartaz-codice-titulo a:visited {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.cartaz-codice-titulo a:hover {
+  color: var(--red-rubric);
+}
+
+.cartaz-codice-carimbo {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+}
+
+.cartaz-codice .papel-rasgado-miolo {
+  padding-bottom: var(--espaco-5);
+}
+
+/* ---- polaroid (objeto próprio: polaroid não se rasga) ---- */
+.cartaz-polaroid {
+  margin: 0;
+  background: var(--bg-paper);
+  padding: 8px 8px 6px;
+  box-shadow: var(--sombra-seca-min);
+  transform: rotate(-2.4deg);
+  align-self: start;
+}
+
+.cartaz-polaroid-foto svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--brown-light);
+}
+
+.cartaz-polaroid-legenda {
+  font-family: var(--fonte-fell);
+  font-style: italic;
+  font-size: 0.85rem;
+  text-align: center;
+  padding-top: 5px;
+}
+
+/* ---- etiquetas ---- */
+.cartaz-etiquetas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+}
+
+.etiqueta .papel-rasgado-miolo {
+  padding: var(--espaco-2) var(--espaco-3);
+}
+
+.etiqueta-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.etiqueta-linha {
+  margin: 3px 0;
+}
+
+/* ---- visitas (a relíquia intocada, com respiro) ---- */
+.cartaz-visitas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaco-2);
+  align-self: center;
+}
+
 /* ---- responsivo ---- */
 @media (max-width: 920px) {
-  .home-manchete {
+  .cartaz {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-4);
+  }
+
+  .cartaz-fundo {
+    display: none;
+  }
+
+  .manchete-miolo {
     flex-direction: column;
   }
 
   .manchete-gravura {
     flex: none;
+    max-width: 220px;
+  }
+
+  .cartaz-polaroid {
     max-width: 260px;
-  }
-
-  .home-corpo {
-    grid-template-columns: 1fr;
-  }
-
-  .home-objetos {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .obj-caderno {
-    grid-column: span 2;
   }
 }

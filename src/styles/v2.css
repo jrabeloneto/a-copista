@@ -5,6 +5,15 @@
    as formas são rasgo, mancha tipográfica ou objeto.
    ============================================================ */
 
+/* ---- contextos (largura + textura por família de página) ---- */
+.contexto-cartaz {
+  --largura-contexto: 1160px;
+}
+
+.contexto-cartaz .moldura-site {
+  background-image: var(--textura-xerox);
+}
+
 /* ---- papel rasgado (o anti-card) ---- */
 .papel-rasgado {
   position: relative;

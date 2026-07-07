@@ -7,7 +7,7 @@ import Masthead from './components/portal/Masthead.jsx'
 import ReguaEtiquetas from './components/portal/ReguaEtiquetas.jsx'
 import Preloader from './components/portal/Preloader.jsx'
 import CamadaRecortes from './components/recortes/CamadaRecortes.jsx'
-import { DECK_CAPA, DECK_SALAS } from './data/recortes.js'
+import { DECK_SALAS } from './data/recortes.js'
 import { useLenis } from './lib/useLenis.js'
 import { reduzMotion } from './lib/motion.js'
 import Home from './pages/Home.jsx'
@@ -98,18 +98,24 @@ export default function App() {
   }, [])
 
   // recortes de revista: efeito do PORTAL; dentro do fanzine o
-  // efeito é o das iluminuras flutuantes (identidades separadas)
-  const semRecortes = pathname.startsWith('/codice') || pathname === '/especime'
+  // efeito é o das iluminuras; na home v2 o cartaz JÁ é a colagem
+  // inteira — as bandas ficam para os contextos calmos
+  const semRecortes =
+    pathname.startsWith('/codice') || pathname === '/especime' || pathname === '/'
+
+  // v2: cada rota vive num CONTEXTO (cartaz/livro/mesa/padrão) que
+  // define largura e textura — o wrapper carrega a var para a
+  // moldura E para as bandas de recortes
+  const contexto = pathname === '/' ? 'contexto-cartaz' : 'contexto-padrao'
 
   return (
     <>
       <GrainDefs />
       <ScrollParaTopo />
       <GraoGlobal />
-      {!semRecortes && (
-        <CamadaRecortes key={pathname} deck={pathname === '/' ? DECK_CAPA : DECK_SALAS} />
-      )}
       <Preloader />
+      <div className={contexto}>
+      {!semRecortes && <CamadaRecortes key={pathname} deck={DECK_SALAS} />}
       <div className="moldura-site">
         {/* na home o cabeçalho é o HeroCapa (tela cheia que se dobra) */}
         {pathname !== '/' && (
@@ -138,6 +144,7 @@ export default function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
+      </div>
       </div>
     </>
   )

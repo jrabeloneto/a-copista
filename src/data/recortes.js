@@ -47,8 +47,7 @@ export function montarTravessias(deck) {
   })
 }
 
-/* capa: 6 figuras (os slots de cima trocam na segunda metade) */
-export const DECK_CAPA = ['rainha', 'cantora', 'hennin', 'discoteca', 'trancas', 'atriz']
-
-/* salas internas: 4 figuras, uma onda só */
+/* salas internas: 4 figuras, uma onda só.
+   (a home v2 é cartaz e não usa bandas — o deck de capa foi
+   aposentado junto com a moldura fixa) */
 export const DECK_SALAS = ['tapecaria', 'atriz', 'rainha', 'estrela80']

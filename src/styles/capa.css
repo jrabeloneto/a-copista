@@ -1,133 +1,12 @@
 /* ============================================================
-   CÓDICE — capa: frontispício séc. XVII sobre corpo de blog 2003
+   A COPISTA — a capa do códice (v2: livro aberto).
+   Varredura 2026-07-05: os blocos da capa antiga (frontispício
+   escuro, cards, sidebar de caixas) morreram com o spread — o CSS
+   deles saiu junto (grep confirmou zero usos).
    ============================================================ */
 
 .capa {
   padding-top: 30px;
-}
-
-/* ---- frontispício ---- */
-.frontispicio {
-  margin-bottom: 30px;
-}
-
-.frontispicio .moldura-ornamental-conteudo {
-  text-align: center;
-  padding: 30px 28px 24px;
-}
-
-.frontispicio-sobretitulo {
-  color: var(--gray-warm);
-  letter-spacing: 0.08em;
-}
-
-.frontispicio-titulo {
-  font-family: var(--fonte-display);
-  font-weight: 700;
-  font-size: 96px;
-  line-height: 0.95;
-  color: var(--bg-paper);
-  margin: 12px 0 8px;
-}
-
-.frontispicio-subtitulo {
-  font-family: var(--fonte-fell);
-  font-style: italic;
-  font-size: 1.08rem;
-  line-height: 1.5;
-  color: var(--gray-warm);
-}
-
-.frontispicio-vol {
-  font-family: var(--fonte-fell-sc);
-  color: var(--gold-muted);
-  letter-spacing: 0.14em;
-  margin-top: 12px;
-}
-
-/* ---- corpo: principal + sidebar (o layout 2003) ---- */
-.capa-corpo {
-  display: grid;
-  grid-template-columns: 1fr 232px;
-  gap: 24px;
-  align-items: start;
-}
-
-/* ---- cards de matéria: capa de revista antiga ---- */
-.card-materia {
-  border: 1px solid var(--borda-site);
-  background: var(--bg-card);
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.card-destaque {
-  flex-direction: row;
-  gap: 18px;
-  margin-bottom: 22px;
-}
-
-.card-destaque .card-gravura {
-  flex: 0 0 240px;
-}
-
-.capa-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-}
-
-.card-gravura {
-  display: block;
-}
-
-.card-gravura-papel {
-  display: block;
-  padding: 10px 12px;
-  box-shadow: var(--sombra-seca-min);
-}
-
-.card-overline {
-  color: var(--gray-warm);
-}
-
-.card-overline em {
-  font-style: normal;
-  color: var(--gold-muted);
-}
-
-.card-titulo {
-  font-family: var(--fonte-display);
-  font-weight: 500;
-  font-size: 27px;
-  line-height: 1.1;
-  margin: 4px 0 6px;
-}
-
-.card-titulo a {
-  color: var(--bg-paper);
-  text-decoration: none;
-}
-
-.card-titulo a:visited {
-  color: var(--bg-paper);
-}
-
-.card-titulo a:hover {
-  color: var(--gold-muted);
-}
-
-.card-chamada {
-  font-family: var(--fonte-corpo);
-  font-size: 0.98rem;
-  color: var(--gray-warm);
-  margin-bottom: 8px;
-}
-
-.card-destaque .card-titulo {
-  font-size: 34px;
 }
 
 .capa-rodape-nota {
@@ -227,7 +106,7 @@
   margin: -4px 0 var(--espaco-2);
 }
 
-/* cores do índice sobre pergaminho (antes era sobre escuro) */
+/* cores do índice sobre pergaminho */
 .livro-codice .indice-cabecalho {
   color: var(--red-rubric);
   border-bottom-color: rgba(107, 85, 68, 0.4);
@@ -235,6 +114,7 @@
 
 .livro-codice .indice-nome {
   color: var(--ink);
+  font-size: clamp(20px, 2.4vw, 26px);
 }
 
 .livro-codice .indice-linha:hover .indice-nome,
@@ -244,10 +124,6 @@
 
 .livro-codice .indice-folio {
   color: var(--brown);
-}
-
-.livro-codice .indice-nome {
-  font-size: clamp(20px, 2.4vw, 26px);
 }
 
 @media (max-width: 920px) {
@@ -336,97 +212,4 @@
   padding: 8px 10px;
   box-shadow: var(--sombra-seca-min);
   transform: rotate(-2.5deg);
-}
-
-.capa-principal > .separador {
-  margin-top: 26px;
-}
-
-/* ---- sidebar 2003 ---- */
-.capa-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.caixa-sidebar {
-  border: 1px solid var(--borda-site);
-  background: var(--bg-card);
-}
-
-.caixa-sidebar-titulo {
-  font-size: var(--texto-ui-min);
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--gold-muted);
-  padding: 7px 10px 6px;
-  border-bottom: 1px solid var(--borda-site);
-  margin: 0;
-}
-
-.caixa-sidebar-corpo {
-  padding: 9px 10px 10px;
-}
-
-.caixa-texto {
-  font-family: var(--fonte-corpo);
-  font-size: 0.9rem;
-  color: var(--gray-warm);
-  margin-bottom: 6px;
-}
-
-.caixa-citacao {
-  font-style: italic;
-}
-
-.caixa-lista {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  color: var(--brown-light);
-}
-
-.caixa-botoes {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  align-items: flex-start;
-}
-
-.sidebar-contador {
-  display: flex;
-  justify-content: center;
-  padding: 4px 0;
-}
-
-.sidebar-selinho {
-  text-align: center;
-  color: var(--gray-warm);
-}
-
-/* ---- responsivo mínimo (polimento completo é ETAPA 5) ---- */
-@media (max-width: 920px) {
-  .capa-corpo {
-    grid-template-columns: 1fr;
-  }
-
-  .card-destaque {
-    flex-direction: column;
-  }
-
-  .card-destaque .card-gravura {
-    flex: none;
-  }
-
-  .capa-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .frontispicio-titulo {
-    font-size: 60px;
-  }
 }

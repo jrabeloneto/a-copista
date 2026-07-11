@@ -16,7 +16,7 @@
   margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px 26px;
+  gap: var(--espaco-5) var(--espaco-4); /* respiro v2 */
 }
 
 .foto-polaroid {
@@ -86,7 +86,7 @@
   margin-inline: auto;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: var(--espaco-4); /* respiro v2 */
 }
 
 /* mês gigante na margem, ATRÁS dos papéis (escala dramática
@@ -181,13 +181,25 @@
   gap: 20px;
 }
 
+/* v2: a ficha é PEDAÇO de papel sépia rasgado (era o último
+   retângulo de borda 1px do site) — tinta sobre papel, rasgo
+   alternando por posição. O clip deita colado, por design. */
 .ficha {
-  background: var(--bg-card);
-  border: 1px solid var(--borda-site);
-  padding: 12px;
+  background-color: var(--sepia-foto);
+  background-image: var(--textura-papel);
+  padding: 14px 16px;
   display: flex;
   gap: 12px;
   height: 100%;
+  clip-path: var(--recorte-papel-a);
+}
+
+.discoteca-grade li:nth-child(2n) .ficha {
+  clip-path: var(--recorte-papel-b);
+}
+
+.discoteca-grade li:nth-child(3n) .ficha {
+  clip-path: var(--recorte-papel-c);
 }
 
 .ficha-capa {
@@ -198,11 +210,11 @@
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid var(--borda-site);
+  border: 1px solid var(--brown-light);
 }
 
 .ficha-tipo {
-  color: var(--gold-muted);
+  color: var(--red-rubric);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -212,13 +224,17 @@
   font-weight: 600;
   font-size: 1.06rem;
   line-height: 1.2;
-  color: var(--bg-paper);
+  color: var(--ink);
   margin: 3px 0 2px;
 }
 
 .ficha-autor {
-  color: var(--gray-warm);
+  color: var(--ink-faded);
   margin-bottom: 5px;
+}
+
+.ficha .hedera-cheia {
+  color: var(--red-rubric);
 }
 
 .ficha-resenha {
@@ -226,7 +242,7 @@
   font-style: italic;
   font-size: 0.88rem;
   line-height: 1.45;
-  color: var(--gray-warm);
+  color: var(--ink-faded);
   margin-top: 6px;
 }
 

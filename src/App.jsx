@@ -106,15 +106,18 @@ export default function App() {
   // v2: cada rota vive num CONTEXTO (cartaz/livro/mesa/padrão) que
   // define largura e textura — o wrapper carrega a var para a
   // moldura E para as bandas de recortes
-  const contexto =
-    pathname === '/'
-      ? 'contexto-cartaz'
-      : pathname.startsWith('/codice') ||
-          pathname === '/sobre' ||
-          pathname === '/arquivo' ||
-          pathname === '/visitas'
-        ? 'contexto-livro'
-        : 'contexto-padrao'
+  const ehCartaz =
+    pathname === '/' ||
+    pathname === '/quarto' ||
+    pathname === '/album' ||
+    pathname === '/amigas' ||
+    pathname === '/discoteca'
+  const ehLivro =
+    pathname.startsWith('/codice') ||
+    pathname === '/sobre' ||
+    pathname === '/arquivo' ||
+    pathname === '/visitas'
+  const contexto = ehCartaz ? 'contexto-cartaz' : ehLivro ? 'contexto-livro' : 'contexto-padrao'
 
   return (
     <>

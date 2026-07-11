@@ -6,6 +6,8 @@ import Nav2003 from '../components/ui2003/Nav2003.jsx'
 import NotaHederas from '../components/ornamentos/NotaHederas.jsx'
 import Separador from '../components/ornamentos/Separador.jsx'
 import FotoArte from '../components/album/FotoArte.jsx'
+import Carimbo from '../components/v2/Carimbo.jsx'
+import TituloGigante from '../components/v2/TituloGigante.jsx'
 import '../styles/secoes.css'
 
 /**
@@ -94,12 +96,18 @@ export default function Discoteca() {
     <div ref={raizRef}>
       <Nav2003 pagina="discoteca" />
       <main className="pagina-secao pagina-discoteca">
-        <h1 className="rubrica pagina-titulo">Discoteca &amp; coleções</h1>
+        <div className="secao-cabeca">
+          <h1 className="rubrica pagina-titulo">Discoteca &amp; coleções</h1>
+          <Carimbo rotacao={5}>caixa de vinil</Carimbo>
+        </div>
         <p className="ui-2003 pagina-nota">
           as fichas da coleção — discos, filmes &amp; relíquias, com a nota da casa em hederas
         </p>
 
         <section className="prateleira" aria-label="Fichas da coleção">
+          <TituloGigante vazado className="tipo-fundo discos-fundo" aria-hidden="true">
+            DISCOS
+          </TituloGigante>
           <p className="ui-2003 prateleira-dica" aria-hidden="true">
             role para folhear a caixa »
           </p>

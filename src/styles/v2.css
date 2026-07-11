@@ -14,6 +14,29 @@
   background-image: var(--textura-xerox);
 }
 
+/* no cartaz as bandas só existem com espaço de verdade ao lado */
+@media (max-width: 1499px) {
+  .contexto-cartaz .camada-recortes {
+    display: none;
+  }
+}
+
+/* ---- tipografia-como-layout: o gigante vazado atrás do conteúdo
+        (utilitário — a home tem o dela, as seções usam este) ---- */
+.tipo-fundo {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.8;
+}
+
+@media (max-width: 920px) {
+  .tipo-fundo {
+    display: none;
+  }
+}
+
 .contexto-livro {
   --largura-contexto: 1080px;
 }

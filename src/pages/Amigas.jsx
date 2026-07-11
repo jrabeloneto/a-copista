@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import Nav2003 from '../components/ui2003/Nav2003.jsx'
 import Botao88x31 from '../components/ui2003/Botao88x31.jsx'
 import Separador from '../components/ornamentos/Separador.jsx'
+import Carimbo from '../components/v2/Carimbo.jsx'
+import TituloGigante from '../components/v2/TituloGigante.jsx'
 import '../styles/secoes.css'
 
 /**
@@ -32,20 +34,28 @@ export default function Amigas() {
   return (
     <>
       <Nav2003 pagina="amigas & webring" />
-      <main className="pagina-secao">
-        <h1 className="rubrica pagina-titulo">Amigas &amp; webring</h1>
+      <main className="pagina-secao secao-cartaz">
+        <div className="secao-cabeca">
+          <h1 className="rubrica pagina-titulo">Amigas &amp; webring</h1>
+          <Carimbo rotacao={-4}>aceitam-se casas</Carimbo>
+        </div>
         <p className="ui-2003 pagina-nota">
           a parede de selos — cada 88×31 é uma casa amiga. troca-se selo como se trocava figurinha
         </p>
 
-        <ul className="amigas-parede">
+        <div className="amigas-mural">
+          <TituloGigante vazado className="tipo-fundo amigas-fundo" aria-hidden="true">
+            ANEL
+          </TituloGigante>
+          <ul className="amigas-parede">
           {SELOS.map((selo, i) => (
             <li key={i} className="amigas-selo">
               <Botao88x31 titulo={selo.titulo} subtitulo={selo.subtitulo} variante={selo.variante} />
               <p className="ui-2003 amigas-desc">{selo.desc}</p>
             </li>
           ))}
-        </ul>
+          </ul>
+        </div>
 
         <Separador />
         <p className="ui-2003 pagina-rodape">

@@ -28,6 +28,30 @@
   some junto com seu CSS, se o grep confirmar zero usos.
 
 ## Tarefas
-- [ ] secoes.css: ficha → papel sépia rasgado (grade + prateleira); respiros do quarto/álbum
-- [ ] Grep CaixaSidebar → deletar componente + CSS se órfão
-- [ ] Build; verificação visual página a página + leak test; commit — **PARAR p/ aprovação**
+- [x] secoes.css: ficha → papel sépia rasgado (grade + prateleira); respiros do quarto/álbum
+- [x] Grep CaixaSidebar → deletar componente + CSS se órfão
+- [x] Build; verificação visual página a página + leak test; commit
+
+## ADENDO (feedback do João): "continuidade completa, assim como na capa"
+
+O re-skin foi tímido. As 4 seções ganham a LINGUAGEM INTEIRA do
+cartaz — com a organização em grid que funcionou lá (zigzag/stagger
+por nth-child, nunca absoluto espalhado):
+
+- **Contexto**: quarto/álbum/amigas/discoteca → `contexto-cartaz`
+  (1160px + grão de xerox = literalmente o fundo da capa). Recortes
+  laterais no cartaz somem <1500px (sem espaço real).
+- **Tipografia-como-layout**: `.tipo-fundo` vira utilitário no
+  v2.css; cada seção ganha seu gigante vazado atrás (DIÁRIO, ÁLBUM,
+  ANEL, DISCOS) + Carimbo no cabeçalho.
+- **Quarto**: feed vira zigzag de 12 colunas (ímpar esquerda / par
+  direita, cada entrada na sua linha); papéis ganham rasgo alternado;
+  etiqueta de data e meses gigantes ficam (mês alterna de lado).
+- **Álbum**: grade de 3 colunas com stagger vertical (nth-child).
+- **Amigas**: selos sobre etiquetas de fita rasgadas, rotações leves.
+- **Discoteca**: gigante atrás da caixa; carimbo no cabeçalho.
+- Mobile (≤920): tudo volta às pilhas atuais — zigzag/stagger só ≥921.
+- INTOCADOS: hero, home, contexto-livro, fundos além do xerox provado.
+
+- [ ] App (contextos) + v2.css (.tipo-fundo, hide recortes) + secoes.css (zigzag/stagger/etiquetas) + 4 páginas (gigante+carimbo)
+- [ ] Build; verificação visual das 4; leak; commit — **PARAR p/ aprovação**

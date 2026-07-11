@@ -3,6 +3,8 @@ import { fotos } from '../data/album.js'
 import Nav2003 from '../components/ui2003/Nav2003.jsx'
 import FotoArte from '../components/album/FotoArte.jsx'
 import Separador from '../components/ornamentos/Separador.jsx'
+import Carimbo from '../components/v2/Carimbo.jsx'
+import TituloGigante from '../components/v2/TituloGigante.jsx'
 import '../styles/secoes.css'
 
 /**
@@ -20,13 +22,20 @@ export default function Album() {
   return (
     <>
       <Nav2003 pagina="álbum de fotos" />
-      <main className="pagina-secao">
-        <h1 className="rubrica pagina-titulo">Álbum de fotos</h1>
+      <main className="pagina-secao secao-cartaz">
+        <div className="secao-cabeca">
+          <h1 className="rubrica pagina-titulo">Álbum de fotos</h1>
+          <Carimbo rotacao={4}>revelado em casa</Carimbo>
+        </div>
         <p className="ui-2003 pagina-nota">
           as fotografias da dona — reveladas quando o dinheiro deixa, coladas quando a fita alcança
         </p>
 
-        <ul className="album-grade">
+        <div className="album-mural">
+          <TituloGigante vazado className="tipo-fundo album-fundo" aria-hidden="true">
+            ÁLBUM
+          </TituloGigante>
+          <ul className="album-grade">
           {fotos.map((foto, i) => (
             <li key={foto.id} className={`album-item torto-${(i % 4) + 1}`}>
               {foto.estilo === 'polaroid' ? (
@@ -52,7 +61,8 @@ export default function Album() {
               )}
             </li>
           ))}
-        </ul>
+          </ul>
+        </div>
 
         <Separador />
         <p className="ui-2003 pagina-rodape">

@@ -319,6 +319,147 @@
   }
 }
 
+/* ============================================================
+   v2 COMPLETO nas seções (feedback João: "assim como na capa") —
+   a linguagem do cartaz com organização em GRID: zigzag/stagger
+   por nth-child, gigantes vazados atrás, carimbos. Nada absoluto
+   espalhado; mobile volta às pilhas de sempre.
+   ============================================================ */
+.secao-cabeca {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-4);
+  flex-wrap: wrap;
+}
+
+.quarto-mural,
+.album-mural,
+.amigas-mural {
+  position: relative;
+}
+
+.quarto-mural > .quarto-feed,
+.album-mural > .album-grade,
+.amigas-mural > .amigas-parede {
+  position: relative;
+  z-index: 1;
+}
+
+.quarto-fundo { top: -26px; right: 0; }
+.album-fundo { top: -40px; right: -6px; }
+.amigas-fundo { top: -30px; right: 0; }
+
+.prateleira {
+  position: relative;
+}
+
+.prateleira-dica,
+.prateleira .discoteca-grade {
+  position: relative;
+  z-index: 1;
+}
+
+.discos-fundo { top: 4%; left: -8px; }
+
+@media (min-width: 921px) {
+  .contexto-cartaz .secao-cartaz,
+  .contexto-cartaz .pagina-discoteca {
+    max-width: 1080px;
+  }
+
+  /* ---- quarto: zigzag de 12 colunas, papéis rasgados ---- */
+  .contexto-cartaz .quarto-feed {
+    max-width: none;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--espaco-5) var(--espaco-3);
+  }
+
+  .contexto-cartaz .quarto-feed .entrada {
+    grid-column: 1 / 9;
+  }
+
+  .contexto-cartaz .quarto-feed .entrada:nth-child(even) {
+    grid-column: 5 / 13;
+  }
+
+  .contexto-cartaz .entrada-corpo.entrada-papel {
+    box-shadow: none; /* o rasgo deita colado, por design */
+    clip-path: var(--recorte-papel-a);
+    padding: var(--espaco-3) var(--espaco-4);
+  }
+
+  .contexto-cartaz .entrada:nth-child(3n) .entrada-corpo.entrada-papel {
+    clip-path: var(--recorte-papel-b);
+  }
+
+  .contexto-cartaz .entrada:nth-child(3n + 2) .entrada-corpo.entrada-papel {
+    clip-path: var(--recorte-papel-c);
+  }
+
+  .contexto-cartaz .quarto-feed .entrada:nth-child(odd) .entrada-corpo {
+    transform: rotate(-0.8deg);
+  }
+
+  .contexto-cartaz .quarto-feed .entrada:nth-child(even) .entrada-corpo {
+    transform: rotate(0.7deg);
+  }
+
+  /* o mês gigante alterna de lado com o zigzag */
+  .contexto-cartaz .mes-gigante {
+    left: -56px;
+  }
+
+  .contexto-cartaz .quarto-feed .entrada:nth-child(even) .mes-gigante {
+    left: auto;
+    right: -56px;
+  }
+
+  /* ---- álbum: 3 colunas com stagger vertical ---- */
+  .contexto-cartaz .album-grade {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--espaco-5) var(--espaco-4);
+  }
+
+  .contexto-cartaz .album-grade li:nth-child(3n + 2) {
+    margin-top: var(--espaco-5);
+  }
+
+  .contexto-cartaz .album-grade li:nth-child(3n) {
+    margin-top: var(--espaco-3);
+  }
+
+  /* ---- amigas: selos sobre etiquetas de fita rasgadas ---- */
+  .contexto-cartaz .amigas-parede {
+    gap: var(--espaco-4);
+  }
+
+  .contexto-cartaz .amigas-selo {
+    background-color: var(--fita);
+    background-image: var(--textura-papel);
+    clip-path: var(--recorte-papel-b);
+    padding: var(--espaco-3) var(--espaco-4);
+    transform: rotate(-0.9deg);
+  }
+
+  .contexto-cartaz .amigas-selo:nth-child(even) {
+    clip-path: var(--recorte-papel-c);
+    transform: rotate(0.8deg);
+  }
+
+  .contexto-cartaz .amigas-selo .amigas-desc {
+    color: var(--ink);
+  }
+
+  .contexto-cartaz .amigas-selo a {
+    color: var(--red-rubric);
+  }
+
+  .contexto-cartaz .amigas-selo a:visited {
+    color: var(--brown);
+  }
+}
+
 /* ---- responsivo ---- */
 @media (max-width: 920px) {
   /* sem margem para o mês gigante em tela estreita */

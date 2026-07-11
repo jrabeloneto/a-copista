@@ -5,6 +5,8 @@ import Nav2003 from '../components/ui2003/Nav2003.jsx'
 import FotoArte from '../components/album/FotoArte.jsx'
 import NotaHederas from '../components/ornamentos/NotaHederas.jsx'
 import Separador from '../components/ornamentos/Separador.jsx'
+import Carimbo from '../components/v2/Carimbo.jsx'
+import TituloGigante from '../components/v2/TituloGigante.jsx'
 import '../styles/secoes.css'
 
 function Entrada({ entrada }) {
@@ -58,14 +60,21 @@ export default function Quarto() {
   return (
     <>
       <Nav2003 pagina="o quarto da dona" />
-      <main className="pagina-secao quarto">
-        <h1 className="rubrica pagina-titulo">O quarto da dona</h1>
+      <main className="pagina-secao secao-cartaz quarto">
+        <div className="secao-cabeca">
+          <h1 className="rubrica pagina-titulo">O quarto da dona</h1>
+          <Carimbo rotacao={-5}>diário</Carimbo>
+        </div>
         <p className="ui-2003 pagina-nota">
           bilhetes, achados, avaliações em hederas &amp; o que mais couber na escrivaninha —
           quem escreve está <Link to="/sobre">ali</Link>
         </p>
 
-        <ol className="quarto-feed">
+        <div className="quarto-mural">
+          <TituloGigante vazado className="tipo-fundo quarto-fundo" aria-hidden="true">
+            DIÁRIO
+          </TituloGigante>
+          <ol className="quarto-feed">
           {entradas.map((entrada, i) => {
             const mesNovo = i === 0 || entradas[i - 1].mesAno !== entrada.mesAno
             return (
@@ -82,7 +91,8 @@ export default function Quarto() {
               </li>
             )
           })}
-        </ol>
+          </ol>
+        </div>
 
         <Separador />
         <p className="ui-2003 pagina-rodape">

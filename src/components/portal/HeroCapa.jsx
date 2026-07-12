@@ -19,26 +19,22 @@ export default function HeroCapa() {
       const capa = ref.current?.querySelector('.masthead')
       if (!capa) return
 
-      const escala = () => (window.innerWidth < 700 ? 1.32 : 1.85)
-      const descida = () => window.innerHeight * 0.28
+      // v2.1: sem sticky — as letras encolhem no FLUXO enquanto o
+      // scroll as leva; nada de vão morto depois da dobra
+      const escala = () => (window.innerWidth < 700 ? 1.22 : 1.5)
 
       gsap
         .timeline({
           scrollTrigger: {
             trigger: ref.current,
             start: 'top top',
-            end: 'bottom bottom',
-            scrub: 0.6,
+            end: () => '+=' + window.innerHeight * 0.5,
+            scrub: 0.5,
             invalidateOnRefresh: true,
           },
         })
-        .fromTo(
-          capa,
-          { scale: escala, y: descida },
-          { scale: 1, y: 0, ease: 'none', duration: 1 },
-          0,
-        )
-        .to('.hero-some, .masthead-edicao', { opacity: 0, ease: 'none', duration: 0.35 }, 0.3)
+        .fromTo(capa, { scale: escala }, { scale: 1, ease: 'none', duration: 1 }, 0)
+        .to('.hero-some, .masthead-edicao', { opacity: 0, ease: 'none', duration: 0.5 }, 0.25)
     },
     [],
     ref,

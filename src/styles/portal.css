@@ -98,24 +98,29 @@
   text-decoration: none;
 }
 
-/* ---- régua de editorias (etiquetas de fita) ---- */
+/* ---- régua de editorias (v2.1: ABAS de fichário rasgadas) ----
+   Cada aba é um pedaço de papel com rasgo, cor e colocação de mão
+   próprios — a barra retangular que o João rejeitou morreu aqui. */
 .regua-etiquetas {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  align-items: flex-end;
+  gap: 5px 9px;
   justify-content: center;
-  padding: 16px 0 20px;
+  padding: 10px 0 24px;
   view-transition-name: regua; /* viaja junto com o masthead */
 }
 
 .etq {
   font-family: var(--fonte-ui);
-  font-size: var(--texto-ui-min);
+  font-size: var(--texto-ui);
   color: var(--ink);
-  background: var(--fita);
-  padding: 3px 9px 4px;
-  box-shadow: 2px 2px 0 rgba(10, 8, 5, 0.5);
+  background-color: var(--fita);
+  background-image: var(--textura-papel);
+  clip-path: var(--recorte-aba);
+  padding: 8px 17px 10px;
   text-decoration: none;
+  transform: rotate(var(--rot, 0deg)) translateY(var(--dy, 0px));
 }
 
 .etq:visited {
@@ -128,7 +133,7 @@
 
 .etq-viva,
 .etq-viva:visited {
-  background: var(--red-rubric);
+  background-color: var(--red-rubric);
   color: var(--bg-paper);
 }
 
@@ -136,10 +141,21 @@
   color: var(--bg-paper);
 }
 
-/* tortas de propósito, deterministicamente */
-.regua-etiquetas .etq:nth-child(odd) { transform: rotate(-1.3deg); }
-.regua-etiquetas .etq:nth-child(even) { transform: rotate(1.1deg); }
-.regua-etiquetas .etq:nth-child(3n) { transform: rotate(-0.5deg); }
+/* colocação de mão: cada aba com rotação, desnível e tom próprios */
+.regua-etiquetas .etq:nth-child(1) { --rot: -2deg; --dy: 2px; background-color: var(--bg-paper); }
+.regua-etiquetas .etq:nth-child(2) { --rot: 1.4deg; }
+.regua-etiquetas .etq:nth-child(3) { --rot: -1deg; --dy: 3px; background-color: var(--sepia-foto); }
+.regua-etiquetas .etq:nth-child(4) { --rot: 2deg; --dy: 1px; }
+.regua-etiquetas .etq:nth-child(5) { --rot: -1.6deg; --dy: 2px; background-color: var(--bg-paper); }
+.regua-etiquetas .etq:nth-child(6) { --rot: 1deg; background-color: var(--sepia-foto); }
+.regua-etiquetas .etq:nth-child(7) { --rot: -2.2deg; --dy: 3px; }
+
+/* a ativa manda na cor, seja qual for o tom/nth da aba
+   (.etq.etq-viva empata com o nth-child e vence por vir depois) */
+.regua-etiquetas .etq.etq-viva {
+  background-color: var(--red-rubric);
+  color: var(--bg-paper);
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .etq {
@@ -147,7 +163,7 @@
   }
 
   .etq:hover {
-    transform: translateY(2px);
+    transform: rotate(var(--rot, 0deg)) translateY(calc(var(--dy, 0px) + 2px));
   }
 }
 
@@ -175,31 +191,30 @@
 .torto-3 { transform: rotate(-1deg); }
 .torto-4 { transform: rotate(1.1deg); }
 
-/* ---- hero: a capa em tela cheia que se dobra no masthead ---- */
+/* ---- hero: a capa grande que encolhe NO FLUXO (v2.1) ----
+   Sem sticky e sem espaçador: as letras encolhem enquanto sobem
+   com o scroll, e a régua/manchete entram logo abaixo — o vão
+   morto que o João apontou morreu aqui. */
 .hero-capa {
-  height: 148svh;
-  margin: 0 -28px; /* anula o padding lateral da moldura p/ o palco */
-}
-
-.hero-palco {
-  position: sticky;
-  top: 0;
-  height: 100svh;
+  min-height: 64svh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 28px;
+  justify-content: center;
+  padding: 24px 0 8px;
 }
 
-.hero-palco .masthead {
+.hero-capa .masthead {
   will-change: transform;
-  transform-origin: top center;
+  transform-origin: center top;
 }
 
 .hero-dica {
   color: var(--gray-warm);
   letter-spacing: 0.18em;
-  margin-top: 42svh;
+  /* o masthead escalado TRANSBORDA a caixa de layout (transform não
+     empurra irmãos) — a folga cobre o transbordo da escala 1.5 */
+  margin-top: clamp(64px, 9svh, 100px);
 }
 
 /* ---- letreiro (o marquee da casa) ---- */
@@ -287,10 +302,6 @@
   }
 
   .hero-capa {
-    height: 126svh;
-  }
-
-  .hero-dica {
-    margin-top: 36svh;
+    min-height: 52svh;
   }
 }

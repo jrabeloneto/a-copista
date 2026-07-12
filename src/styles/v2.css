@@ -6,16 +6,20 @@
    ============================================================ */
 
 /* ---- contextos (largura + textura por família de página) ---- */
+/* v2.1 (feedback João: "bordas pretas, lacuna vazia") — a moldura
+   vira FLUIDA: a superfície texturizada preenche a janela em vez
+   das bandas pretas; em telas muito largas as bandas voltam
+   pequenas E com os recortes nelas. */
 .contexto-cartaz {
-  --largura-contexto: 1160px;
+  --largura-contexto: min(1400px, 96vw);
 }
 
 .contexto-cartaz .moldura-site {
   background-image: var(--textura-xerox);
 }
 
-/* no cartaz as bandas só existem com espaço de verdade ao lado */
-@media (max-width: 1499px) {
+/* recortes no cartaz só quando há banda real (moldura já saturou) */
+@media (max-width: 1699px) {
   .contexto-cartaz .camada-recortes {
     display: none;
   }
@@ -38,11 +42,18 @@
 }
 
 .contexto-livro {
-  --largura-contexto: 1080px;
+  --largura-contexto: min(1240px, 94vw);
+}
+
+/* o livro em si fica no tamanho de livro — a moldura escura larga
+   ao redor vira a mesa sob ele */
+.contexto-livro .livro {
+  max-width: 1120px;
+  margin-inline: auto;
 }
 
 /* bandas de recortes precisam de espaço real ao lado do livro */
-@media (max-width: 1359px) {
+@media (max-width: 1539px) {
   .contexto-livro .camada-recortes {
     display: none;
   }

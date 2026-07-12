@@ -84,6 +84,11 @@
     4% 0%, 38% 5%, 70% 1%, 100% 8%, 96% 34%, 100% 62%, 95% 92%,
     64% 100%, 28% 95%, 0% 99%, 4% 64%, 0% 30%
   );
+  /* aba de fichário rasgada (a barra de navegação) */
+  --recorte-aba: polygon(
+    0% 14%, 9% 2%, 32% 8%, 56% 0%, 82% 6%, 100% 12%,
+    97% 86%, 78% 100%, 48% 92%, 16% 100%, 2% 88%
+  );
 
   /* ---- Texturas (feTurbulence via data-URI, sem imagens) ---- */
   /* grão fino para o fundo escuro */

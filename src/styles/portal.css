@@ -256,17 +256,67 @@
   }
 }
 
-/* ---- preloader do brasão ---- */
+/* ---- preloader v3: CORTINAS DE TEATRO (pedido do João) ----
+   Duas bandas de veludo em rubrica (dobras = repeating-gradient de
+   shades da paleta — modelagem de tecido, como a lombada do livro)
+   com filete dourado na boca de cena; o brasão se monta no centro,
+   o miolo apaga e as cortinas correm para os lados revelando a
+   revista viva por baixo. Transform/opacity apenas. */
 .preloader {
   position: fixed;
   inset: 0;
   z-index: 99;
-  background: var(--bg-base);
+  pointer-events: none; /* decorativo — a revista já vive por baixo */
+}
+
+.cortina {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  background-color: var(--rubric-dark);
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--red-rubric) 0 26px,
+    var(--rubric-dark) 26px 44px,
+    rgba(10, 8, 5, 0.35) 44px 47px,
+    var(--rubric-dark) 47px 58px
+  );
+  will-change: transform;
+}
+
+.cortina-esq {
+  left: 0;
+  border-right: 4px double var(--gold-muted);
+  animation: cortina-esq-abre 0.95s cubic-bezier(0.55, 0, 0.25, 1) 1.3s both;
+}
+
+.cortina-dir {
+  right: 0;
+  border-left: 4px double var(--gold-muted);
+  animation: cortina-dir-abre 0.95s cubic-bezier(0.55, 0, 0.25, 1) 1.3s both;
+}
+
+@keyframes cortina-esq-abre {
+  to {
+    transform: translateX(-103%);
+  }
+}
+
+@keyframes cortina-dir-abre {
+  to {
+    transform: translateX(103%);
+  }
+}
+
+.preloader-miolo {
+  position: absolute;
+  inset: 0;
   display: grid;
   place-content: center;
   justify-items: center;
   gap: 16px;
-  animation: preloader-sai 0.3s steps(3, end) 1.15s both;
+  animation: miolo-apaga 0.25s steps(2, end) 1.05s both;
 }
 
 .pre-tempo {
@@ -274,12 +324,12 @@
   animation: pre-monta 0.05s steps(1, end) both;
 }
 
-.pre-tempo-1 { animation-delay: 0.12s; }
-.pre-tempo-2 { animation-delay: 0.42s; }
-.pre-tempo-3 { animation-delay: 0.72s; }
+.pre-tempo-1 { animation-delay: 0.15s; }
+.pre-tempo-2 { animation-delay: 0.45s; }
+.pre-tempo-3 { animation-delay: 0.75s; }
 
 .preloader-frase {
-  color: var(--gray-warm);
+  color: var(--bg-paper);
   letter-spacing: 0.12em;
 }
 
@@ -289,10 +339,9 @@
   }
 }
 
-@keyframes preloader-sai {
+@keyframes miolo-apaga {
   to {
     opacity: 0;
-    visibility: hidden;
   }
 }
 

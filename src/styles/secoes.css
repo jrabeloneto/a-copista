@@ -214,7 +214,7 @@
 }
 
 .ficha-tipo {
-  color: var(--red-rubric);
+  color: var(--rubric-dark); /* red-rubric dava 3.9:1 na sépia */
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }

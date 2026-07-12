@@ -156,6 +156,13 @@
 .papel-rasgado a:visited { color: var(--brown); }
 .papel-rasgado a:hover { color: var(--rubric-dark); }
 
+/* rótulos MIÚDOS sobre sépia/fita: a rubrica cheia dá <4.5:1 —
+   escurece um degrau mantendo o matiz */
+.pr-tom-sepia .pedaco-cab,
+.pr-tom-fita .pedaco-cab {
+  color: var(--rubric-dark);
+}
+
 /* ---- carimbo ---- */
 .carimbo {
   display: inline-block;

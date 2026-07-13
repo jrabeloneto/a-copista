@@ -34,6 +34,11 @@
   pointer-events: none;
   z-index: 1; /* sob os recortes (2), sobre o grão (0) */
   display: none;
+}
+
+/* o parallax é por peça — cada uma na sua profundidade */
+.lambe-peca,
+.gavinha {
   will-change: transform;
 }
 

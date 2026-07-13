@@ -70,24 +70,35 @@ function PecaLambe({ peca }) {
 export default function BandasLaterais({ contexto }) {
   const ref = useRef(null)
 
-  // parallax muito leve, com cleanup próprio (camada de App, não de página)
+  // parallax POR PEÇA (feedback João: "tá muito parado"): cada
+  // aviso/selo/gavinha viaja no seu alcance e com seu lag próprios,
+  // preso ao scroll — profundidades diferentes, bandas vivas.
+  // Contexto próprio com revert completo (camada de App).
   useEffect(() => {
     if (reduzMotion() || !ref.current) return undefined
-    const tween = gsap.to(ref.current, {
-      yPercent: -2.5,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: document.body,
-        start: 'top top',
-        end: 'max',
-        scrub: 1.4,
-        invalidateOnRefresh: true,
-      },
-    })
-    return () => {
-      tween.scrollTrigger?.kill()
-      tween.kill()
-    }
+    const ctx = gsap.context(() => {
+      const pecas = gsap.utils.toArray('.lambe-peca, .gavinha')
+      pecas.forEach((el, i) => {
+        const alcance = 46 + (i % 5) * 44
+        // padrão do grão (o que nunca falhou): set inicial + to fixo.
+        // Limites FUNCIONAIS são reavaliados em cada refresh natural
+        // (páginas/ResizeObserver) — sem invalidate, sem limbo de
+        // fromTo+refresh no mesmo tick (lição desta rodada).
+        gsap.set(el, { y: alcance })
+        gsap.to(el, {
+          y: -alcance,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: document.body,
+            start: 0,
+            end: () =>
+              Math.max(1, document.documentElement.scrollHeight - window.innerHeight),
+            scrub: 0.6 + (i % 3) * 0.35,
+          },
+        })
+      })
+    }, ref)
+    return () => ctx.revert()
   }, [contexto])
 
   if (contexto === 'contexto-livro') {

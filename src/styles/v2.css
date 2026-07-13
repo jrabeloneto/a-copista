@@ -19,10 +19,93 @@
 }
 
 /* recortes no cartaz só quando há banda real (moldura já saturou) */
-@media (max-width: 1699px) {
+@media (max-width: 1599px) {
   .contexto-cartaz .camada-recortes {
     display: none;
   }
+}
+
+/* ---- bandas laterais: paredes temáticas por contexto ----
+   (B+C+D do João: gavinhas no livro, lambe-lambe no cartaz, e os
+   recortes viajando por cima de tudo) */
+.bandas {
+  position: fixed;
+  inset: -4% 0;
+  pointer-events: none;
+  z-index: 1; /* sob os recortes (2), sobre o grão (0) */
+  display: none;
+  will-change: transform;
+}
+
+.banda-parede {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc((100vw - var(--largura-contexto)) / 2);
+}
+
+.banda-esq { left: 0; }
+.banda-dir { right: 0; }
+
+/* livro: as margens iluminadas */
+.bandas-livro .banda-parede {
+  display: flex;
+  justify-content: center;
+}
+
+.gavinha {
+  height: 108%;
+  width: auto;
+  max-width: 82%;
+  opacity: 0.85;
+}
+
+/* cartaz: o poste de lambe-lambe */
+.bandas-cartaz .banda-parede {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7svh;
+  padding-top: 13svh;
+}
+
+.lambe-aviso {
+  display: block;
+  width: min(160px, 80%);
+  background-color: var(--bg-paper);
+  background-image: var(--textura-papel);
+  clip-path: var(--recorte-papel-a);
+  padding: 12px 14px;
+  font-family: var(--fonte-ui);
+  font-size: var(--texto-ui-min);
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.banda-parede .lambe-peca:nth-child(odd) { transform: rotate(-3deg); }
+.banda-parede .lambe-peca:nth-child(even) { transform: rotate(2.4deg); }
+.banda-parede .lambe-aviso:nth-of-type(2) { clip-path: var(--recorte-papel-c); background-color: var(--sepia-foto); }
+
+.lambe-carimbo {
+  display: inline-block;
+  border: 3px solid var(--rubric-clara);
+  color: var(--rubric-clara);
+  font-family: var(--fonte-fell-sc);
+  font-size: 1.1rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.3em 0.75em;
+  opacity: 0.9;
+}
+
+/* só existem com banda de verdade ao lado */
+@media (min-width: 1440px) {
+  .contexto-livro .bandas { display: block; }
+}
+
+@media (min-width: 1600px) {
+  .contexto-cartaz .bandas { display: block; }
 }
 
 /* ---- tipografia-como-layout: o gigante vazado atrás do conteúdo
@@ -53,7 +136,7 @@
 }
 
 /* bandas de recortes precisam de espaço real ao lado do livro */
-@media (max-width: 1539px) {
+@media (max-width: 1439px) {
   .contexto-livro .camada-recortes {
     display: none;
   }

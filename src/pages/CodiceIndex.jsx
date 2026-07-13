@@ -10,7 +10,19 @@ import GravuraPlaceholder from '../components/folio/GravuraPlaceholder.jsx'
 import Separador from '../components/ornamentos/Separador.jsx'
 import Carimbo from '../components/v2/Carimbo.jsx'
 import ExLibris from '../components/v2/ExLibris.jsx'
+import TituloGigante from '../components/v2/TituloGigante.jsx'
+import { LetrasRecorte } from '../components/portal/Masthead.jsx'
 import '../styles/capa.css'
+
+/* CÓDICE em letras de recorte, tons de tinta sobre pergaminho */
+const LETRAS_CODICE = [
+  { letra: 'C', classes: 'lt-rubrica lt-cor-paper lt-gotica', rot: -3, dy: 0, tam: 1.1, fita: -6 },
+  { letra: 'Ó', classes: 'lt-card lt-cor-gold lt-fell', rot: 2, dy: 3, tam: 1 },
+  { letra: 'D', classes: 'lt-gold lt-cor-base lt-gotica lt-rasgo', rot: -1.5, dy: -2, tam: 1.05 },
+  { letra: 'I', classes: 'lt-brown lt-cor-paper lt-verdana', rot: 2.5, dy: 1, tam: 0.92 },
+  { letra: 'C', classes: 'lt-paper lt-cor-rubrica lt-fell lt-borda-rubrica lt-rasgo', rot: -2, dy: 2, tam: 1.06 },
+  { letra: 'E', classes: 'lt-rubrica lt-cor-paper lt-gotica', rot: 3, dy: -1, tam: 1, fita: 4 },
+]
 
 /**
  * Índice do volume — sumário tipográfico de livro com hover-reveal:
@@ -123,13 +135,34 @@ export default function CodiceIndex() {
     <div className="capa" ref={raizRef}>
       <CamadaFlutuante itens={FLUTUANTES_CAPA} />
 
+      <TituloGigante vazado className="tipo-fundo codice-fundo" aria-hidden="true">
+        VOL·I
+      </TituloGigante>
+
       <div className="livro livro-codice">
+        {/* abas de fichário saindo do corte do livro (o índice físico) */}
+        <nav className="livro-abas" aria-label="Abas do volume">
+          {materias.map((materia, i) => (
+            <Link
+              key={materia.slug}
+              to={`/codice/materia/${materia.slug}`}
+              viewTransition
+              className={`livro-aba livro-aba-${i + 1}`}
+            >
+              {materia.categoria}
+            </Link>
+          ))}
+        </nav>
+
         <div className="livro-pg livro-pg-verso pergaminho codice-frontis">
           <p className="ui-2003 frontis-sobre">
             o fanzine da revista — publica-se quando a copista pode
           </p>
           <div className="frontis-fios">
-            <h1 className="frontis-titulo">CÓDICE</h1>
+            <h1 className="frontis-titulo frontis-recorte">
+              <LetrasRecorte letras={LETRAS_CODICE} />
+              <span className="visualmente-oculto">CÓDICE</span>
+            </h1>
             <p className="frontis-sub">
               em que se tratam as vidas &amp; obras de estrelas, boutiques &amp; menestréis,
               com gravuras da oficina &amp; marginalia da própria mão

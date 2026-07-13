@@ -19,10 +19,10 @@ const LETRAS = [
   { letra: 'A', classes: 'lt-card lt-cor-clara lt-fell lt-borda-rubrica', rot: 3, dy: -4, tam: 1.1, fita: -4 },
 ]
 
-export function LetrasRecorte() {
+export function LetrasRecorte({ letras = LETRAS }) {
   return (
     <span className="masthead-letras" aria-hidden="true">
-      {LETRAS.map((cfg, i) =>
+      {letras.map((cfg, i) =>
         cfg.letra === ' ' ? (
           <span key={i} className="letra-espaco" />
         ) : (

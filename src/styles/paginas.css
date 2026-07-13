@@ -257,7 +257,21 @@
 
 .pagina-livro .visita-cabecalho { color: var(--ink); }
 .pagina-livro .visita-site { color: var(--brown); }
-.pagina-livro .visita-data { color: var(--ink-faded); }
+
+/* a data vira etiqueta de fita colada (livro ousado) */
+.pagina-livro .visita-data {
+  display: inline-block;
+  background: var(--fita);
+  color: var(--ink);
+  padding: 1px 8px 2px;
+  box-shadow: 2px 2px 0 rgba(10, 8, 5, 0.4);
+  transform: rotate(-1.2deg);
+  margin-left: 6px;
+}
+
+.pagina-livro .visita:nth-child(even) .visita-data {
+  transform: rotate(1deg);
+}
 
 .pagina-livro .visita-mensagem {
   font-family: Georgia, serif;
@@ -267,13 +281,40 @@
   line-height: 1.6;
 }
 
-/* o formulário seco vira nota de margem no papel */
-.pagina-livro .visitas-form fieldset {
-  background: transparent;
-  border: 1px dashed var(--brown);
+/* visitas ousado: palco com gigante atrás + form como pedaço */
+.visitas-palco {
+  position: relative;
 }
 
-.pagina-livro .visitas-form legend { color: var(--brown); }
+.visitas-fundo {
+  top: -18px;
+  right: 2%;
+}
+
+.visitas-palco .pagina-livro {
+  position: relative;
+  z-index: 1;
+}
+
+/* o formulário seco vira PEDAÇO de papel de fita rasgado */
+.pagina-livro .visitas-form fieldset {
+  background-color: var(--fita);
+  background-image: var(--textura-papel);
+  border: 0;
+  clip-path: var(--recorte-papel-b);
+  padding: var(--espaco-3) var(--espaco-4);
+}
+
+.pagina-livro .visitas-form legend {
+  color: var(--rubric-dark);
+  letter-spacing: 0.14em;
+  float: left; /* legend dentro do clip, não na borda */
+  margin-bottom: var(--espaco-2);
+}
+
+.pagina-livro .visitas-form legend + * {
+  clear: both;
+}
 
 .pagina-livro .visitas-form input,
 .pagina-livro .visitas-form textarea {

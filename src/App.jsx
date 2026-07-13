@@ -6,6 +6,7 @@ import GrainDefs from './components/GrainDefs.jsx'
 import Masthead from './components/portal/Masthead.jsx'
 import ReguaEtiquetas from './components/portal/ReguaEtiquetas.jsx'
 import Preloader from './components/portal/Preloader.jsx'
+import BandasLaterais from './components/portal/BandasLaterais.jsx'
 import CamadaRecortes from './components/recortes/CamadaRecortes.jsx'
 import { DECK_SALAS } from './data/recortes.js'
 import { useLenis } from './lib/useLenis.js'
@@ -97,11 +98,10 @@ export default function App() {
     }
   }, [])
 
-  // recortes de revista: efeito do PORTAL; dentro do fanzine o
-  // efeito é o das iluminuras; na home v2 o cartaz JÁ é a colagem
-  // inteira — as bandas ficam para os contextos calmos
-  const semRecortes =
-    pathname.startsWith('/codice') || pathname === '/especime' || pathname === '/'
+  // recortes de revista (opção D do João: SEMPRE que houver banda):
+  // as medias por contexto decidem quando cabem; só a prova do
+  // impressor fica sem
+  const semRecortes = pathname === '/especime'
 
   // v2: cada rota vive num CONTEXTO (cartaz/livro/mesa/padrão) que
   // define largura e textura — o wrapper carrega a var para a
@@ -126,6 +126,7 @@ export default function App() {
       <GraoGlobal />
       <Preloader />
       <div className={contexto}>
+      <BandasLaterais key={`bandas-${contexto}`} contexto={contexto} />
       {!semRecortes && <CamadaRecortes key={pathname} deck={DECK_SALAS} />}
       <div className="moldura-site">
         {/* na home o cabeçalho é o HeroCapa (tela cheia que se dobra) */}

@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { visitas } from '../data/visitas.js'
 import Nav2003 from '../components/ui2003/Nav2003.jsx'
 import Separador from '../components/ornamentos/Separador.jsx'
+import Carimbo from '../components/v2/Carimbo.jsx'
+import TituloGigante from '../components/v2/TituloGigante.jsx'
 import '../styles/paginas.css'
 
 /**
@@ -22,11 +24,18 @@ export default function Visitas() {
   return (
     <>
       <Nav2003 pagina="livro de visitas" />
-      <main className="pergaminho pagina-livro pagina-visitas" id="comentarios">
-        <h1 className="rubrica pagina-titulo">Livro de visitas</h1>
-        <p className="ui-2003 pagina-nota">
-          {visitas.length} assinaturas desde MMXXVI — obrigada pela visita, volte sempre
-        </p>
+      <div className="visitas-palco">
+        <TituloGigante vazado className="tipo-fundo visitas-fundo" aria-hidden="true">
+          VISITAS
+        </TituloGigante>
+        <main className="pergaminho pagina-livro pagina-visitas" id="comentarios">
+          <div className="secao-cabeca">
+            <h1 className="rubrica pagina-titulo">Livro de visitas</h1>
+            <Carimbo rotacao={-5}>assine</Carimbo>
+          </div>
+          <p className="ui-2003 pagina-nota">
+            {visitas.length} assinaturas desde MMXXVI — obrigada pela visita, volte sempre
+          </p>
 
         <form className="visitas-form" aria-label="Assinar o livro (indisponível)">
           <fieldset disabled>
@@ -70,10 +79,11 @@ export default function Visitas() {
           ))}
         </ul>
 
-        <p className="ui-2003 pagina-rodape">
-          fim das assinaturas — as mais antigas foram para o arquivo morto (uma caixa de sapato)
-        </p>
-      </main>
+          <p className="ui-2003 pagina-rodape">
+            fim das assinaturas — as mais antigas foram para o arquivo morto (uma caixa de sapato)
+          </p>
+        </main>
+      </div>
     </>
   )
 }

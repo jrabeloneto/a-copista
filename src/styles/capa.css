@@ -18,14 +18,81 @@
 /* ============================================================
    v2 — a capa do códice como livro aberto
    ============================================================ */
+.capa {
+  position: relative;
+}
+
+.codice-fundo {
+  top: 4px;
+  right: -6px;
+}
+
 .livro-codice {
   margin: var(--espaco-3) 0 var(--espaco-4);
+  position: relative;
+  z-index: 1;
 }
 
 .livro-codice .livro-pg {
   padding: var(--espaco-5) var(--espaco-5) var(--espaco-4);
   box-shadow: none; /* a lombada vem das classes verso/recto do v2 */
   position: relative;
+  z-index: 1; /* por cima das abas — elas ficam "enfiadas" no corte */
+}
+
+/* ---- abas de fichário no corte do livro (livro ousado) ---- */
+.livro-abas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.livro-aba {
+  position: absolute;
+  right: -44px;
+  width: 96px;
+  padding: 7px 12px 8px 20px;
+  clip-path: var(--recorte-aba);
+  background-color: var(--fita);
+  background-image: var(--textura-papel);
+  font-family: var(--fonte-ui);
+  font-size: var(--texto-ui-min);
+  text-align: right;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.livro-aba:visited { color: var(--ink); }
+.livro-aba:hover { color: var(--rubric-dark); }
+
+.livro-aba {
+  transform: rotate(var(--rot, 0deg));
+}
+
+.livro-aba-1 { top: 16%; --rot: -1.5deg; background-color: var(--bg-paper); }
+.livro-aba-2 { top: 30%; --rot: 1.2deg; }
+.livro-aba-3 { top: 44%; --rot: -1deg; background-color: var(--sepia-foto); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .livro-aba {
+    transition: transform 0.16s steps(2, end);
+  }
+
+  .livro-aba:hover {
+    transform: rotate(var(--rot, 0deg)) translateX(6px);
+  }
+}
+
+@media (max-width: 920px) {
+  .livro-abas {
+    display: none;
+  }
+}
+
+/* frontispício em letras de recorte */
+.frontis-recorte {
+  font-size: clamp(32px, 4.4vw, 52px);
+  line-height: 1;
 }
 
 /* frontispício (página esquerda) */

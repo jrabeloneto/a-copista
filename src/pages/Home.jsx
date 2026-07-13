@@ -15,15 +15,8 @@ import Letreiro from '../components/portal/Letreiro.jsx'
 import PapelRasgado from '../components/v2/PapelRasgado.jsx'
 import Carimbo from '../components/v2/Carimbo.jsx'
 import TituloGigante from '../components/v2/TituloGigante.jsx'
+import { NOVIDADES } from '../data/avisos.js'
 import '../styles/home.css'
-
-const NOVIDADES = [
-  'vol. II do códice em cópia — a pena cansa, tenha paciência',
-  'o webring aceita casas novas: deixe o endereço no livro de visitas',
-  '8 fotografias no álbum, reveladas a duras penas',
-  'a discoteca ganhou fichas novas — nota da casa em hederas',
-  'Hildegarda segue dormindo sobre os rascunhos',
-]
 
 /**
  * A capa da revista no v2: um CARTAZ XEROCADO — contexto largo

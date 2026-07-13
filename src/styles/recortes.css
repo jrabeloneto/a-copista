@@ -6,7 +6,9 @@
 .camada-recortes {
   /* as bandas leem a largura do CONTEXTO (v2): páginas mais largas
      estreitam as bandas automaticamente */
-  --larg-recorte: clamp(112px, calc((100vw - var(--largura-contexto) - 40px) / 2 - 24px), 158px);
+  /* adaptativo (opção D do João): encolhe até 88px para caber em
+     bandas menores em vez de sumir */
+  --larg-recorte: clamp(88px, calc((100vw - var(--largura-contexto) - 40px) / 2 - 20px), 158px);
   position: fixed;
   inset: 0;
   pointer-events: none;

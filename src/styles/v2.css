@@ -65,19 +65,19 @@
   opacity: 0.85;
 }
 
-/* cartaz: o poste de lambe-lambe */
-.bandas-cartaz .banda-parede {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 7svh;
-  padding-top: 13svh;
+/* cartaz: o poste de lambe-lambe EM TRAVESSIA — peças absolutas
+   que o GSAP faz entrar por baixo e sumir pelo topo (o transform é
+   todo dele; nada de rotação em CSS aqui) */
+.bandas-cartaz .lambe-peca {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  will-change: transform, opacity;
 }
 
 .lambe-aviso {
   display: block;
-  width: min(160px, 80%);
+  width: min(164px, 72%);
   background-color: var(--bg-paper);
   background-image: var(--textura-papel);
   clip-path: var(--recorte-papel-a);
@@ -88,9 +88,26 @@
   color: var(--ink);
 }
 
-.banda-parede .lambe-peca:nth-child(odd) { transform: rotate(-3deg); }
-.banda-parede .lambe-peca:nth-child(even) { transform: rotate(2.4deg); }
-.banda-parede .lambe-aviso:nth-of-type(2) { clip-path: var(--recorte-papel-c); background-color: var(--sepia-foto); }
+/* colocação horizontal variada dentro da banda */
+.banda-parede .lambe-peca:nth-child(1) { left: 9%; }
+.banda-parede .lambe-peca:nth-child(2) { left: 24%; }
+.banda-parede .lambe-peca:nth-child(3) { left: 5%; }
+.banda-parede .lambe-peca:nth-child(4) { left: 28%; }
+.banda-parede .lambe-peca:nth-child(5) { left: 14%; }
+.banda-parede .lambe-peca:nth-child(6) { left: 22%; }
+.banda-parede .lambe-peca:nth-child(7) { left: 7%; }
+.banda-parede .lambe-peca:nth-child(8) { left: 18%; }
+
+/* tons e rasgos alternando nos avisos */
+.banda-parede .lambe-aviso:nth-of-type(2n) {
+  clip-path: var(--recorte-papel-c);
+  background-color: var(--sepia-foto);
+}
+
+.banda-parede .lambe-aviso:nth-of-type(3n) {
+  clip-path: var(--recorte-papel-b);
+  background-color: var(--fita);
+}
 
 .lambe-carimbo {
   display: inline-block;

@@ -70,31 +70,55 @@ function PecaLambe({ peca }) {
 export default function BandasLaterais({ contexto }) {
   const ref = useRef(null)
 
-  // parallax POR PEÇA (feedback João: "tá muito parado"): cada
-  // aviso/selo/gavinha viaja no seu alcance e com seu lag próprios,
-  // preso ao scroll — profundidades diferentes, bandas vivas.
-  // Contexto próprio com revert completo (camada de App).
+  // Motion das bandas (2ª rodada de feedback do João: as peças
+  // "se comprimiam" — agora DISPERSAM): os avisos do lambe fazem
+  // TRAVESSIA completa (entram por baixo, cruzam a banda e somem
+  // pelo topo, em janelas de scroll escalonadas — sempre chega coisa
+  // nova). As gavinhas são flora de fundo e só derivam devagar.
   useEffect(() => {
     if (reduzMotion() || !ref.current) return undefined
     const ctx = gsap.context(() => {
-      const pecas = gsap.utils.toArray('.lambe-peca, .gavinha')
-      pecas.forEach((el, i) => {
-        const alcance = 46 + (i % 5) * 44
-        // padrão do grão (o que nunca falhou): set inicial + to fixo.
-        // Limites FUNCIONAIS são reavaliados em cada refresh natural
-        // (páginas/ResizeObserver) — sem invalidate, sem limbo de
-        // fromTo+refresh no mesmo tick (lição desta rodada).
-        gsap.set(el, { y: alcance })
+      const total = () =>
+        Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
+
+      gsap.utils.toArray('.gavinha').forEach((el, i) => {
+        gsap.set(el, { y: 60 })
         gsap.to(el, {
-          y: -alcance,
+          y: -60,
           ease: 'none',
-          scrollTrigger: {
-            trigger: document.body,
-            start: 0,
-            end: () =>
-              Math.max(1, document.documentElement.scrollHeight - window.innerHeight),
-            scrub: 0.6 + (i % 3) * 0.35,
-          },
+          scrollTrigger: { trigger: document.body, start: 0, end: total, scrub: 1 + i * 0.4 },
+        })
+      })
+      ;['.banda-esq', '.banda-dir'].forEach((ladoSel, ladoIdx) => {
+        const pecas = gsap.utils.toArray(`${ladoSel} .lambe-peca`)
+        const n = Math.max(1, pecas.length)
+        pecas.forEach((el, i) => {
+          const rot = (i % 2 ? 2.6 : -3.2) + ladoIdx * 0.6
+          const inicio = (((i + ladoIdx * 0.5) % n) / n) * 0.88
+          const fim = Math.min(inicio + 0.42, 1.04)
+          gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: document.body,
+                start: () => total() * inicio,
+                end: () => total() * fim,
+                scrub: 0.7 + (i % 3) * 0.3,
+              },
+            })
+            .fromTo(
+              el,
+              { y: () => window.innerHeight + 60, rotation: rot, x: 0 },
+              {
+                y: () => -(el.offsetHeight + window.innerHeight * 0.08),
+                rotation: rot + (ladoIdx ? -2 : 2),
+                x: ladoIdx ? -10 : 10,
+                ease: 'none',
+                duration: 1,
+              },
+              0,
+            )
+            .fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.12, ease: 'none' }, 0)
+            .to(el, { opacity: 0, duration: 0.14, ease: 'none' }, 0.86)
         })
       })
     }, ref)

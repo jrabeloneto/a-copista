@@ -112,6 +112,9 @@ a:hover {
   margin: 0 auto;
   min-height: 100vh;
   background-color: var(--bg-base);
+  /* a superfície de xerox é o padrão de TODA moldura (v2.2 — o
+     João apontou códice/visitas ainda no escuro liso antigo) */
+  background-image: var(--textura-xerox);
   border-left: 1px solid var(--borda-site);
   border-right: 1px solid var(--borda-site);
   padding: 0 28px 48px;

@@ -5,22 +5,20 @@
    as formas são rasgo, mancha tipográfica ou objeto.
    ============================================================ */
 
-/* ---- contextos (largura + textura por família de página) ---- */
-/* v2.1 (feedback João: "bordas pretas, lacuna vazia") — a moldura
-   vira FLUIDA: a superfície texturizada preenche a janela em vez
-   das bandas pretas; em telas muito largas as bandas voltam
-   pequenas E com os recortes nelas. */
-.contexto-cartaz {
+/* ---- contextos (largura por família de página) ---- */
+/* v2.2 — moldura FLUIDA e IGUAL nos dois contextos (feedback João:
+   códice/visitas ainda no "fundo preto antigo"): mesma largura,
+   mesma superfície de xerox (base.css), mesmas regras de banda.
+   O que muda por contexto é o conteúdo (cartaz × livro) e a flora
+   das bandas (lambe × gavinhas). */
+.contexto-cartaz,
+.contexto-livro {
   --largura-contexto: min(1400px, 96vw);
 }
 
-.contexto-cartaz .moldura-site {
-  background-image: var(--textura-xerox);
-}
-
-/* recortes no cartaz só quando há banda real (moldura já saturou) */
+/* recortes só quando há banda real ao lado (moldura já saturou) */
 @media (max-width: 1599px) {
-  .contexto-cartaz .camada-recortes {
+  .camada-recortes {
     display: none;
   }
 }
@@ -122,12 +120,8 @@
 }
 
 /* só existem com banda de verdade ao lado */
-@media (min-width: 1440px) {
-  .contexto-livro .bandas { display: block; }
-}
-
 @media (min-width: 1600px) {
-  .contexto-cartaz .bandas { display: block; }
+  .bandas { display: block; }
 }
 
 /* ---- tipografia-como-layout: o gigante vazado atrás do conteúdo
@@ -146,22 +140,11 @@
   }
 }
 
-.contexto-livro {
-  --largura-contexto: min(1240px, 94vw);
-}
-
 /* o livro em si fica no tamanho de livro — a moldura escura larga
    ao redor vira a mesa sob ele */
 .contexto-livro .livro {
   max-width: 1120px;
   margin-inline: auto;
-}
-
-/* bandas de recortes precisam de espaço real ao lado do livro */
-@media (max-width: 1439px) {
-  .contexto-livro .camada-recortes {
-    display: none;
-  }
 }
 
 /* ---- o livro aberto (contexto leitura) ----

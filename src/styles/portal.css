@@ -191,30 +191,36 @@
 .torto-3 { transform: rotate(-1deg); }
 .torto-4 { transform: rotate(1.1deg); }
 
-/* ---- hero: a capa grande que encolhe NO FLUXO (v2.1) ----
-   Sem sticky e sem espaçador: as letras encolhem enquanto sobem
-   com o scroll, e a régua/manchete entram logo abaixo — o vão
-   morto que o João apontou morreu aqui. */
+/* ---- hero v2.2 (sugestão do João): a primeira tela é SÓ a capa —
+   A COPISTA cobre a viewport inteira como capa de livro, com a dica
+   ancorada no pé; a revista começa limpa na segunda tela. Sem
+   sticky (as letras encolhem no fluxo enquanto a capa sobe) — o vão
+   morto de antes não volta. */
 .hero-capa {
-  min-height: 64svh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px 0 8px;
+  position: relative;
+  padding: 0;
 }
 
 .hero-capa .masthead {
   will-change: transform;
-  transform-origin: center top;
+  transform-origin: center center;
+  padding: 0;
 }
 
 .hero-dica {
   color: var(--gray-warm);
   letter-spacing: 0.18em;
-  /* o masthead escalado TRANSBORDA a caixa de layout (transform não
-     empurra irmãos) — a folga cobre o transbordo da escala 1.5 */
-  margin-top: clamp(64px, 9svh, 100px);
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: 0;
 }
 
 /* ---- letreiro (o marquee da casa) ---- */
@@ -348,9 +354,5 @@
 @media (max-width: 700px) {
   .masthead-nome {
     font-size: 34px;
-  }
-
-  .hero-capa {
-    min-height: 52svh;
   }
 }

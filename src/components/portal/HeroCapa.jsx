@@ -19,18 +19,32 @@ export default function HeroCapa() {
       const capa = ref.current?.querySelector('.masthead')
       if (!capa) return
 
-      // v2.1: sem sticky — as letras encolhem no FLUXO enquanto o
-      // scroll as leva; nada de vão morto depois da dobra
-      const escala = () => (window.innerWidth < 700 ? 1.22 : 1.5)
+      // v2.2: capa em tela cheia — as letras miram ~84% da largura
+      // da janela (medida real do masthead; o refresh pós-fontes
+      // recalcula via invalidateOnRefresh), com teto de escala
+      const escala = () => {
+        const estreito = window.innerWidth < 700
+        const larg = capa.offsetWidth || 500
+        const alvo = estreito ? 0.92 : 0.84
+        return gsap.utils.clamp(1.02, estreito ? 1.4 : 2.2, (window.innerWidth * alvo) / larg)
+      }
 
       gsap
         .timeline({
           scrollTrigger: {
             trigger: ref.current,
             start: 'top top',
-            end: () => '+=' + window.innerHeight * 0.5,
+            end: () => '+=' + window.innerHeight * 0.6,
             scrub: 0.5,
             invalidateOnRefresh: true,
+            // parado em progress 0 o scrub NÃO re-renderiza o valor
+            // invalidado (a escala ficava presa na medida da fonte
+            // fallback) — um tique de progresso força a reaplicação
+            onRefresh: (self) => {
+              if (self.animation) {
+                self.animation.progress(1e-4, true).progress(self.progress, true)
+              }
+            },
           },
         })
         .fromTo(capa, { scale: escala }, { scale: 1, ease: 'none', duration: 1 }, 0)

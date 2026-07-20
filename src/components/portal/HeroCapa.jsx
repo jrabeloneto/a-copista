@@ -1,14 +1,15 @@
 import { useRef } from 'react'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Masthead from './Masthead.jsx'
 import { useGsapPagina } from '../../lib/useGsapPagina.js'
 import { reduzMotion } from '../../lib/motion.js'
 
 /**
- * A chegada da revista: as letras de recorte ocupam a viewport
- * (grandes, centradas) e se dobram no masthead normal conforme o
- * scroll — a capa vira cabeçalho e a revista abre. Sticky + scrub
- * sobre ~48svh extras; transform/opacity apenas.
+ * A chegada da revista (v2.3): a capa é um CARTAZ PRESO — as letras
+ * ocupam a viewport e, no scroll, a folha da revista sobe POR CIMA
+ * (.capa-sobreposta no Home). A capa não vira cabeçalho: ela recua
+ * um pouco e deriva p/ cima enquanto é coberta. Transform/opacity.
  * Reduced-motion: masthead normal, sem palco.
  */
 export default function HeroCapa() {
@@ -32,9 +33,11 @@ export default function HeroCapa() {
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: ref.current,
-            start: 'top top',
-            end: () => '+=' + window.innerHeight * 0.6,
+            // a capa é sticky — medir o próprio hero mentiria; o
+            // gatilho é o scroll absoluto da primeira tela
+            trigger: document.body,
+            start: 0,
+            end: () => window.innerHeight,
             scrub: 0.5,
             invalidateOnRefresh: true,
             // parado em progress 0 o scrub NÃO re-renderiza o valor
@@ -47,8 +50,29 @@ export default function HeroCapa() {
             },
           },
         })
-        .fromTo(capa, { scale: escala }, { scale: 1, ease: 'none', duration: 1 }, 0)
-        .to('.hero-some, .masthead-edicao', { opacity: 0, ease: 'none', duration: 0.5 }, 0.25)
+        .fromTo(
+          capa,
+          { scale: escala, y: 0 },
+          {
+            scale: () => escala() * 0.82,
+            y: () => -window.innerHeight * 0.3,
+            ease: 'none',
+            duration: 1,
+          },
+          0,
+        )
+        .to('.hero-some, .masthead-edicao', { opacity: 0, ease: 'none', duration: 0.13 }, 0.03)
+
+      // coberta pela folha, a capa larga o view-transition-name —
+      // senão um fantasma do A COPISTA voa em navegações fundas
+      ScrollTrigger.create({
+        trigger: document.body,
+        start: () => window.innerHeight * 0.85,
+        end: 'max',
+        onToggle: (self) => {
+          capa.style.viewTransitionName = self.isActive ? 'none' : ''
+        },
+      })
     },
     [],
     ref,

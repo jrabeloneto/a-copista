@@ -191,18 +191,21 @@
 .torto-3 { transform: rotate(-1deg); }
 .torto-4 { transform: rotate(1.1deg); }
 
-/* ---- hero v2.2 (sugestão do João): a primeira tela é SÓ a capa —
-   A COPISTA cobre a viewport inteira como capa de livro, com a dica
-   ancorada no pé; a revista começa limpa na segunda tela. Sem
-   sticky (as letras encolhem no fluxo enquanto a capa sobe) — o vão
-   morto de antes não volta. */
+/* ---- hero v2.3: capa-cartaz PRESA + folha que sobe por cima ----
+   A primeira tela é só a capa (100svh); ao rolar, a capa NÃO desce
+   com a página — ela fica presa (sticky) como cartaz de fundo e a
+   revista (.capa-sobreposta) desliza POR CIMA dela, com rasgo no
+   topo. Mata o vão que o João apontou: a metade vazia da capa nunca
+   desfila pela tela, ela é coberta. */
 .hero-capa {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
   padding: 0;
 }
 
@@ -221,6 +224,33 @@
   right: 0;
   text-align: center;
   margin: 0;
+}
+
+/* a folha da revista que cobre o cartaz — opaca (mesma superfície
+   da moldura) e com a borda de cima rasgada */
+.capa-sobreposta {
+  position: relative;
+  z-index: 2;
+  background-color: var(--bg-base);
+  background-image: var(--textura-xerox);
+  margin: 0 -28px;
+  padding: 8px 28px 0;
+}
+
+.capa-sobreposta::before {
+  content: '';
+  position: absolute;
+  top: -13px;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background-color: var(--bg-base);
+  background-image: var(--textura-xerox);
+  clip-path: polygon(
+    0% 100%, 0% 55%, 5% 90%, 11% 42%, 18% 78%, 25% 50%, 31% 88%,
+    38% 44%, 46% 76%, 53% 52%, 60% 90%, 67% 46%, 74% 80%, 81% 54%,
+    88% 86%, 94% 48%, 100% 70%, 100% 100%
+  );
 }
 
 /* ---- letreiro (o marquee da casa) ---- */

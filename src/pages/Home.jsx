@@ -33,6 +33,7 @@ export default function Home() {
   return (
     <>
       <HeroCapa />
+      <div className="capa-sobreposta">
       <ReguaEtiquetas />
       <main className="home">
         <Letreiro itens={NOVIDADES} />
@@ -173,6 +174,7 @@ export default function Home() {
           <Link to="/especime">prova do impressor</Link>
         </p>
       </main>
+      </div>
     </>
   )
 }

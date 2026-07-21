@@ -7,14 +7,15 @@ import Botao88x31 from '../ui2003/Botao88x31.jsx'
 
 /**
  * As paredes das bandas laterais (pedido do João: preencher as
- * "bordas pretas" com coisas do tema, por contexto):
- * - livro  → MARGENS ILUMINADAS: gavinhas de manuscrito com flores
- *   de rubrica e bagas douradas trepando pelas laterais;
- * - cartaz → LAMBE-LAMBE: avisos, selos e carimbos da casa colados
- *   como poste de esquina.
- * Camada fixed decorativa (aria-hidden, sem pointer), com parallax
- * MUITO leve; só existe quando há banda de verdade (media queries).
- * Os recortes femininos viajam POR CIMA dela.
+ * "bordas pretas" — e que NUNCA fiquem vazias ao rolar):
+ * - a GAVINHA de manuscrito (flores de rubrica, bagas douradas) é a
+ *   espinha CONTÍNUA em TODA página — a corda que sempre preenche a
+ *   lateral; deriva devagar;
+ * - no cartaz, o LAMBE-LAMBE (avisos, selos, carimbos) viaja POR
+ *   CIMA da gavinha, entrando por baixo e sumindo pelo topo.
+ * Camada fixed decorativa (aria-hidden, sem pointer); só aparece
+ * quando há banda de verdade (media ≥1600). Os recortes femininos
+ * viajam por cima de tudo.
  */
 function Gavinha({ espelho = false }) {
   return (
@@ -125,35 +126,23 @@ export default function BandasLaterais({ contexto }) {
     return () => ctx.revert()
   }, [contexto])
 
-  if (contexto === 'contexto-livro') {
-    return (
-      <div ref={ref} className="bandas bandas-livro" aria-hidden="true">
-        <div className="banda-parede banda-esq">
-          <Gavinha />
-        </div>
-        <div className="banda-parede banda-dir">
-          <Gavinha espelho />
-        </div>
-      </div>
-    )
-  }
+  if (contexto !== 'contexto-cartaz' && contexto !== 'contexto-livro') return null
+  const ehCartaz = contexto === 'contexto-cartaz'
 
-  if (contexto === 'contexto-cartaz') {
-    return (
-      <div ref={ref} className="bandas bandas-cartaz" aria-hidden="true">
-        <div className="banda-parede banda-esq">
-          {LAMBE_ESQ.map((peca, i) => (
-            <PecaLambe key={i} peca={peca} />
-          ))}
-        </div>
-        <div className="banda-parede banda-dir">
-          {LAMBE_DIR.map((peca, i) => (
-            <PecaLambe key={i} peca={peca} />
-          ))}
-        </div>
+  return (
+    <div
+      ref={ref}
+      className={`bandas ${ehCartaz ? 'bandas-cartaz' : 'bandas-livro'}`}
+      aria-hidden="true"
+    >
+      <div className="banda-parede banda-esq">
+        <Gavinha />
+        {ehCartaz && LAMBE_ESQ.map((peca, i) => <PecaLambe key={i} peca={peca} />)}
       </div>
-    )
-  }
-
-  return null
+      <div className="banda-parede banda-dir">
+        <Gavinha espelho />
+        {ehCartaz && LAMBE_DIR.map((peca, i) => <PecaLambe key={i} peca={peca} />)}
+      </div>
+    </div>
+  )
 }

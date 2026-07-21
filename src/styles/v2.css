@@ -45,16 +45,14 @@
   top: 0;
   bottom: 0;
   width: calc((100vw - var(--largura-contexto)) / 2);
+  /* a gavinha (espinha contínua) fica centrada e em fluxo; no cartaz
+     as peças de lambe são absolutas e passam POR CIMA dela */
+  display: flex;
+  justify-content: center;
 }
 
 .banda-esq { left: 0; }
 .banda-dir { right: 0; }
-
-/* livro: as margens iluminadas */
-.bandas-livro .banda-parede {
-  display: flex;
-  justify-content: center;
-}
 
 .gavinha {
   height: 108%;
@@ -86,15 +84,16 @@
   color: var(--ink);
 }
 
-/* colocação horizontal variada dentro da banda */
-.banda-parede .lambe-peca:nth-child(1) { left: 9%; }
-.banda-parede .lambe-peca:nth-child(2) { left: 24%; }
-.banda-parede .lambe-peca:nth-child(3) { left: 5%; }
-.banda-parede .lambe-peca:nth-child(4) { left: 28%; }
-.banda-parede .lambe-peca:nth-child(5) { left: 14%; }
-.banda-parede .lambe-peca:nth-child(6) { left: 22%; }
-.banda-parede .lambe-peca:nth-child(7) { left: 7%; }
-.banda-parede .lambe-peca:nth-child(8) { left: 18%; }
+/* colocação horizontal variada dentro da banda — por TIPO, pois a
+   gavinha (svg) é o 1º filho e nth-child apontaria para ela */
+.banda-parede .lambe-peca:nth-of-type(1) { left: 9%; }
+.banda-parede .lambe-peca:nth-of-type(2) { left: 24%; }
+.banda-parede .lambe-peca:nth-of-type(3) { left: 5%; }
+.banda-parede .lambe-peca:nth-of-type(4) { left: 28%; }
+.banda-parede .lambe-peca:nth-of-type(5) { left: 14%; }
+.banda-parede .lambe-peca:nth-of-type(6) { left: 22%; }
+.banda-parede .lambe-peca:nth-of-type(7) { left: 7%; }
+.banda-parede .lambe-peca:nth-of-type(8) { left: 18%; }
 
 /* tons e rasgos alternando nos avisos */
 .banda-parede .lambe-aviso:nth-of-type(2n) {

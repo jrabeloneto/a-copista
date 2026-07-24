@@ -141,33 +141,117 @@ function MotivoSereia() {
   )
 }
 
+/* ---- esqueleto → contorno de serpente ----------------------------
+   O traçado anterior punha duas curvas SOLTAS na esperança de que
+   saíssem paralelas — não saíam, e o bicho engrossava e afinava sem
+   razão. Aqui dá-se o espinho (x, y, meia-espessura) e o contorno é
+   gerado: as duas bordas ficam sempre à mesma distância, e manchas e
+   escamas nascem do mesmo espinho, portanto nunca caem fora do corpo. */
+function pontoCatmull(p0, p1, p2, p3, t) {
+  const t2 = t * t
+  const t3 = t2 * t
+  const eixo = (a, b, c, d) =>
+    0.5 * (2 * b + (-a + c) * t + (2 * a - 5 * b + 4 * c - d) * t2 + (-a + 3 * b - 3 * c + d) * t3)
+  return {
+    x: eixo(p0.x, p1.x, p2.x, p3.x),
+    y: eixo(p0.y, p1.y, p2.y, p3.y),
+    h: p1.h + (p2.h - p1.h) * t,
+  }
+}
+
+/** amostra o espinho e devolve tangente + normal em cada ponto */
+function amostrarEspinho(ossos, porTrecho = 7) {
+  const cru = []
+  for (let i = 0; i < ossos.length - 1; i += 1) {
+    const p0 = ossos[Math.max(0, i - 1)]
+    const p3 = ossos[Math.min(ossos.length - 1, i + 2)]
+    for (let s = 0; s < porTrecho; s += 1) {
+      cru.push(pontoCatmull(p0, ossos[i], ossos[i + 1], p3, s / porTrecho))
+    }
+  }
+  cru.push({ ...ossos[ossos.length - 1] })
+  return cru.map((p, i) => {
+    const a = cru[Math.max(0, i - 1)]
+    const b = cru[Math.min(cru.length - 1, i + 1)]
+    const dx = b.x - a.x
+    const dy = b.y - a.y
+    const m = Math.hypot(dx, dy) || 1
+    return { ...p, tx: dx / m, ty: dy / m, nx: -dy / m, ny: dx / m }
+  })
+}
+
+const nu = (v) => Math.round(v * 10) / 10
+const daBorda = (p, lado) => `${nu(p.x + p.nx * p.h * lado)} ${nu(p.y + p.ny * p.h * lado)}`
+
+/* a jibóia enrodilhada: bicho GROSSO (é constritora, não corda) num
+   rolo só, cauda afinando até encostar no pescoço. O rolo é aberto
+   de propósito — corpo que se cruza precisaria esconder o que passa
+   por baixo, e contorno sem preenchimento não sabe fazer isso. */
+const ESPINHO_JIBOIA = [
+  // a cabeça é lanceolada: alarga ao LONGO de uns 20px até o ponto
+  // mais largo e só então estreita no pescoço. (Saltar de 2.5 para 11
+  // em doze pixels dava uma bola espetada num palito.)
+  { x: 30, y: 26, h: 3 }, // focinho
+  { x: 38, y: 33, h: 8 },
+  { x: 46, y: 41, h: 10.5 }, // o largo da cabeça, atrás dos olhos
+  { x: 53, y: 50, h: 8.5 },
+  { x: 58, y: 64, h: 7 }, // pescoço pinça — é o que faz cara de cobra
+  { x: 64, y: 82, h: 11 },
+  { x: 74, y: 103, h: 13 },
+  { x: 94, y: 124, h: 13.5 }, // o bojo do rolo
+  { x: 130, y: 131, h: 13 },
+  { x: 160, y: 116, h: 12 },
+  { x: 170, y: 92, h: 11 },
+  { x: 158, y: 70, h: 10 },
+  { x: 132, y: 60, h: 8.5 },
+  { x: 106, y: 62, h: 6.5 },
+  { x: 92, y: 74, h: 5 },
+  { x: 92, y: 88, h: 3.2 },
+  { x: 102, y: 97, h: 1.2 }, // a ponta da cauda descansa no vazio do rolo
+]
+
 function MotivoJiboia() {
+  const pts = amostrarEspinho(ESPINHO_JIBOIA)
+  const ultimo = pts.length - 1
+  const contorno = `M${pts.map((p) => daBorda(p, 1)).join(' L')} L${pts
+    .map((p) => daBorda(p, -1))
+    .reverse()
+    .join(' L')} Z`
+
+  // as selas do dorso: atravessam o lombo quase de borda a borda,
+  // apertadas e alternando de tamanho, como manchas de jibóia
+  const manchas = []
+  for (let k = 0; k < 15; k += 1) {
+    const p = pts[Math.round((0.2 + (k / 14) * 0.72) * ultimo)]
+    const c = p.h * (k % 2 ? 0.66 : 0.86)
+    const l = p.h * 0.44
+    // sela de seis pontas atravessando o lombo — losango puro saía
+    // mecânico demais, isto tem cintura como mancha de jibóia
+    const q = (dt, dn) => `${nu(p.x + p.tx * dt + p.nx * dn)} ${nu(p.y + p.ty * dt + p.ny * dn)}`
+    manchas.push(
+      `M${q(l, 0)} L${q(l * 0.35, c)} L${q(-l * 0.35, c)} L${q(-l, 0)} ` +
+        `L${q(-l * 0.35, -c)} L${q(l * 0.35, -c)} Z`,
+    )
+  }
+
+  // sombra hachurada na barriga de baixo, ao longo do rolo
+  const sombra = []
+  for (let k = 0; k < 34; k += 1) {
+    const p = pts[Math.round((0.26 + (k / 33) * 0.4) * ultimo)]
+    sombra.push(`M${daBorda(p, 0.52)} L${daBorda(p, 0.93)}`)
+  }
+
   return (
     <g fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round">
-      {/* o corpo enrodilhado: duas linhas paralelas = a grossura do bicho */}
-      <path d="M176 132 C140 142 86 134 68 110 C52 88 66 62 94 58 C118 54 136 70 132 88 C129 103 112 110 100 101" strokeWidth="1.5" />
-      <path d="M176 120 C142 129 94 122 80 104 C68 88 78 70 98 68 C116 66 126 78 122 90 C119 99 108 102 102 96" strokeWidth="1.15" opacity="0.92" />
-      {/* pescoço levantado & cabeça */}
-      <path d="M100 101 C92 96 86 88 88 78 C90 69 100 65 108 70" strokeWidth="1.3" />
-      <path d="M88 78 C82 72 76 68 68 66 C74 62 84 64 90 70" strokeWidth="1.2" />
-      <circle cx="83" cy="70" r="1.7" fill="currentColor" stroke="none" />
-      {/* língua bífida */}
-      <path d="M68 66 L56 62 M56 62 L48 58 M56 62 L49 65" strokeWidth="0.8" />
-      {/* as manchas de jibóia, em losango pelo dorso */}
-      <path d="M112 62 L118 66 L112 70 L106 66 Z" strokeWidth="0.7" />
-      <path d="M136 76 L142 81 L136 86 L130 81 Z" strokeWidth="0.7" />
-      <path d="M150 126 L156 130 L150 134 L144 130 Z" strokeWidth="0.7" />
-      <path d="M118 128 L124 132 L118 136 L112 132 Z" strokeWidth="0.7" />
-      <path d="M84 118 L90 122 L84 126 L78 122 Z" strokeWidth="0.7" />
-      <path d="M62 96 L68 100 L62 104 L56 100 Z" strokeWidth="0.7" />
-      {/* cauda afinando */}
-      <path d="M176 132 C186 133 192 130 196 125" strokeWidth="1.1" />
-      <path d="M176 120 C184 121 189 119 193 116" strokeWidth="0.9" />
-      {/* galho & chão de igapó */}
-      <path d="M34 138 C62 132 100 136 128 142 C148 146 170 147 190 144" strokeWidth="0.85" opacity="0.8" />
-      <g stroke="currentColor">
-        <Hachura x={96} y={104} largura={70} altura={14} passo={3.4} inclinacao={0.4} />
-      </g>
+      <path d={contorno} strokeWidth="1.5" strokeLinejoin="round" />
+      <path d={manchas.join(' ')} strokeWidth="0.75" fill="currentColor" fillOpacity="0.22" />
+      <path d={sombra.join(' ')} strokeWidth="0.5" opacity="0.6" />
+      {/* boca, olho & língua bífida */}
+      <path d="M30 28 C36 34 43 41 50 49" strokeWidth="0.75" opacity="0.9" />
+      <circle cx="49" cy="38" r="2" fill="currentColor" stroke="none" />
+      <path d="M29 24 L19 17 M19 17 L12 13 M19 17 L14 21" strokeWidth="0.8" />
+      {/* chão de igapó */}
+      <path d="M44 147 C78 144 118 149 154 147 C166 146 176 146 184 147" strokeWidth="0.8" opacity="0.7" />
     </g>
   )
 }

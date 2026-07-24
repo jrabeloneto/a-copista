@@ -65,13 +65,31 @@
 .livro-aba:visited { color: var(--ink); }
 .livro-aba:hover { color: var(--rubric-dark); }
 
+/* rubrica + algarismo do volume, como etiqueta de fichário */
+.livro-aba {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.livro-aba-vol {
+  font-family: var(--fonte-fell-sc);
+  font-variant-caps: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--red-rubric);
+}
+
 .livro-aba {
   transform: rotate(var(--rot, 0deg));
 }
 
-.livro-aba-1 { top: 16%; --rot: -1.5deg; background-color: var(--bg-paper); }
-.livro-aba-2 { top: 30%; --rot: 1.2deg; }
-.livro-aba-3 { top: 44%; --rot: -1deg; background-color: var(--sepia-foto); }
+.livro-aba-1 { top: 14%; --rot: -1.5deg; background-color: var(--bg-paper); }
+.livro-aba-2 { top: 25%; --rot: 1.2deg; }
+.livro-aba-3 { top: 36%; --rot: -1deg; background-color: var(--sepia-foto); }
+/* vol. II entrou: mais duas abas no corte */
+.livro-aba-4 { top: 47%; --rot: 1.6deg; background-color: var(--bg-paper); }
+.livro-aba-5 { top: 58%; --rot: -1.8deg; background-color: var(--sepia-foto); }
 
 @media (prefers-reduced-motion: no-preference) {
   .livro-aba {
@@ -210,6 +228,39 @@
   border-bottom: 1px solid var(--bg-card);
   padding-bottom: 4px;
   margin-bottom: 14px;
+}
+
+/* ---- grupos de volume dentro do índice (vol. I, vol. II…) ----
+   Cabeça de volume em versais com fio curto à direita: divisória de
+   livro, não cabeçalho de UI. */
+.indice-grupo + .indice-grupo {
+  margin-top: var(--espaco-4);
+}
+
+.indice-vol-rotulo {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.indice-vol-numero {
+  font-family: var(--fonte-fell-sc);
+  font-variant-caps: small-caps;
+  letter-spacing: 0.12em;
+  color: var(--red-rubric);
+  white-space: nowrap;
+}
+
+.indice-vol-tema {
+  color: var(--ink-faded);
+  font-size: var(--texto-ui-min);
+  /* o fio corre até o corte da página, como num sumário impresso */
+  flex: 1;
+  border-bottom: 1px dotted rgba(107, 85, 68, 0.45);
+  padding-bottom: 3px;
 }
 
 .indice-lista {

@@ -16,6 +16,7 @@
 export const materias = [
   {
     slug: 'leila-diniz',
+    volume: 1,
     titulo: 'Da vida & obra de Leila Diniz',
     subtitulo: 'atriz, santa profana de Ipanema, mártir dos asteriscos',
     incipit: 'Aqui começa a matéria da estrela que falou',
@@ -111,6 +112,7 @@ export const materias = [
   },
   {
     slug: 'boutique-biba',
+    volume: 1,
     titulo: 'Da boutique Biba & sua penumbra dourada',
     subtitulo: 'crônica da catedral que Londres ergueu ao veludo — MCMLXIV–MCMLXXV',
     incipit: 'Aqui começa a matéria da loja escura',
@@ -200,6 +202,7 @@ export const materias = [
   },
   {
     slug: 'menestreis-eletricos',
+    volume: 1,
     titulo: 'Dos menestréis elétricos',
     subtitulo: 'de como a década de setenta ressuscitou a Idade Média com amplificadores',
     incipit: 'Aqui começa a matéria dos alaúdes ligados na tomada',
@@ -286,6 +289,211 @@ export const materias = [
               arte: 'flor',
               texto: 'conferir se o rei patinava ele mesmo (não patinava)',
             },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'cinemas-de-rua-manaus',
+    volume: 2,
+    titulo: 'Dos colossais cinemas de rua de Manaus',
+    subtitulo: 'crônica das casas de sombra que a cidade ergueu, encheu & entregou ao comércio',
+    incipit: 'Aqui começa a matéria das casas de sombra',
+    categoria: 'cinema',
+    arte: 'sereia',
+    chamada:
+      'Havia sereias de gesso guardando a porta e mil e trezentas cadeiras lá dentro: a cidade que via cinema na rua, antes de vê-lo no shopping.',
+    mesAno: 'julho de MMXXVI',
+    folioBase: 3,
+    postadoEm: 'quarta-feira, 22 de julho',
+    hora: '22h30',
+    comentarios: 5,
+    colofao: [
+      'Aqui se encerra a presente matéria, composta no ano de MMXXVI a partir de recortes, almanaques da cidade & memória de família;',
+      'as datas vêm de quem pesquisou antes,',
+      'os erros são da copista.',
+    ],
+    folhas: [
+      {
+        variante: 1,
+        secoes: [
+          {
+            tipo: 'paragrafo',
+            capitular: 'H',
+            versais: 'ouve nesta cidade um tempo',
+            texto:
+              ' em que ver um filme era sair de casa e descer a rua. Não havia estacionamento, não havia praça de alimentação, não havia a escolha entre oito salas idênticas: havia a calçada, o cartaz pintado à mão, a fila que dobrava a esquina e, no fim dela, uma porta grande demais para o prédio que a sustentava. Recolhe-se aqui, de memória alheia e de papel amarelado, a lembrança dessas casas — porque foi por essas escadas que subiram a mãe e a avó de quem escreve, e porque cidade que esquece onde se sentou acaba esquecendo o que viu.',
+          },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'De todas, a maior foi o Polytheama, que teve três vidas e não se contentou com nenhuma. Nasceu em 1899 como casa de diversões, virou teatro em 1906 e só em 1912 assumiu o ofício que lhe deu fama, quando a empresa de J. Fontenelle & Cia — dos irmãos Jonas e Raimundo — o abriu como cinema para mil e trezentas pessoas. Mil e trezentas: escreva-se o número por extenso, porque hoje nenhuma sala da cidade sonha com metade disso.',
+            marginalia: {
+              arte: 'caracol',
+              texto: 'mil e trezentas cadeiras — e ainda ficava gente em pé no corredor',
+            },
+          },
+        ],
+      },
+      {
+        variante: 2,
+        secoes: [
+          { tipo: 'rubrica', texto: 'Das sereias que guardavam a porta' },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'A fachada é o que este códice mais estima, porque foi feita segundo a lógica dos manuscritos: nada ali era só enfeite. Havia sereias, havia harpas ornadas de liras, havia toda uma zoologia de gesso debruçada sobre quem entrava. O pesquisador Ed Lincon Barros registra que aquelas figuras não estavam ali por vaidade de arquiteto — teriam sido postas para espantar as visagens que habitavam o lugar. Ou seja: a mesma função que a serpente e o grifo cumprem na margem de um fólio, que é guardar a página de quem não foi convidado.',
+            marginalia: {
+              arte: 'flor',
+              texto: 'visagem: o que assombra o lugar e não pede licença',
+            },
+          },
+          {
+            tipo: 'gravura',
+            arte: 'sereia',
+            legenda:
+              'Sereia de duas caudas com sua lira, à maneira das que guardavam a porta do Polytheama. Gravura da oficina do CÓDICE.',
+          },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'O primeiro filme que aquelas sereias viram passar foi Jerusalém Libertada, que Enrico Guazzoni rodara em 1911 sobre o poema de Tasso — cruzados, cercos e cavalaria, projetados no meio da floresta. A copista anota a coincidência sem forçá-la: a primeira sombra que a cidade viu em tela grande foi uma sombra medieval.',
+          },
+        ],
+      },
+      {
+        variante: 3,
+        secoes: [
+          { tipo: 'rubrica', texto: 'Da queda das casas' },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'Em 1959 o Polytheama foi reformado e perdeu cem cadeiras no negócio, ficando em mil e duzentas. Reabriu com Guerra e Paz, de 1956, e para a cerimônia vieram representantes da Paramount e da Metro Goldwyn-Mayer — o que, numa cidade que se alcançava por rio ou por ar, era acontecimento de primeira grandeza.',
+          },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'O fim não veio por incêndio nem por decreto, que seriam mortes dignas: veio pelo aluguel. Em 1973 a sala virou loja de eletrodomésticos; depois, agência bancária; hoje é loja de departamentos. Quem passa na porta não vê nada — e é esse o ponto. As sereias guardaram o prédio contra as visagens, mas ninguém as encarregou de guardá-lo contra o comércio.',
+            marginalia: {
+              arte: 'caracol',
+              texto: 'de casa de sombra a vitrine iluminada: a ironia é do século, não da copista',
+            },
+          },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'Os outros foram caindo na mesma ordem. O Cine Chaplin abriu a 21 de abril de 1980, na avenida Joaquim Nabuco, com trezentos lugares, e resistiu até novembro de 2002, quando as salas dos shoppings acabaram com a conta. O Cine-Theatro Guarany não teve nem isso: foi demolido em 1983. Somem-se os que já haviam ido antes — o Éden, o Ypiranga — e fecha-se o inventário: uma cidade inteira de telas apagadas entre a Eduardo Ribeiro e a Sete de Setembro.',
+          },
+          {
+            tipo: 'citacao',
+            texto:
+              '«Era um programa baré ir ao cinema. Hoje em dia as pessoas não dão mais valor a isso.» — assim resume o historiador Geraldo dos Anjos, em depoimento que a copista copia da fonte onde o encontrou, sem retocar.',
+          },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'Não se escreve isto por saudosismo, que é vício barato. Escreve-se porque ainda há quem projete: o Casarão de Ideias segue acendendo o projetor na cidade que desligou os seus, e enquanto houver uma sala escura e uma cadeira ocupada a conta não está fechada. Das sereias, o que sobrou está em fotografia — e este fólio é uma delas.',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'cla-das-jiboias',
+    volume: 2,
+    titulo: 'Do clã das jibóias & da arte suave no Norte',
+    subtitulo: 'de como um mestre desembarcou de um paquete & deixou uma linhagem inteira atrás de si',
+    incipit: 'Aqui começa a matéria dos que lutam sem pressa',
+    categoria: 'luta',
+    arte: 'jiboia',
+    chamada:
+      'Um lutador japonês desceu do paquete Pará em 1915, deu demonstração na cidade e seguiu viagem — a linhagem que deixou dá volta ao mundo até hoje.',
+    mesAno: 'julho de MMXXVI',
+    folioBase: 14,
+    postadoEm: 'quarta-feira, 22 de julho',
+    hora: '23h58',
+    comentarios: 2,
+    colofao: [
+      'Aqui se encerra a presente matéria, composta no ano de MMXXVI a partir de notícias de embarque, ficha de filme & do que contam os que treinam;',
+      'a linhagem é dos lutadores,',
+      'os erros são da copista.',
+    ],
+    folhas: [
+      {
+        variante: 2,
+        secoes: [
+          {
+            tipo: 'paragrafo',
+            capitular: 'E',
+            versais: 'm dezembro de 1915,',
+            texto:
+              ' a cidade recebeu no cais uma troupe que não vinha cantar nem representar. Vinha lutar — e lutar de um modo que ninguém ali tinha visto: sem murro fechado, sem força bruta, derrubando homem maior com um jeito de torcer o corpo que os jornais da época não sabiam nomear e chamavam, à falta de melhor, de jiu-jitsu.',
+          },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'O anúncio saiu com a secura das notas de embarque: «Chega hoje, a bordo do paquete Pará, a troupe de lutadores japoneses de jiu-jitsu…» — e deixa-se a frase truncada como foi encontrada, porque o resto da notícia se perdeu e porque assim mesmo basta. A 18 de dezembro daquele ano, Mitsuyo Maeda apresentou-se em Manaus. Antes houvera Belém, e no Theatro Politheama — nome que este volume já encontrou noutra página, e por outro motivo.',
+            marginalia: {
+              arte: 'caracol',
+              texto: 'o mesmo nome do cinema, noutro estado: Politheamas houve muitos',
+            },
+          },
+        ],
+      },
+      {
+        variante: 1,
+        secoes: [
+          { tipo: 'rubrica', texto: 'Do mestre que veio do mar' },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'De Mitsuyo Maeda dirão os registros que chegou ao Brasil por volta de 1914, desembarcando em Porto Alegre ou em Santos conforme a fonte que se consulte, e que a 24 de setembro daquele ano já havia demonstração sua anotada em jornal. Vinha da escola de Jigoro Kano, que arrumara as lutas antigas do seu país numa disciplina só; e vinha fazendo o que os mestres faziam então — rodando o mundo, aceitando desafio e provando a arte no corpo dos incrédulos.',
+          },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'No seu dojo formou-se a amizade que mudaria a história do esporte: Gastão Gracie aproximou-se do mestre, e o mestre aceitou ensinar ao filho dele, Carlos, o jujutsu que aprendera com Kano. Do que aquele menino fez com a lição saiu tudo o que veio depois — o Gracie Jiu-Jitsu, o jiu-jitsu brasileiro, a arte que hoje se pratica em tatames de todos os continentes e que, na origem, passou por um cais do Norte.',
+            marginalia: {
+              arte: 'flor',
+              texto: 'jujutsu, judô, jiu-jitsu: a mesma raiz, grafias de cada porto',
+            },
+          },
+          {
+            tipo: 'gravura',
+            arte: 'jiboia',
+            legenda:
+              'A jibóia enrodilhada, que aperta sem pressa e não solta. Gravura da oficina do CÓDICE.',
+          },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'Hélio Gracie dedicou à arte a vida inteira e passou adiante o posto a Carlson, de quem a Associação Laranjeiras Brazilian Jiu-Jitsu diz ter sido o grande marco do jiu-jitsu no Brasil e no mundo, por haver criado uma cultura nova de luta. A copista não arbitra disputa de família nem de linhagem: anota o que as casas dizem de si mesmas, e segue.',
+          },
+        ],
+      },
+      {
+        variante: 3,
+        secoes: [
+          { tipo: 'rubrica', texto: 'Do clã & da floresta' },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'Esta matéria não teria fólio se não houvesse quem filmasse. O Clã das Jibóias, documentário dirigido e produzido por Heraldo Daniel, com roteiro seu e de Gustavo Sonraz, estreou em fevereiro de 2022 no Teatro Amazonas e faz o resgate que faltava. Divide-se em três partes: o começo da arte marcial na Amazônia, os atletas daqui que alcançaram projeção mundial e a força local do esporte no Amazonas.',
+          },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'A ficha é de oficina, e este códice, que se orgulha da sua, copia-a inteira: montagem de Gustavo Sonraz, fotografia de Erian Souza, pesquisa e produção de Almerio Augusto com Rildo Heros, som de Caio de Biase, animação de Ricardo Juliani. O que o filme faz de mais raro, porém, não está na ficha — é lembrar que esporte nenhum se explica só pelo tatame. Entram na conta a medicina das florestas e a comida da região, porque corpo que luta é corpo que alguém curou e alimentou primeiro.',
+            marginalia: {
+              arte: 'caracol',
+              texto: 'Heraldo Daniel dirigiu também Pescadores da Amazônia, de 2021',
+            },
+          },
+          {
+            tipo: 'paragrafo',
+            texto:
+              'Buscam-se, ao tempo em que se copia este fólio, legendas em inglês e em japonês, para que a obra alcance as plataformas e volte — fechando o círculo — ao país de onde veio o mestre que desceu do paquete. A copista acha justo: história de linhagem deve ser contada na língua dos dois lados.',
           },
         ],
       },

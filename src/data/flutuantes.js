@@ -13,6 +13,8 @@ const ARTE_DA_MATERIA = {
   'leila-diniz': { arte: 'sol', letra: 'L' },
   'boutique-biba': { arte: 'pavao', letra: 'B' },
   'menestreis-eletricos': { arte: 'alaude', letra: 'M' },
+  'cinemas-de-rua-manaus': { arte: 'sereia', letra: 'C' },
+  'cla-das-jiboias': { arte: 'jiboia', letra: 'J' },
 }
 
 export const FLUTUANTES_CAPA = [

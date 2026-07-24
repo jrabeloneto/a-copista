@@ -119,10 +119,11 @@ export default function Home() {
               <Link to="/codice" viewTransition>CÓDICE</Link>
             </h3>
             <p className="pedaco-texto">
-              o fanzine — 3 matérias, 9 fólios, marginalia da própria mão.
+              o fanzine — dois volumes, {materias.length} matérias, marginalia da própria mão.
+              o vol. II desceu o rio: cinemas de rua &amp; a arte suave no Norte.
             </p>
             <Carimbo rotacao={-5} className="cartaz-codice-carimbo">
-              vol. I completo
+              vol. II no ar
             </Carimbo>
           </PapelRasgado>
 

@@ -24,8 +24,25 @@ const LETRAS_CODICE = [
   { letra: 'E', classes: 'lt-rubrica lt-cor-paper lt-gotica', rot: 3, dy: -1, tam: 1, fita: 4 },
 ]
 
+const ROMANOS = ['', 'I', 'II', 'III', 'IV', 'V']
+
+/* cada volume tem seu assunto; a casa é que não muda */
+const TEMA_DO_VOLUME = {
+  1: 'estrelas, boutiques & menestréis',
+  2: 'o Norte — casas de sombra & a arte suave',
+}
+
+/** os volumes na ordem, derivados das próprias matérias */
+function agruparVolumes() {
+  const numeros = [...new Set(materias.map((m) => m.volume ?? 1))].sort((a, b) => a - b)
+  return numeros.map((numero) => ({
+    numero,
+    itens: materias.filter((m) => (m.volume ?? 1) === numero),
+  }))
+}
+
 /**
- * Índice do volume — sumário tipográfico de livro com hover-reveal:
+ * Índice dos volumes — sumário tipográfico de livro com hover-reveal:
  * a gravura da matéria segue o cursor num chip de pergaminho
  * (transform/opacity, com lag). Touch e reduced-motion: só a lista.
  */
@@ -66,25 +83,35 @@ function IndiceVolume() {
   return (
     <section className="indice-volume" aria-labelledby="indice-titulo">
       <h2 id="indice-titulo" className="rubrica indice-cabecalho">
-        Índice do volume
+        Índice dos volumes
       </h2>
-      <ol className="indice-lista" onMouseMove={aoMover} onMouseLeave={() => setArte(null)}>
-        {materias.map((materia) => (
-          <li key={materia.slug}>
-            <Link
-              to={`/codice/materia/${materia.slug}`}
-              viewTransition
-              className="indice-linha"
-              onMouseEnter={aoEntrar(materia.arte)}
-            >
-              <span className="indice-nome">{materia.titulo}</span>
-              <span className="indice-fio" aria-hidden="true" />
-              <span className="indice-folio ui-2003">fol. {materia.folioBase}</span>
-            </Link>
-            <p className="indice-chamada">{materia.chamada}</p>
-          </li>
+      <div onMouseMove={aoMover} onMouseLeave={() => setArte(null)}>
+        {agruparVolumes().map(({ numero, itens }) => (
+          <section key={numero} className="indice-grupo">
+            <h3 className="indice-vol-rotulo">
+              <span className="indice-vol-numero">Vol. {ROMANOS[numero]}</span>
+              <span className="indice-vol-tema ui-2003">{TEMA_DO_VOLUME[numero]}</span>
+            </h3>
+            <ol className="indice-lista">
+              {itens.map((materia) => (
+                <li key={materia.slug}>
+                  <Link
+                    to={`/codice/materia/${materia.slug}`}
+                    viewTransition
+                    className="indice-linha"
+                    onMouseEnter={aoEntrar(materia.arte)}
+                  >
+                    <span className="indice-nome">{materia.titulo}</span>
+                    <span className="indice-fio" aria-hidden="true" />
+                    <span className="indice-folio ui-2003">fol. {materia.folioBase}</span>
+                  </Link>
+                  <p className="indice-chamada">{materia.chamada}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
         ))}
-      </ol>
+      </div>
       {!semReveal && (
         <div
           ref={revealRef}
@@ -136,7 +163,7 @@ export default function CodiceIndex() {
       <CamadaFlutuante itens={FLUTUANTES_CAPA} />
 
       <TituloGigante vazado className="tipo-fundo codice-fundo" aria-hidden="true">
-        VOL·I
+        VOL·II
       </TituloGigante>
 
       <div className="livro livro-codice">
@@ -149,7 +176,15 @@ export default function CodiceIndex() {
               viewTransition
               className={`livro-aba livro-aba-${i + 1}`}
             >
-              {materia.categoria}
+              {/* a rubrica repete entre volumes (há dois cinemas):
+                  o algarismo do volume é o que desempata a aba */}
+              <span className="livro-aba-rubrica">{materia.categoria}</span>
+              <span className="livro-aba-vol" aria-hidden="true">
+                {ROMANOS[materia.volume ?? 1]}
+              </span>
+              <span className="visualmente-oculto">
+                {' '}— vol. {ROMANOS[materia.volume ?? 1]}
+              </span>
             </Link>
           ))}
         </nav>
@@ -165,10 +200,11 @@ export default function CodiceIndex() {
             </h1>
             <p className="frontis-sub">
               em que se tratam as vidas &amp; obras de estrelas, boutiques &amp; menestréis,
+              &amp; mais as casas de sombra &amp; os lutadores do Norte,
               com gravuras da oficina &amp; marginalia da própria mão
             </p>
           </div>
-          <p className="frontis-vol">Vol. I — MMXXVI</p>
+          <p className="frontis-vol">Vols. I &amp; II — MMXXVI</p>
           <div className="frontis-exlibris">
             <ExLibris rotacao={-4}>ex·libris — a copista</ExLibris>
           </div>
@@ -178,17 +214,20 @@ export default function CodiceIndex() {
           <IndiceVolume />
           <p className="ui-2003 codice-rubricas">
             rubricas:{' '}
-            {materias.map((materia, i) => (
-              <span key={materia.slug}>
-                {i > 0 && ' · '}
-                <Link to={`/codice/materia/${materia.slug}`} viewTransition>
-                  {materia.categoria}
-                </Link>
-              </span>
-            ))}
+            {[...new Set(materias.map((m) => m.categoria))].map((rubrica, i) => {
+              const primeira = materias.find((m) => m.categoria === rubrica)
+              return (
+                <span key={rubrica}>
+                  {i > 0 && ' · '}
+                  <Link to={`/codice/materia/${primeira.slug}`} viewTransition>
+                    {rubrica}
+                  </Link>
+                </span>
+              )
+            })}
           </p>
           <div className="codice-carimbo">
-            <Carimbo rotacao={4}>vol. II em cópia</Carimbo>
+            <Carimbo rotacao={4}>vol. III em cópia</Carimbo>
           </div>
           <p className="assinatura-post codice-assinatura">
             copiado à mão por <Link to="/sobre">a copista</Link> — erros são do ofício
@@ -198,7 +237,7 @@ export default function CodiceIndex() {
 
       <Separador />
       <p className="capa-rodape-nota ui-2003">
-        fim das matérias deste volume — as próximas estão sendo copiadas à mão, tenha paciência
+        fim das matérias copiadas até aqui — o vol. III já está na pena, tenha paciência
       </p>
     </div>
   )

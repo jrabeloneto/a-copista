@@ -13,7 +13,13 @@ import '../styles/paginas.css'
  * publicado — matérias do códice, entradas do quarto e fotos do
  * álbum — como manda o costume dos blogs.
  */
-const MESES = ['março de MMXXVI', 'abril de MMXXVI', 'maio de MMXXVI', 'junho de MMXXVI']
+const MESES = [
+  'março de MMXXVI',
+  'abril de MMXXVI',
+  'maio de MMXXVI',
+  'junho de MMXXVI',
+  'julho de MMXXVI',
+]
 
 function rotuloEntrada(entrada) {
   if (entrada.tipo === 'avaliacao') return `avaliação: ${entrada.titulo}`

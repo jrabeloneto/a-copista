@@ -2,6 +2,8 @@
 
 **Fanzine & revista de mão única.** A revista-portal pessoal de uma personagem copista: um códice medieval no centro, cercado por seções em colagem — álbum de fotos, quarto-scrapbook, discoteca, webring — com a alma da web pessoal de 2003 e o motion de um portfólio contemporâneo.
 
+[![Live](https://img.shields.io/badge/Live-a--copista.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://a-copista.vercel.app)
+
 ![React](https://img.shields.io/badge/React-20232a?style=flat-square&logo=react&logoColor=61dafb)
 ![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-0ae448?style=flat-square&logo=greensock&logoColor=black)
 ![Lenis](https://img.shields.io/badge/Lenis-smooth%20scroll-1f1f1f?style=flat-square)
